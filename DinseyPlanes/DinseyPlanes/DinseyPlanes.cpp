@@ -54,6 +54,16 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 	m_Credits.setAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_040.bmp", 22, 20));
 
 	m_DinseyPlanes_MainMenu.setAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\MainMenu.bmp", 22, 20));
+	_LEVELS = SYDEMenu(vector<SYDEButton> { SYDEButton("7th Dec 1941", Vector2(1, 1), Vector2(20, 1), BLACK, true),
+											SYDEButton("", Vector2(1, 2), Vector2(20, 1), BLACK, true),
+											SYDEButton("", Vector2(1, 3), Vector2(20, 1), BLACK, true)
+	});
+	_LEVELS.setActive(false);
+	_LEVELS.setPos(Vector2(0, 0));
+	for (int i = 0; i < _LEVELS.getSize(); i++)
+	{
+		_LEVELS[i].setHighLight(RED);
+	}
 }
 
 ConsoleWindow DinseyPlanes::window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight)
@@ -81,27 +91,67 @@ ConsoleWindow DinseyPlanes::window_draw_game(ConsoleWindow window, int windowWid
 
 ConsoleWindow DinseyPlanes::_MainMenu(ConsoleWindow window, int windowWidth, int windowHeight)
 {
+	_LEVELS[1].setText(toLevelString(_PEARLHARBOURBEATEN, (string)("TBA")));
+	_LEVELS[2].setText(toLevelString(_PEARLHARBOURBEATEN, (string)("TBA")));
 	_MainMenuInputVoids();
 	window = m_DinseyPlanes_MainMenu.draw_asset(window, Vector2(0, 0));
 	// Template window.setTextAtPoint(Vector2(0, 0), "", window.determineColourAtPoint(Vector2(0,0),BLACK, true));
 	// UI - Title
 	window.setTextAtPoint(Vector2(2, 1), "Dinsey Planes", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
 
-	window.setTextAtPoint(Vector2(0, 12), "A. Level Select", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
-	window.setTextAtPoint(Vector2(0, 13), "Z. Quit Game", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
+	if (!_LEVELS.getActive())
+	{
+		window.setTextAtPoint(Vector2(0, 12), "A. Level Select", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
+		window.setTextAtPoint(Vector2(0, 13), "Z. Quit Game", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
+	}
+	else 
+	{
+		window.setTextAtPoint(Vector2(0, 11), "TAB. Select", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
+		window.setTextAtPoint(Vector2(0, 12), "A. Confirm", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
+		window.setTextAtPoint(Vector2(0, 13), "Z. Back", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
+	}
+
+	//UI - MENU
+	if (_LEVELS.getActive())
+	{
+		window = _LEVELS.draw_menu(window);
+	}
 	return window;
 }
 
 void DinseyPlanes::_MainMenuInputVoids()
 {
-	if ((SYDEKeyCode::get('A')._CompareState(KEYDOWN)))
+	if (!_LEVELS.getActive())
 	{
-		_LEVEL = "_Level_Select";
+		if ((SYDEKeyCode::get('A')._CompareState(KEYDOWN)))
+		{
+			_LEVELS.setActive(true);
+		}
+		if ((SYDEKeyCode::get('Z')._CompareState(KEYDOWN)))
+		{
+			exit(NULL);
+		}
 	}
-
-	if ((SYDEKeyCode::get('Z')._CompareState(KEYDOWN)))
+	else
 	{
-		exit(NULL);
+		if (SYDEKeyCode::get(VK_TAB)._CompareState(KEYDOWN))
+		{
+			_LEVELS.nextSelect();
+		}
+		if ((SYDEKeyCode::get('A')._CompareState(KEYDOWN)))
+		{
+			if (_LEVELS.getSelected().m_Text == "7th Dec 1941")
+			{
+				_LEVEL = "_PearlHarbour";
+				PearlHarbourScene = 0;
+				_LEVELS.setActive(false);
+			}
+			// ELSE IF FOR OTHER LEVELS
+		}
+		if ((SYDEKeyCode::get('Z')._CompareState(KEYDOWN)))
+		{
+			_LEVELS.setActive(false);
+		}
 	}
 }
 
@@ -187,7 +237,8 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Game Over: Press 'Q' To Return To Menu", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), "Level Complete: Press 'Q' To Return", WHITE);
+		_PEARLHARBOURBEATEN = true;
 		Sleep(100);
 	}
 	//TO DO, ADD ANIMATION OF PLANE CRASHING INTO A HARBOUR, THEN LEVEL IS DONE
