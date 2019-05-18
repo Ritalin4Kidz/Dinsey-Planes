@@ -26,14 +26,22 @@ private:
 	void _LevelSelectInputVoids();
 
 	ConsoleWindow _PearlHarbour(ConsoleWindow window, int windowWidth, int windowHeight);
+	ConsoleWindow _Hiroshima(ConsoleWindow window, int windowWidth, int windowHeight);
+	ConsoleWindow _Nagasaki(ConsoleWindow window, int windowWidth, int windowHeight);
 
 	bool _startUp = true;
 
 	int PearlHarbourScene = 0;
+	int HiroshimaScene = 0;
+	int NagasakiScene = 0;
+
+	float cloudSpawnTime = 0;
 
 	//Animations
 	CustomAnimationAsset m_PearlHarbour;
 	CustomAnimationAsset m_PearlHarbourFlyDown;
+
+	CustomAnimationAsset m_Hiroshima;
 
 	//Assets
 	CustomAsset m_Tutorial;
@@ -41,11 +49,17 @@ private:
 
 	bool GetKey(char KeyCode);
 	CustomAsset m_DinseyPlanes_MainMenu;
+	vector<CustomAsset> m_Clouds = vector<CustomAsset>();
+	vector<CustomAsset> CloudsDrawn = vector<CustomAsset>();
+	vector<Vector2> CloudsDrawnPos = vector<Vector2>();
+	CustomAsset m_Sky;
+
 	std::string _LEVEL = "_MainMenu";
 
 	std::string toLevelString(bool condition, string text) { if (condition) return text; else return "???"; }
 
 	// Unlocks
-	bool _PEARLHARBOURBEATEN = false;
+	bool _PEARLHARBOURBEATEN = true;
+	bool _HIROSHIMABEATEN = false;
 	SYDEMenu _LEVELS;
 };

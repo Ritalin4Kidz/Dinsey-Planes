@@ -14,6 +14,8 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 
 	m_Tutorial.setAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_005.bmp", 22, 20));
 
+	m_Sky = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\SKY.bmp", 22, 20)),
+
 	m_PearlHarbourFlyDown.setAsset(vector<CustomAsset> {	CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_006.bmp", 22, 20)),
 															CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_007.bmp", 22, 20)),
 															CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_008.bmp", 22, 20)),
@@ -53,10 +55,16 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 
 	m_Credits.setAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_040.bmp", 22, 20));
 
+	m_Clouds.push_back(CustomAsset(10, 5, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_001.bmp", 5, 5)));
+	m_Clouds.push_back(CustomAsset(10, 5, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_002.bmp", 5, 5)));
+	m_Clouds.push_back(CustomAsset(10, 5, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_003.bmp", 5, 5)));
+	m_Clouds.push_back(CustomAsset(10, 5, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_004.bmp", 5, 5)));
+	m_Clouds.push_back(CustomAsset(10, 5, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_005.bmp", 5, 5)));
+
 	m_DinseyPlanes_MainMenu.setAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\MainMenu.bmp", 22, 20));
-	_LEVELS = SYDEMenu(vector<SYDEButton> { SYDEButton("7th Dec 1941", Vector2(1, 1), Vector2(20, 1), BLACK, true),
-											SYDEButton("", Vector2(1, 2), Vector2(20, 1), BLACK, true),
-											SYDEButton("", Vector2(1, 3), Vector2(20, 1), BLACK, true)
+	_LEVELS = SYDEMenu(vector<SYDEButton> { SYDEButton("7th Dec 1941", Vector2(0, 1), Vector2(20, 1), BLACK, true),
+											SYDEButton("", Vector2(0, 2), Vector2(20, 1), BLACK, true),
+											SYDEButton("", Vector2(0, 3), Vector2(20, 1), BLACK, true)
 	});
 	_LEVELS.setActive(false);
 	_LEVELS.setPos(Vector2(0, 0));
@@ -80,6 +88,14 @@ ConsoleWindow DinseyPlanes::window_draw_game(ConsoleWindow window, int windowWid
 	{
 		return _PearlHarbour(window, windowWidth, windowHeight);
 	}
+	if (_LEVEL == "_Hiroshima")
+	{
+		return _Hiroshima(window, windowWidth, windowHeight);
+	}
+	if (_LEVEL == "_Nagasaki")
+	{
+		return _Nagasaki(window, windowWidth, windowHeight);
+	}
 	if (_LEVEL == "_Level_Select")
 	{
 		return _LevelSelect(window, windowWidth, windowHeight);
@@ -91,8 +107,8 @@ ConsoleWindow DinseyPlanes::window_draw_game(ConsoleWindow window, int windowWid
 
 ConsoleWindow DinseyPlanes::_MainMenu(ConsoleWindow window, int windowWidth, int windowHeight)
 {
-	_LEVELS[1].setText(toLevelString(_PEARLHARBOURBEATEN, (string)("TBA")));
-	_LEVELS[2].setText(toLevelString(_PEARLHARBOURBEATEN, (string)("TBA")));
+	_LEVELS[1].setText(toLevelString(_PEARLHARBOURBEATEN, (string)("6th Aug 1945")));
+	_LEVELS[2].setText(toLevelString(_HIROSHIMABEATEN, (string)("9th Aug 1945")));
 	_MainMenuInputVoids();
 	window = m_DinseyPlanes_MainMenu.draw_asset(window, Vector2(0, 0));
 	// Template window.setTextAtPoint(Vector2(0, 0), "", window.determineColourAtPoint(Vector2(0,0),BLACK, true));
@@ -144,6 +160,13 @@ void DinseyPlanes::_MainMenuInputVoids()
 			{
 				_LEVEL = "_PearlHarbour";
 				PearlHarbourScene = 0;
+				_LEVELS.setActive(false);
+			}
+			else if (_LEVELS.getSelected().m_Text == "6th Aug 1945")
+			{
+				_LEVEL = "_Hiroshima";
+				HiroshimaScene = 0;
+				CloudsDrawn.clear();
 				_LEVELS.setActive(false);
 			}
 			// ELSE IF FOR OTHER LEVELS
@@ -245,6 +268,39 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 	else {
 		_LEVEL = "_MainMenu";
 	}
+	return window;
+}
+
+ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, int windowHeight)
+{
+	window = m_Sky.draw_asset(window, Vector2(0, 0));
+	cloudSpawnTime += SYDEDefaults::getDeltaTime();
+	if (HiroshimaScene < 2)
+	{
+		//DRAW CLOUDS
+		if (cloudSpawnTime > 1)
+		{
+			CloudsDrawn.push_back(m_Clouds[rand() % m_Clouds.size()]);
+			CloudsDrawnPos.push_back(Vector2(50,rand()%20));
+			cloudSpawnTime = 0;
+		}
+		for (int i = 0; i < CloudsDrawn.size(); i++)
+		{
+			window = CloudsDrawn[i].draw_asset(window, CloudsDrawnPos[i]);
+			CloudsDrawnPos[i].setX(CloudsDrawnPos[i].getX() - 1);
+		}
+
+	}
+	if (HiroshimaScene == 1)
+	{
+		window.setTextAtPoint(Vector2(0, 19), "Tutorial: Press 'B' To Use A Bomb", WHITE);
+	}
+	//ONCE BOMB IS OFF SCREEN, PLAY AN ANIMATION.
+	return window;
+}
+
+ConsoleWindow DinseyPlanes::_Nagasaki(ConsoleWindow window, int windowWidth, int windowHeight)
+{
 	return window;
 }
 
