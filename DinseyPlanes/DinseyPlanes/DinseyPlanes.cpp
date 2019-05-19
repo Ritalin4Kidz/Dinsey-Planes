@@ -61,6 +61,9 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 	m_Clouds.push_back(CustomAsset(10, 5, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_004.bmp", 5, 5)));
 	m_Clouds.push_back(CustomAsset(10, 5, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_005.bmp", 5, 5)));
 
+	m_Plane = CustomAsset(10, 5, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Plane.bmp", 5, 5));
+	m_Bomb  = CustomAsset(10, 5, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Bomb.bmp", 5, 5));
+
 	m_DinseyPlanes_MainMenu.setAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\MainMenu.bmp", 22, 20));
 	_LEVELS = SYDEMenu(vector<SYDEButton> { SYDEButton("7th Dec 1941", Vector2(0, 1), Vector2(20, 1), BLACK, true),
 											SYDEButton("", Vector2(0, 2), Vector2(20, 1), BLACK, true),
@@ -275,7 +278,16 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 {
 	window = m_Sky.draw_asset(window, Vector2(0, 0));
 	cloudSpawnTime += SYDEDefaults::getDeltaTime();
-	if (HiroshimaScene < 2)
+	if (HiroshimaScene == 0)
+	{
+		IntroTimeTaken += SYDEDefaults::getDeltaTime();
+		if (IntroTimeTaken >= 3)
+		{
+			HiroshimaScene++;
+			IntroTimeTaken = 0;
+		}
+	}
+	if (HiroshimaScene < 3)
 	{
 		//DRAW CLOUDS
 		if (cloudSpawnTime > 1)
@@ -289,11 +301,29 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 			window = CloudsDrawn[i].draw_asset(window, CloudsDrawnPos[i]);
 			CloudsDrawnPos[i].setX(CloudsDrawnPos[i].getX() - 1);
 		}
-
+		//DRAW PLANE
+		window = m_Bomb.draw_asset(window, m_BombPos);
+		window = m_Plane.draw_asset(window, Vector2(1, 5));
 	}
 	if (HiroshimaScene == 1)
 	{
-		window.setTextAtPoint(Vector2(0, 19), "Tutorial: Press 'B' To Use A Bomb", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), "Tutorial: Press 'B' To Use A Bomb            ", WHITE);
+		if ((SYDEKeyCode::get('B')._CompareState(KEYDOWN)))
+		{
+			HiroshimaScene++;
+		}
+	}
+	if (HiroshimaScene == 2)
+	{
+		m_BombPos.addY(1);
+		if (m_BombPos.getY() >= 22)
+		{
+			HiroshimaScene++;
+		}
+	}
+	if (HiroshimaScene >= 3 || HiroshimaScene == 0)
+	{
+		m_BombPos = Vector2(1, 5);
 	}
 	//ONCE BOMB IS OFF SCREEN, PLAY AN ANIMATION.
 	return window;

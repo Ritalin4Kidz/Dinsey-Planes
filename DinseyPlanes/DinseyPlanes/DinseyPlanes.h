@@ -54,6 +54,13 @@ private:
 	vector<Vector2> CloudsDrawnPos = vector<Vector2>();
 	CustomAsset m_Sky;
 
+	CustomAsset m_Plane;
+	CustomAsset m_Bomb;
+	Vector2 m_BombPos = Vector2(1,5);
+
+	//IntroTime
+	float IntroTimeTaken = 0;
+
 	std::string _LEVEL = "_MainMenu";
 
 	std::string toLevelString(bool condition, string text) { if (condition) return text; else return "???"; }
