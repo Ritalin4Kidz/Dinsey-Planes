@@ -10,11 +10,26 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 													CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_004.bmp", 22, 20)),
 													CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_005.bmp", 22, 20))});
 
+	m_Explosion.setAsset(vector<CustomAsset> {		CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\Explosion\\Scene_001.bmp", 22, 20)),
+													CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\Explosion\\Scene_002.bmp", 22, 20)),
+													CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\Explosion\\Scene_003.bmp", 22, 20)),
+													CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\Explosion\\Scene_004.bmp", 22, 20)),
+													CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\Explosion\\Scene_005.bmp", 22, 20)),
+													CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\Explosion\\Scene_006.bmp", 22, 20)),
+													CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\Explosion\\Scene_007.bmp", 22, 20)),
+													CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\Explosion\\Scene_008.bmp", 22, 20)),
+													CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\Explosion\\Scene_009.bmp", 22, 20)),
+													CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\Explosion\\Scene_010.bmp", 22, 20)),
+													CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\Explosion\\Scene_011.bmp", 22, 20)),
+													CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\Explosion\\Scene_012.bmp", 22, 20))
+	});
+
 	m_PearlHarbour.setFrame(0);
 
 	m_Tutorial.setAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_005.bmp", 22, 20));
 
-	m_Sky = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\SKY.bmp", 22, 20)),
+	m_Sky = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\SKY.bmp", 22, 20));
+	m_Hiro = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Levels\\Hiroshima.bmp", 22, 20));
 
 	m_PearlHarbourFlyDown.setAsset(vector<CustomAsset> {	CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_006.bmp", 22, 20)),
 															CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_007.bmp", 22, 20)),
@@ -318,12 +333,55 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 		m_BombPos.addY(1);
 		if (m_BombPos.getY() >= 22)
 		{
+			m_BombPos = Vector2(28, 5);
 			HiroshimaScene++;
 		}
 	}
-	if (HiroshimaScene >= 3 || HiroshimaScene == 0)
+	if (HiroshimaScene == 3)
 	{
+		window = m_Hiro.draw_asset(window, Vector2(0, 0));
+		m_BombPos.addY(1);
+		window = m_Bomb.draw_asset(window, m_BombPos);
+		if (m_BombPos.getY() >= 18)
+		{
+			m_Explosion.setFrame(0);
+			HiroshimaScene++;
+		}
+	}
+	if (HiroshimaScene == 4)
+	{
+		//DRAW EXPLOSION
+		window = m_Hiro.draw_asset(window, Vector2(0, 0));
+		window = m_Bomb.draw_asset(window, m_BombPos);
+		window = m_Explosion.draw_asset(window, Vector2(0, 0));
+		if (m_Explosion.getFrame() == 1)
+		{
+			PlaySound(AssetsClass::get_explosion_file_path(), NULL, SND_FILENAME | SND_ASYNC);
+		}
+		if (m_Explosion.getFrame() >= m_Explosion.getFrameSize() - 1)
+		{
+			HiroshimaScene++;
+		}
+	}
+	if (HiroshimaScene == 5)
+	{
+		if ((SYDEKeyCode::get('Q')._CompareState(KEYDOWN)))
+		{
+			HiroshimaScene++;
+		}
+		window = m_Credits.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Level Complete: Press 'Q' To Return", WHITE);
+	}
+	if (HiroshimaScene == 6)
+	{
+		_LEVEL = "_MainMenu";
+		m_Explosion.setFrame(0);
 		m_BombPos = Vector2(1, 5);
+		HiroshimaScene = 0;
 	}
 	//ONCE BOMB IS OFF SCREEN, PLAY AN ANIMATION.
 	return window;

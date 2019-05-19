@@ -41,7 +41,7 @@ private:
 	CustomAnimationAsset m_PearlHarbour;
 	CustomAnimationAsset m_PearlHarbourFlyDown;
 
-	CustomAnimationAsset m_Hiroshima;
+	CustomAnimationAsset m_Explosion;
 
 	//Assets
 	CustomAsset m_Tutorial;
@@ -52,8 +52,11 @@ private:
 	vector<CustomAsset> m_Clouds = vector<CustomAsset>();
 	vector<CustomAsset> CloudsDrawn = vector<CustomAsset>();
 	vector<Vector2> CloudsDrawnPos = vector<Vector2>();
+	//BACKGROUNDS
 	CustomAsset m_Sky;
+	CustomAsset m_Hiro;
 
+	//OBJECTS
 	CustomAsset m_Plane;
 	CustomAsset m_Bomb;
 	Vector2 m_BombPos = Vector2(1,5);
