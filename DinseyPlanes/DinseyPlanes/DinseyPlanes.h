@@ -29,6 +29,9 @@ private:
 	ConsoleWindow _Hiroshima(ConsoleWindow window, int windowWidth, int windowHeight);
 	ConsoleWindow _Nagasaki(ConsoleWindow window, int windowWidth, int windowHeight);
 
+	ConsoleWindow _BattleSelect(ConsoleWindow window, int windowWidth, int windowHeight);
+	ConsoleWindow _Battle(ConsoleWindow window, int windowWidth, int windowHeight);
+
 	bool _startUp = true;
 
 	int PearlHarbourScene = 0;
@@ -56,10 +59,26 @@ private:
 	CustomAsset m_Sky;
 	CustomAsset m_Hiro;
 
+	vector<CustomAsset> m_Skibber;
+	vector<CustomAsset> m_Dupty;
+	vector<CustomAsset> m_Dinsey;
+
 	//OBJECTS
 	CustomAsset m_Plane;
 	CustomAsset m_Bomb;
 	Vector2 m_BombPos = Vector2(1,5);
+
+	//Battle Mode
+	CustomAsset Player1Plane;
+	CustomAsset Player2Plane;
+
+	Vector2 Play1Pos = Vector2(1, 14);
+	Vector2 Play2Pos = Vector2(34, 14);
+
+	int BattleScene = 0;
+
+	float IntroCountDown = 3.5f;
+
 
 	//IntroTime
 	float IntroTimeTaken = 0;
@@ -67,6 +86,9 @@ private:
 	std::string _LEVEL = "_MainMenu";
 
 	std::string toLevelString(bool condition, string text) { if (condition) return text; else return "???"; }
+
+	int char1_choice = 0;
+	int char2_choice = 1;
 
 	// Unlocks
 	bool _PEARLHARBOURBEATEN = true;

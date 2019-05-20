@@ -31,6 +31,22 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 	m_Sky = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\SKY.bmp", 22, 20));
 	m_Hiro = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Levels\\Hiroshima.bmp", 22, 20));
 
+	m_Dinsey = vector<CustomAsset> {	CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Dinsey\\DinseyLeft.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Dinsey\\DinseyRight.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Dinsey\\DinseyGameLeft.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Dinsey\\DinseyGameRight.bmp", 22, 20))
+	};
+	m_Dupty = vector<CustomAsset>{		CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Dupty\\DuptyLeft.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Dupty\\DuptyRight.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Dupty\\DuptyGameLeft.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Dupty\\DuptyGameRight.bmp", 22, 20))
+	};
+	m_Skibber = vector<CustomAsset>{	CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Skibber\\SkibberLeft.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Skibber\\SkibberRight.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Skibber\\SkibberGameLeft.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Skibber\\SkibberGameRight.bmp", 22, 20)),
+	};
+
 	m_PearlHarbourFlyDown.setAsset(vector<CustomAsset> {	CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_006.bmp", 22, 20)),
 															CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_007.bmp", 22, 20)),
 															CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_008.bmp", 22, 20)),
@@ -118,6 +134,14 @@ ConsoleWindow DinseyPlanes::window_draw_game(ConsoleWindow window, int windowWid
 	{
 		return _LevelSelect(window, windowWidth, windowHeight);
 	}
+	if (_LEVEL == "_Battle_Select")
+	{
+		return _BattleSelect(window, windowWidth, windowHeight);
+	}
+	if (_LEVEL == "_Battle")
+	{
+		return _Battle(window, windowWidth, windowHeight);
+	}
 	else {
 		return _MainMenu(window, windowWidth, windowHeight);
 	}
@@ -135,7 +159,8 @@ ConsoleWindow DinseyPlanes::_MainMenu(ConsoleWindow window, int windowWidth, int
 
 	if (!_LEVELS.getActive())
 	{
-		window.setTextAtPoint(Vector2(0, 12), "A. Level Select", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
+		window.setTextAtPoint(Vector2(0, 11), "A. Level Select", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
+		window.setTextAtPoint(Vector2(0, 12), "B. Battle Mode", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
 		window.setTextAtPoint(Vector2(0, 13), "Z. Quit Game", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
 	}
 	else 
@@ -160,6 +185,10 @@ void DinseyPlanes::_MainMenuInputVoids()
 		if ((SYDEKeyCode::get('A')._CompareState(KEYDOWN)))
 		{
 			_LEVELS.setActive(true);
+		}
+		if ((SYDEKeyCode::get('B')._CompareState(KEYDOWN)))
+		{
+			_LEVEL = "_Battle_Select";
 		}
 		if ((SYDEKeyCode::get('Z')._CompareState(KEYDOWN)))
 		{
@@ -389,6 +418,199 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 
 ConsoleWindow DinseyPlanes::_Nagasaki(ConsoleWindow window, int windowWidth, int windowHeight)
 {
+	return window;
+}
+
+ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth, int windowHeight)
+{
+	for (int l = 0; l < windowWidth; l++)
+	{
+		for (int m = 0; m < windowHeight; m++)
+		{
+			window.setTextAtPoint(Vector2(l, m), " ", BRIGHTWHITE_AQUA_BG);
+		}
+	}
+	switch (char1_choice)
+	{
+	case 0:
+		window = m_Dinsey[0].draw_asset(window, Vector2(-6, 0));
+		window.setTextAtPoint(Vector2(0, 18), "Dinsey", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 1:
+		window = m_Dupty[0].draw_asset(window, Vector2(-6, 0));
+		window.setTextAtPoint(Vector2(0, 18), "Dupty", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 2:
+		window = m_Skibber[0].draw_asset(window, Vector2(-6, 0));
+		window.setTextAtPoint(Vector2(0, 18), "Skibber", BLACK_BRIGHTWHITE_BG);
+		break;
+	default:
+		char1_choice = 0;
+		break;
+	}
+	switch (char2_choice)
+	{
+	case 0:
+		window = m_Dinsey[1].draw_asset(window, Vector2(0, 0));
+		window.setTextAtPoint(Vector2(34, 18), "Dinsey", WHITE);
+		break;
+	case 1:
+		window = m_Dupty[1].draw_asset(window, Vector2(0, 0));
+		window.setTextAtPoint(Vector2(35, 18), "Dupty", WHITE);
+		break;
+	case 2:
+		window = m_Skibber[1].draw_asset(window, Vector2(0, 0));
+		window.setTextAtPoint(Vector2(33, 18), "Skibber", WHITE);
+		break;
+	default:
+		char2_choice = 0;
+		break;
+	}
+	window.setTextAtPoint(Vector2(0, 19), "<-A,D->", BLACK_BRIGHTWHITE_BG);
+	window.setTextAtPoint(Vector2(15, 19), "Space: Play", BLACK_AQUA_BG);
+	window.setTextAtPoint(Vector2(17, 18), "Z: Back", BLACK_AQUA_BG);
+	window.setTextAtPoint(Vector2(14, 1), "Plane Select", BLACK_BRIGHTWHITE_BG);
+	window.setTextAtPoint(Vector2(33, 19), "<-J,L->", WHITE);
+	//KEY INPUT
+	if ((SYDEKeyCode::get('A')._CompareState(KEYDOWN)))
+	{
+		char1_choice--;
+		if (char1_choice < 0)
+		{
+			char1_choice = 2;
+		}
+	}
+	if ((SYDEKeyCode::get('D')._CompareState(KEYDOWN)))
+	{
+		char1_choice++;
+		if (char1_choice > 2)
+		{
+			char1_choice = 0;
+		}
+	}
+	if ((SYDEKeyCode::get('J')._CompareState(KEYDOWN)))
+	{
+		char2_choice--;
+		if (char2_choice < 0)
+		{
+			char2_choice = 2;
+		}
+	}
+	if ((SYDEKeyCode::get('L')._CompareState(KEYDOWN)))
+	{
+		char2_choice++;
+		if (char2_choice > 2)
+		{
+			char2_choice = 0;
+		}
+	}
+	if ((SYDEKeyCode::get('Z')._CompareState(KEYDOWN)))
+	{
+		_LEVEL = "_MainMenu";
+	}
+	if ((SYDEKeyCode::get(VK_SPACE)._CompareState(KEYDOWN)))
+	{
+		_LEVEL = "_Battle";
+		switch (char1_choice)
+		{
+		case 0:
+			Player1Plane = m_Dinsey[2];
+			break;
+		case 1:
+			Player1Plane = m_Dupty[2];
+			break;
+		case 2:
+			Player1Plane = m_Skibber[2];
+			break;
+		default:
+			Player1Plane = m_Dinsey[2];
+			break;
+		}
+		switch (char2_choice)
+		{
+		case 0:
+			Player2Plane = m_Dinsey[3];
+			break;
+		case 1:
+			Player2Plane = m_Dupty[3];
+			break;
+		case 2:
+			Player2Plane = m_Skibber[3];
+			break;
+		default:
+			Player2Plane = m_Dinsey[3];
+			break;
+		}
+		//RESET
+		IntroCountDown = 3.5f;
+		m_Explosion.setFrame(0);
+		Play1Pos = Vector2(1, 14);
+		Play2Pos = Vector2(34, 14);
+		BattleScene = 0;
+	}
+
+	return window;
+}
+
+ConsoleWindow DinseyPlanes::_Battle(ConsoleWindow window, int windowWidth, int windowHeight)
+{
+	if (BattleScene == 0)
+	{
+		window = m_Sky.draw_asset(window, Vector2(0, 0));
+		cloudSpawnTime += SYDEDefaults::getDeltaTime();
+		//DRAW CLOUDS
+		if (cloudSpawnTime > 1)
+		{
+			CloudsDrawn.push_back(m_Clouds[rand() % m_Clouds.size()]);
+			CloudsDrawnPos.push_back(Vector2(50, rand() % 20));
+			cloudSpawnTime = 0;
+		}
+		for (int i = 0; i < CloudsDrawn.size(); i++)
+		{
+			window = CloudsDrawn[i].draw_asset(window, CloudsDrawnPos[i]);
+			CloudsDrawnPos[i].setX(CloudsDrawnPos[i].getX() - 1);
+		}
+		if (IntroCountDown >= 0)
+		{
+			window.setTextAtPoint(Vector2(21, 10), to_string((int)IntroCountDown), window.determineColourAtPoint(Vector2(21, 10), BLACK, true));
+			IntroCountDown -= SYDEDefaults::getDeltaTime();
+		}
+		else if (Play1Pos.getX() < Play2Pos.getX()) {
+			Play1Pos.addX(1);
+			Play2Pos.addX(-1);
+		}
+		window = Player1Plane.draw_asset(window, Play1Pos);
+		window = Player2Plane.draw_asset(window, Play2Pos);
+		if (Play1Pos.getX() > Play2Pos.getX())
+		{
+			if (m_Explosion.getFrame() == 1)
+			{
+				PlaySound(AssetsClass::get_explosion_file_path(), NULL, SND_FILENAME | SND_ASYNC);
+			}
+			window = m_Explosion.draw_asset(window, Vector2(0, 0));
+			if (m_Explosion.getFrame() >= m_Explosion.getFrameSize() - 1)
+			{
+				BattleScene++;
+			}
+		}
+	}
+	if (BattleScene == 1)
+	{
+		if ((SYDEKeyCode::get('Q')._CompareState(KEYDOWN)))
+		{
+			BattleScene++;
+		}
+		window = m_Credits.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Draw: Press 'Q' To Return", WHITE);
+	}
+	if (BattleScene == 2)
+	{
+		_LEVEL = "_Battle_Select";
+	}
 	return window;
 }
 
