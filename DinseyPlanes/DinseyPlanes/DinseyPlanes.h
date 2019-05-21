@@ -62,6 +62,7 @@ private:
 	vector<CustomAsset> m_Skibber;
 	vector<CustomAsset> m_Dupty;
 	vector<CustomAsset> m_Dinsey;
+	vector<CustomAsset> m_SemiColon;
 
 	//OBJECTS
 	CustomAsset m_Plane;
@@ -72,8 +73,8 @@ private:
 	CustomAsset Player1Plane;
 	CustomAsset Player2Plane;
 
-	Vector2 Play1Pos = Vector2(1, 14);
-	Vector2 Play2Pos = Vector2(34, 14);
+	Vector2 Play1Pos = Vector2(0, 14);
+	Vector2 Play2Pos = Vector2(32, 14);
 
 	int BattleScene = 0;
 

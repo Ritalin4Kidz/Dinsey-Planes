@@ -46,6 +46,11 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Skibber\\SkibberGameLeft.bmp", 22, 20)),
 										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Skibber\\SkibberGameRight.bmp", 22, 20)),
 	};
+	m_SemiColon = vector<CustomAsset>{  CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Semi-Colon\\SemiColonLeft.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Semi-Colon\\SemiColonRight.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Semi-Colon\\SemiColonGameLeft.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Semi-Colon\\SemiColonGameRight.bmp", 22, 20)),
+	};
 
 	m_PearlHarbourFlyDown.setAsset(vector<CustomAsset> {	CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_006.bmp", 22, 20)),
 															CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_007.bmp", 22, 20)),
@@ -444,6 +449,10 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		window = m_Skibber[0].draw_asset(window, Vector2(-6, 0));
 		window.setTextAtPoint(Vector2(0, 18), "Skibber", BLACK_BRIGHTWHITE_BG);
 		break;
+	case 3:
+		window = m_SemiColon[0].draw_asset(window, Vector2(-6, 0));
+		window.setTextAtPoint(Vector2(0, 18), "Semi-Colon", BLACK_BRIGHTWHITE_BG);
+		break;
 	default:
 		char1_choice = 0;
 		break;
@@ -462,6 +471,10 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		window = m_Skibber[1].draw_asset(window, Vector2(0, 0));
 		window.setTextAtPoint(Vector2(33, 18), "Skibber", WHITE);
 		break;
+	case 3:
+		window = m_SemiColon[1].draw_asset(window, Vector2(0, 0));
+		window.setTextAtPoint(Vector2(30, 18), "Semi-Colon", WHITE);
+		break;
 	default:
 		char2_choice = 0;
 		break;
@@ -477,13 +490,13 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		char1_choice--;
 		if (char1_choice < 0)
 		{
-			char1_choice = 2;
+			char1_choice = 3;
 		}
 	}
 	if ((SYDEKeyCode::get('D')._CompareState(KEYDOWN)))
 	{
 		char1_choice++;
-		if (char1_choice > 2)
+		if (char1_choice > 3)
 		{
 			char1_choice = 0;
 		}
@@ -493,13 +506,13 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		char2_choice--;
 		if (char2_choice < 0)
 		{
-			char2_choice = 2;
+			char2_choice = 3;
 		}
 	}
 	if ((SYDEKeyCode::get('L')._CompareState(KEYDOWN)))
 	{
 		char2_choice++;
-		if (char2_choice > 2)
+		if (char2_choice > 3)
 		{
 			char2_choice = 0;
 		}
@@ -522,6 +535,9 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		case 2:
 			Player1Plane = m_Skibber[2];
 			break;
+		case 3:
+			Player1Plane = m_SemiColon[2];
+			break;
 		default:
 			Player1Plane = m_Dinsey[2];
 			break;
@@ -537,6 +553,9 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		case 2:
 			Player2Plane = m_Skibber[3];
 			break;
+		case 3:
+			Player2Plane = m_SemiColon[3];
+			break;
 		default:
 			Player2Plane = m_Dinsey[3];
 			break;
@@ -544,8 +563,8 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		//RESET
 		IntroCountDown = 3.5f;
 		m_Explosion.setFrame(0);
-		Play1Pos = Vector2(1, 14);
-		Play2Pos = Vector2(34, 14);
+		Play1Pos = Vector2(0, 14);
+		Play2Pos = Vector2(32, 14);
 		BattleScene = 0;
 	}
 
@@ -581,7 +600,7 @@ ConsoleWindow DinseyPlanes::_Battle(ConsoleWindow window, int windowWidth, int w
 		}
 		window = Player1Plane.draw_asset(window, Play1Pos);
 		window = Player2Plane.draw_asset(window, Play2Pos);
-		if (Play1Pos.getX() > Play2Pos.getX())
+		if (Play1Pos.getX() >= Play2Pos.getX())
 		{
 			if (m_Explosion.getFrame() == 1)
 			{
