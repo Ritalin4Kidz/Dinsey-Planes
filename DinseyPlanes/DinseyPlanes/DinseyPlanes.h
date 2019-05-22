@@ -49,6 +49,12 @@ private:
 	ConsoleWindow _Hiroshima(ConsoleWindow window, int windowWidth, int windowHeight);
 	ConsoleWindow _Nagasaki(ConsoleWindow window, int windowWidth, int windowHeight);
 
+	ConsoleWindow _PearlHarbourPrologue(ConsoleWindow window, int windowWidth, int windowHeight);
+	ConsoleWindow _HiroshimaPrologue(ConsoleWindow window, int windowWidth, int windowHeight);
+	ConsoleWindow _NagasakiPrologue(ConsoleWindow window, int windowWidth, int windowHeight);
+
+	ConsoleWindow _DinseyBadDay(ConsoleWindow window, int windowWidth, int windowHeight);
+
 	ConsoleWindow _BattleSelect(ConsoleWindow window, int windowWidth, int windowHeight);
 	ConsoleWindow _Battle(ConsoleWindow window, int windowWidth, int windowHeight);
 
@@ -78,6 +84,7 @@ private:
 	//BACKGROUNDS
 	CustomAsset m_Sky;
 	CustomAsset m_Hiro;
+	CustomAsset m_Naga;
 
 	//CHARACTER ART
 	vector<CustomAsset> m_Skibber;
@@ -121,6 +128,7 @@ private:
 	// Unlocks
 	bool _PEARLHARBOURBEATEN = false;
 	bool _HIROSHIMABEATEN = false;
+	bool _NAGASAKIBEATEN = false;
 	SYDEMenu _LEVELS;
 
 	//OTHER ETC

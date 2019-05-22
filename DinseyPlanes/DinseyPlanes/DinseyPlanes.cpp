@@ -30,6 +30,7 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 
 	m_Sky = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\SKY.bmp", 22, 20));
 	m_Hiro = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Levels\\Hiroshima.bmp", 22, 20));
+	m_Naga = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Levels\\Nagasaki.bmp", 22, 20));
 
 	m_Dinsey = vector<CustomAsset> {	CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Dinsey\\DinseyLeft.bmp", 22, 20)),
 										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Dinsey\\DinseyRight.bmp", 22, 20)),
@@ -110,9 +111,13 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 	m_Bomb  = CustomAsset(10, 5, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Bomb.bmp", 5, 5));
 
 	m_DinseyPlanes_MainMenu.setAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\MainMenu.bmp", 22, 20));
-	_LEVELS = SYDEMenu(vector<SYDEButton> { SYDEButton("7th Dec 1941", Vector2(0, 1), Vector2(20, 1), BLACK, true),
-											SYDEButton("", Vector2(0, 2), Vector2(20, 1), BLACK, true),
-											SYDEButton("", Vector2(0, 3), Vector2(20, 1), BLACK, true)
+	_LEVELS = SYDEMenu(vector<SYDEButton> { SYDEButton("7/12/1941 Prologue", Vector2(0, 1), Vector2(20, 1), BLACK, true),
+											SYDEButton("7th Dec 1941", Vector2(0, 2), Vector2(20, 1), BLACK, true),
+											SYDEButton("", Vector2(0, 3), Vector2(20, 1), BLACK, true),
+											SYDEButton("", Vector2(0, 4), Vector2(20, 1), BLACK, true),
+											SYDEButton("", Vector2(0, 5), Vector2(20, 1), BLACK, true),
+											SYDEButton("", Vector2(0, 6), Vector2(20, 1), BLACK, true),
+											SYDEButton("", Vector2(0, 7), Vector2(20, 1), BLACK, true)
 	});
 	_LEVELS.setActive(false);
 	_LEVELS.setPos(Vector2(0, 0));
@@ -164,8 +169,11 @@ ConsoleWindow DinseyPlanes::window_draw_game(ConsoleWindow window, int windowWid
 
 ConsoleWindow DinseyPlanes::_MainMenu(ConsoleWindow window, int windowWidth, int windowHeight)
 {
-	_LEVELS[1].setText(toLevelString(_PEARLHARBOURBEATEN, (string)("6th Aug 1945")));
-	_LEVELS[2].setText(toLevelString(_HIROSHIMABEATEN, (string)("9th Aug 1945")));
+	_LEVELS[2].setText(toLevelString(_PEARLHARBOURBEATEN, (string)("6/8/1945 Prologue")));
+	_LEVELS[3].setText(toLevelString(_PEARLHARBOURBEATEN, (string)("6th Aug 1945")));
+	_LEVELS[4].setText(toLevelString(_HIROSHIMABEATEN, (string)("9/8/1945 Prologue")));
+	_LEVELS[5].setText(toLevelString(_HIROSHIMABEATEN, (string)("9th Aug 1945")));
+	_LEVELS[6].setText(toLevelString(_NAGASAKIBEATEN, (string)("Dinsey's Bad Day")));
 	_MainMenuInputVoids();
 	window = m_DinseyPlanes_MainMenu.draw_asset(window, Vector2(0, 0));
 	// Template window.setTextAtPoint(Vector2(0, 0), "", window.determineColourAtPoint(Vector2(0,0),BLACK, true));
@@ -232,6 +240,29 @@ void DinseyPlanes::_MainMenuInputVoids()
 				HiroshimaScene = 0;
 				CloudsDrawn.clear();
 				_LEVELS.setActive(false);
+			}
+			else if (_LEVELS.getSelected().m_Text == "9th Aug 1945")
+			{
+				_LEVEL = "_Nagasaki";
+				NagasakiScene = 0;
+				CloudsDrawn.clear();
+				_LEVELS.setActive(false);
+			}
+			else if (_LEVELS.getSelected().m_Text == "6/8/1945 Prologue")
+			{
+				//_LEVEL = "_Hiroshima";
+				//HiroshimaScene = 0;
+				//CloudsDrawn.clear();
+				//_LEVELS.setActive(false);
+			}
+			else if (_LEVELS.getSelected().m_Text == "7/12/1941 Prologue")
+			{
+			}
+			else if (_LEVELS.getSelected().m_Text == "9/8/1945 Prologue")
+			{
+			}
+			else if (_LEVELS.getSelected().m_Text == "Dinsey's Bad Day")
+			{
 			}
 			// ELSE IF FOR OTHER LEVELS
 		}
@@ -320,6 +351,10 @@ void DinseyPlanes::_Load()
 			{
 				std::istringstream(FileLines[1]) >> _HIROSHIMABEATEN;
 			}
+			if (FileLines[0] == "_NAGASAKIBEATEN")
+			{
+				std::istringstream(FileLines[1]) >> _NAGASAKIBEATEN;
+			}
 			if (FileLines[0] == "_SEMICOLON_UNLOCK")
 			{
 				std::istringstream(FileLines[1]) >> _SEMICOLON_UNLOCK;
@@ -342,6 +377,7 @@ void DinseyPlanes::_Save()
 	//LEVELS
 	FileOut << "_PEARLHARBOURBEATEN:" + to_string(_PEARLHARBOURBEATEN) << endl;
 	FileOut << "_HIROSHIMABEATEN:" + to_string(_HIROSHIMABEATEN) << endl;
+	FileOut << "_NAGASAKIBEATEN:" + to_string(_NAGASAKIBEATEN) << endl;
 	//CHARACTERS
 	FileOut << "_SEMICOLON_UNLOCK:" + to_string(_SEMICOLON_UNLOCK) << endl;
 	FileOut << "_TSUBUMMER_UNLOCK:" + to_string(_TSUBUMMER_UNLOCK) << endl;
@@ -513,6 +549,7 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 		m_Explosion.setFrame(0);
 		m_BombPos = Vector2(1, 5);
 		HiroshimaScene = 0;
+		_HIROSHIMABEATEN = true;
 	}
 	//ONCE BOMB IS OFF SCREEN, PLAY AN ANIMATION.
 	return window;
@@ -520,7 +557,126 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 
 ConsoleWindow DinseyPlanes::_Nagasaki(ConsoleWindow window, int windowWidth, int windowHeight)
 {
+	window = m_Sky.draw_asset(window, Vector2(0, 0));
+	cloudSpawnTime += SYDEDefaults::getDeltaTime();
+	if (NagasakiScene == 0)
+	{
+		IntroTimeTaken += SYDEDefaults::getDeltaTime();
+		if (IntroTimeTaken >= 3)
+		{
+			NagasakiScene++;
+			IntroTimeTaken = 0;
+		}
+	}
+	if (NagasakiScene < 3)
+	{
+		//DRAW CLOUDS
+		if (cloudSpawnTime > 1)
+		{
+			CloudsDrawn.push_back(m_Clouds[rand() % m_Clouds.size()]);
+			CloudsDrawnPos.push_back(Vector2(50, rand() % 20));
+			cloudSpawnTime = 0;
+		}
+		for (int i = 0; i < CloudsDrawn.size(); i++)
+		{
+			window = CloudsDrawn[i].draw_asset(window, CloudsDrawnPos[i]);
+			CloudsDrawnPos[i].setX(CloudsDrawnPos[i].getX() - 1);
+		}
+		//DRAW PLANE
+		window = m_Bomb.draw_asset(window, m_BombPos);
+		window = m_Plane.draw_asset(window, Vector2(1, 5));
+	}
+	if (NagasakiScene == 1)
+	{
+		//window.setTextAtPoint(Vector2(0, 19), "Tutorial: Press 'B' To Use A Bomb            ", WHITE);
+		if ((SYDEKeyCode::get('B')._CompareState(KEYDOWN)))
+		{
+			NagasakiScene++;
+		}
+	}
+	if (NagasakiScene == 2)
+	{
+		m_BombPos.addY(1);
+		if (m_BombPos.getY() >= 22)
+		{
+			m_BombPos = Vector2(28, 5);
+			NagasakiScene++;
+		}
+	}
+	if (NagasakiScene == 3)
+	{
+		window = m_Naga.draw_asset(window, Vector2(0, 0));
+		m_BombPos.addY(1);
+		window = m_Bomb.draw_asset(window, m_BombPos);
+		if (m_BombPos.getY() >= 18)
+		{
+			m_Explosion.setFrame(0);
+			NagasakiScene++;
+		}
+	}
+	if (NagasakiScene == 4)
+	{
+		//DRAW EXPLOSION
+		window = m_Naga.draw_asset(window, Vector2(0, 0));
+		window = m_Bomb.draw_asset(window, m_BombPos);
+		window = m_Explosion.draw_asset(window, Vector2(0, 0));
+		if (m_Explosion.getFrame() == 1)
+		{
+			PlaySound(AssetsClass::get_explosion_file_path(), NULL, SND_FILENAME | SND_ASYNC);
+		}
+		if (m_Explosion.getFrame() >= m_Explosion.getFrameSize() - 1)
+		{
+			NagasakiScene++;
+		}
+	}
+	if (NagasakiScene == 5)
+	{
+		if ((SYDEKeyCode::get('Q')._CompareState(KEYDOWN)))
+		{
+			NagasakiScene++;
+		}
+		window = m_Credits.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Level Complete: Press 'Q' To Return", WHITE);
+	}
+	if (NagasakiScene == 6)
+	{
+		if (!_RIPPERONI_UNLOCK)
+		{
+			_RIPPERONI_UNLOCK = true;
+			unlockPopUp.PopUp("Ripperoni Unlocked!");
+		}
+		_LEVEL = "_MainMenu";
+		m_Explosion.setFrame(0);
+		m_BombPos = Vector2(1, 5);
+		NagasakiScene = 0;
+		_NAGASAKIBEATEN = true;
+	}
+	//ONCE BOMB IS OFF SCREEN, PLAY AN ANIMATION.
 	return window;
+}
+
+ConsoleWindow DinseyPlanes::_PearlHarbourPrologue(ConsoleWindow window, int windowWidth, int windowHeight)
+{
+	return ConsoleWindow();
+}
+
+ConsoleWindow DinseyPlanes::_HiroshimaPrologue(ConsoleWindow window, int windowWidth, int windowHeight)
+{
+	return ConsoleWindow();
+}
+
+ConsoleWindow DinseyPlanes::_NagasakiPrologue(ConsoleWindow window, int windowWidth, int windowHeight)
+{
+	return ConsoleWindow();
+}
+
+ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth, int windowHeight)
+{
+	return ConsoleWindow();
 }
 
 ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth, int windowHeight)
