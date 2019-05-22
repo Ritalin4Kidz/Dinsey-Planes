@@ -120,6 +120,7 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 	{
 		_LEVELS[i].setHighLight(RED);
 	}
+	_Load();
 }
 
 ConsoleWindow DinseyPlanes::window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight)
@@ -207,6 +208,7 @@ void DinseyPlanes::_MainMenuInputVoids()
 		}
 		if ((SYDEKeyCode::get('Z')._CompareState(KEYDOWN)))
 		{
+			_Save();
 			exit(NULL);
 		}
 	}
@@ -269,6 +271,81 @@ void DinseyPlanes::_LevelSelectInputVoids()
 	{
 		_LEVEL = "_MainMenu";
 	}
+}
+
+vector<string> DinseyPlanes::_Split(string a_String, char splitter)
+{
+	int arraySize = 1;
+	for (int i = 0; i < a_String.length(); i++)
+	{
+		if (a_String[i] == splitter)
+		{
+			arraySize++;
+		}
+	}
+	vector<string> splitString(arraySize);
+	int arrayNo = 0;
+	while (arrayNo < arraySize - 1)
+	{
+		for (int i = 0; i < a_String.length(); i++)
+		{
+			if (a_String[i] == splitter)
+			{
+				splitString[arrayNo] = a_String.substr(0, i);
+				a_String = a_String.substr(i + 1, a_String.length() - i);
+				arrayNo++;
+				break;
+			}
+		}
+	}
+	splitString[arraySize - 1] = a_String;
+	return splitString;
+}
+
+void DinseyPlanes::_Load()
+{
+	ifstream File("EngineFiles\\Settings\\dp_Saves.sc", ios::binary | ios::in);
+	if (File.is_open())
+	{
+		string line;
+		vector<string> FileLines;
+		while (getline(File, line, '\n'))
+		{
+			FileLines = _Split(line, ':');
+			if (FileLines[0] == "_PEARLHARBOURBEATEN")
+			{
+				std::istringstream(FileLines[1]) >> _PEARLHARBOURBEATEN;
+			}
+			if (FileLines[0] == "_HIROSHIMABEATEN")
+			{
+				std::istringstream(FileLines[1]) >> _HIROSHIMABEATEN;
+			}
+			if (FileLines[0] == "_SEMICOLON_UNLOCK")
+			{
+				std::istringstream(FileLines[1]) >> _SEMICOLON_UNLOCK;
+			}
+			if (FileLines[0] == "_TSUBUMMER_UNLOCK")
+			{
+				std::istringstream(FileLines[1]) >> _TSUBUMMER_UNLOCK;
+			}
+			if (FileLines[0] == "_RIPPERONI_UNLOCK")
+			{
+				std::istringstream(FileLines[1]) >> _RIPPERONI_UNLOCK;
+			}
+		}
+	}
+}
+
+void DinseyPlanes::_Save()
+{
+	ofstream FileOut("EngineFiles\\Settings\\dp_Saves.sc");
+	//LEVELS
+	FileOut << "_PEARLHARBOURBEATEN:" + to_string(_PEARLHARBOURBEATEN) << endl;
+	FileOut << "_HIROSHIMABEATEN:" + to_string(_HIROSHIMABEATEN) << endl;
+	//CHARACTERS
+	FileOut << "_SEMICOLON_UNLOCK:" + to_string(_SEMICOLON_UNLOCK) << endl;
+	FileOut << "_TSUBUMMER_UNLOCK:" + to_string(_TSUBUMMER_UNLOCK) << endl;
+	FileOut << "_RIPPERONI_UNLOCK:" + to_string(_RIPPERONI_UNLOCK) << endl;
 }
 
 ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth, int windowHeight)

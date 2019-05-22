@@ -12,6 +12,7 @@
 #include <objidl.h>
 #include <gdiplus.h>
 #include "SYDEstdafx.h"
+#include <sstream>
 
 class MainMenuPopUp {
 public:
@@ -39,6 +40,10 @@ private:
 	void _MainMenuInputVoids();
 	ConsoleWindow _LevelSelect(ConsoleWindow window, int windowWidth, int windowHeight);
 	void _LevelSelectInputVoids();
+
+	vector<string> _Split(string a_String, char splitter);
+	void _Load();
+	void _Save();
 
 	ConsoleWindow _PearlHarbour(ConsoleWindow window, int windowWidth, int windowHeight);
 	ConsoleWindow _Hiroshima(ConsoleWindow window, int windowWidth, int windowHeight);
