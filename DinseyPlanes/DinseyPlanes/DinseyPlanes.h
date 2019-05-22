@@ -12,6 +12,21 @@
 #include <objidl.h>
 #include <gdiplus.h>
 #include "SYDEstdafx.h"
+
+class MainMenuPopUp {
+public:
+	MainMenuPopUp() {}
+	MainMenuPopUp(float a_LifeTime) {TimeShown = a_LifeTime; TimeTaken = TimeShown + 1; }
+	virtual ~MainMenuPopUp() {}
+
+	ConsoleWindow draw(ConsoleWindow window);
+	void PopUp(string a_Text);
+private:
+	SYDELabel PopUpBox = SYDELabel("", Vector2(0,19), Vector2(25, 1), RED, true);
+	float TimeShown;
+	float TimeTaken;
+};
+
 class DinseyPlanes : public SYDEWindowGame {
 public:
 	DinseyPlanes(AssetsClass astVars);
@@ -59,10 +74,13 @@ private:
 	CustomAsset m_Sky;
 	CustomAsset m_Hiro;
 
+	//CHARACTER ART
 	vector<CustomAsset> m_Skibber;
 	vector<CustomAsset> m_Dupty;
 	vector<CustomAsset> m_Dinsey;
 	vector<CustomAsset> m_SemiColon;
+	vector<CustomAsset> m_Tsubummer;
+	vector<CustomAsset> m_Ripperoni;
 
 	//OBJECTS
 	CustomAsset m_Plane;
@@ -80,6 +98,10 @@ private:
 
 	float IntroCountDown = 3.5f;
 
+	//CHARACTER UNLOCKS
+	bool _SEMICOLON_UNLOCK = false;
+	bool _TSUBUMMER_UNLOCK = false;
+	bool _RIPPERONI_UNLOCK = false;
 
 	//IntroTime
 	float IntroTimeTaken = 0;
@@ -92,7 +114,10 @@ private:
 	int char2_choice = 1;
 
 	// Unlocks
-	bool _PEARLHARBOURBEATEN = true;
+	bool _PEARLHARBOURBEATEN = false;
 	bool _HIROSHIMABEATEN = false;
 	SYDEMenu _LEVELS;
+
+	//OTHER ETC
+	MainMenuPopUp unlockPopUp =  MainMenuPopUp(2.5f);
 };

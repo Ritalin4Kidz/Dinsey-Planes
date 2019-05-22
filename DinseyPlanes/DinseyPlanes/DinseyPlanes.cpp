@@ -51,7 +51,16 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Semi-Colon\\SemiColonGameLeft.bmp", 22, 20)),
 										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Semi-Colon\\SemiColonGameRight.bmp", 22, 20)),
 	};
-
+	m_Ripperoni = vector<CustomAsset>{	CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Ripperoni\\RipperoniLeft.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Ripperoni\\RipperoniRight.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Ripperoni\\RipperoniGameLeft.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Ripperoni\\RipperoniGameRight.bmp", 22, 20)),
+	};
+	m_Tsubummer = vector<CustomAsset>{	CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Tsubummer\\TsubummerLeft.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Tsubummer\\TsubummerRight.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Tsubummer\\TsubummerGameLeft.bmp", 22, 20)),
+										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Tsubummer\\TsubummerGameRight.bmp", 22, 20)),
+	};
 	m_PearlHarbourFlyDown.setAsset(vector<CustomAsset> {	CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_006.bmp", 22, 20)),
 															CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_007.bmp", 22, 20)),
 															CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_008.bmp", 22, 20)),
@@ -180,6 +189,7 @@ ConsoleWindow DinseyPlanes::_MainMenu(ConsoleWindow window, int windowWidth, int
 	{
 		window = _LEVELS.draw_menu(window);
 	}
+	window = unlockPopUp.draw(window);
 	return window;
 }
 
@@ -266,7 +276,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 	if (PearlHarbourScene == 0)
 	{
 		window = m_PearlHarbour.draw_asset(window, Vector2(0, 0));
-		Sleep(100);
+		//Sleep(100);
 		if (m_PearlHarbour.getFrame() >= m_PearlHarbour.getFrameSize() - 1)
 		{
 			m_PearlHarbour.setFrame(0);
@@ -285,7 +295,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
 		window.setTextAtPoint(Vector2(0, 19), "Tutorial: Press 'S' To Move Down", WHITE);
-		Sleep(100);
+		//Sleep(100);
 	}
 	else if (PearlHarbourScene == 2)
 	{
@@ -294,7 +304,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 			PlaySound(AssetsClass::get_explosion_file_path(), NULL, SND_FILENAME | SND_ASYNC);
 		}
 		window = m_PearlHarbourFlyDown.draw_asset(window, Vector2(0, 0));
-		Sleep(100);
+		//Sleep(100);
 		if (m_PearlHarbourFlyDown.getFrame() >= m_PearlHarbourFlyDown.getFrameSize() - 1)
 		{
 			m_PearlHarbourFlyDown.setFrame(0);
@@ -306,6 +316,11 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 		if ((SYDEKeyCode::get('Q')._CompareState(KEYDOWN)))
 		{
 			PearlHarbourScene++;
+			if (!_SEMICOLON_UNLOCK)
+			{
+				_SEMICOLON_UNLOCK = true;
+				unlockPopUp.PopUp("Semi-Colon Unlocked!");
+			}
 		}
 		window = m_Credits.draw_asset(window, Vector2(0, 0));
 		for (int i = 0; i < windowWidth; i++)
@@ -314,7 +329,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 		}
 		window.setTextAtPoint(Vector2(0, 19), "Level Complete: Press 'Q' To Return", WHITE);
 		_PEARLHARBOURBEATEN = true;
-		Sleep(100);
+		//Sleep(100);
 	}
 	//TO DO, ADD ANIMATION OF PLANE CRASHING INTO A HARBOUR, THEN LEVEL IS DONE
 	else {
@@ -412,6 +427,11 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 	}
 	if (HiroshimaScene == 6)
 	{
+		if (!_TSUBUMMER_UNLOCK)
+		{
+			_TSUBUMMER_UNLOCK = true;
+			unlockPopUp.PopUp("Tsubummer Unlocked!");
+		}
 		_LEVEL = "_MainMenu";
 		m_Explosion.setFrame(0);
 		m_BombPos = Vector2(1, 5);
@@ -450,10 +470,32 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		window.setTextAtPoint(Vector2(0, 18), "Skibber", BLACK_BRIGHTWHITE_BG);
 		break;
 	case 3:
-		window = m_SemiColon[0].draw_asset(window, Vector2(-6, 0));
-		window.setTextAtPoint(Vector2(0, 18), "Semi-Colon", BLACK_BRIGHTWHITE_BG);
-		break;
+		if (_SEMICOLON_UNLOCK)
+		{
+			window = m_SemiColon[0].draw_asset(window, Vector2(-6, 0));
+			window.setTextAtPoint(Vector2(0, 18), "Semi-Colon", BLACK_BRIGHTWHITE_BG);
+			break;
+		}
+		char1_choice++;
+	case 4:
+		if (_RIPPERONI_UNLOCK)
+		{
+			window = m_Ripperoni[0].draw_asset(window, Vector2(-6, 0));
+			window.setTextAtPoint(Vector2(0, 18), "Ripperoni", BLACK_BRIGHTWHITE_BG);
+			break;
+		}
+		char1_choice++;
+	case 5:
+		if (_TSUBUMMER_UNLOCK)
+		{
+			window = m_Tsubummer[0].draw_asset(window, Vector2(-6, 0));
+			window.setTextAtPoint(Vector2(0, 18), "Tsubummer", BLACK_BRIGHTWHITE_BG);
+			break;
+		}
+		char1_choice++;
 	default:
+		window = m_Dinsey[0].draw_asset(window, Vector2(-6, 0));
+		window.setTextAtPoint(Vector2(0, 18), "Dinsey", BLACK_BRIGHTWHITE_BG);
 		char1_choice = 0;
 		break;
 	}
@@ -472,10 +514,32 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		window.setTextAtPoint(Vector2(33, 18), "Skibber", WHITE);
 		break;
 	case 3:
-		window = m_SemiColon[1].draw_asset(window, Vector2(0, 0));
-		window.setTextAtPoint(Vector2(30, 18), "Semi-Colon", WHITE);
-		break;
+		if (_SEMICOLON_UNLOCK)
+		{
+			window = m_SemiColon[1].draw_asset(window, Vector2(0, 0));
+			window.setTextAtPoint(Vector2(30, 18), "Semi-Colon", WHITE);
+			break;
+		}
+		char2_choice++;
+	case 4:
+		if (_RIPPERONI_UNLOCK)
+		{
+			window = m_Ripperoni[1].draw_asset(window, Vector2(0, 0));
+			window.setTextAtPoint(Vector2(31, 18), "Ripperoni", WHITE);
+			break;
+		}
+		char2_choice++;
+	case 5:
+		if (_TSUBUMMER_UNLOCK)
+		{
+			window = m_Tsubummer[1].draw_asset(window, Vector2(0, 0));
+			window.setTextAtPoint(Vector2(31, 18), "Tsubummer", WHITE);
+			break;
+		}
+		char2_choice++;
 	default:
+		window = m_Dinsey[1].draw_asset(window, Vector2(0, 0));
+		window.setTextAtPoint(Vector2(34, 18), "Dinsey", WHITE);
 		char2_choice = 0;
 		break;
 	}
@@ -490,13 +554,30 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		char1_choice--;
 		if (char1_choice < 0)
 		{
-			char1_choice = 3;
+			char1_choice = 5;
+		}
+		switch (char1_choice)
+		{
+			case 5:
+				if (_TSUBUMMER_UNLOCK)
+					break;
+				char1_choice--;
+			case 4:
+				if (_RIPPERONI_UNLOCK)
+					break;
+				char1_choice--;
+			case 3:
+				if (_SEMICOLON_UNLOCK)
+					break;
+				char1_choice--;
+			default:
+				break;
 		}
 	}
 	if ((SYDEKeyCode::get('D')._CompareState(KEYDOWN)))
 	{
 		char1_choice++;
-		if (char1_choice > 3)
+		if (char1_choice > 5)
 		{
 			char1_choice = 0;
 		}
@@ -506,13 +587,30 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		char2_choice--;
 		if (char2_choice < 0)
 		{
-			char2_choice = 3;
+			char2_choice = 5;
+		}
+		switch (char2_choice)
+		{
+			case 5:
+				if (_TSUBUMMER_UNLOCK)
+					break;
+				char2_choice--;
+			case 4:
+				if (_RIPPERONI_UNLOCK)
+					break;
+				char2_choice--;
+			case 3:
+				if (_SEMICOLON_UNLOCK)
+					break;
+				char2_choice--;
+			default:
+				break;
 		}
 	}
 	if ((SYDEKeyCode::get('L')._CompareState(KEYDOWN)))
 	{
 		char2_choice++;
-		if (char2_choice > 3)
+		if (char2_choice > 5)
 		{
 			char2_choice = 0;
 		}
@@ -538,6 +636,12 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		case 3:
 			Player1Plane = m_SemiColon[2];
 			break;
+		case 4:
+			Player1Plane = m_Ripperoni[2];
+			break;
+		case 5:
+			Player1Plane = m_Tsubummer[2];
+			break;
 		default:
 			Player1Plane = m_Dinsey[2];
 			break;
@@ -555,6 +659,12 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 			break;
 		case 3:
 			Player2Plane = m_SemiColon[3];
+			break;
+		case 4:
+			Player2Plane = m_Ripperoni[3];
+			break;
+		case 5:
+			Player2Plane = m_Tsubummer[3];
 			break;
 		default:
 			Player2Plane = m_Dinsey[3];
@@ -636,4 +746,19 @@ ConsoleWindow DinseyPlanes::_Battle(ConsoleWindow window, int windowWidth, int w
 bool DinseyPlanes::GetKey(char KeyCode)
 {
 	return GetAsyncKeyState(KeyCode) && 0x8000;
+}
+
+ConsoleWindow MainMenuPopUp::draw(ConsoleWindow window)
+{
+	if (TimeTaken < TimeShown) {
+		window = PopUpBox.draw_ui(window);
+		TimeTaken += SYDEDefaults::getDeltaTime();
+	}
+	return window;
+}
+
+void MainMenuPopUp::PopUp(string a_Text)
+{
+	PopUpBox.setText(a_Text);
+	TimeTaken = 0;
 }
