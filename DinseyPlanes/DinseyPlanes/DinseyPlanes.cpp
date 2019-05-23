@@ -27,6 +27,7 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 	m_PearlHarbour.setFrame(0);
 
 	m_Tutorial.setAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_005.bmp", 22, 20));
+	Logo.setAsset(44, 7, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\UI\\LOGO.bmp", 22, 7));
 
 	m_Sky = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\SKY.bmp", 22, 20));
 	m_Hiro = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Levels\\Hiroshima.bmp", 22, 20));
@@ -161,6 +162,10 @@ ConsoleWindow DinseyPlanes::window_draw_game(ConsoleWindow window, int windowWid
 	if (_LEVEL == "_Battle")
 	{
 		return _Battle(window, windowWidth, windowHeight);
+	}
+	if (_LEVEL == "_Intro")
+	{
+		return _IntroScreen(window, windowWidth, windowHeight);
 	}
 	else {
 		return _MainMenu(window, windowWidth, windowHeight);
@@ -972,6 +977,57 @@ ConsoleWindow DinseyPlanes::_Battle(ConsoleWindow window, int windowWidth, int w
 	if (BattleScene == 2)
 	{
 		_LEVEL = "_Battle_Select";
+	}
+	return window;
+}
+
+ConsoleWindow DinseyPlanes::_IntroScreen(ConsoleWindow window, int windowWidth, int windowHeight)
+{
+	window = m_Sky.draw_asset(window, Vector2(0, 0));
+	cloudSpawnTime += SYDEDefaults::getDeltaTime();
+	InverseTime += SYDEDefaults::getDeltaTime();
+	if (introFlash)
+	{
+		FlashTime += SYDEDefaults::getDeltaTime();
+	}
+	window = m_Dinsey[2].draw_asset(window, Vector2(0, 13 - direction));
+	window = m_Tsubummer[2].draw_asset(window, Vector2(8, 13 + direction));
+	window = m_Dupty[2].draw_asset(window, Vector2(16, 13 - direction));
+	window = m_Skibber[2].draw_asset(window, Vector2(24, 13 + direction));
+	window = m_Ripperoni[2].draw_asset(window, Vector2(32, 13 - direction));
+
+	if (InverseTime >= InverseMax)
+	{
+		direction = -direction;
+		InverseTime = 0;
+		showStart = !showStart;
+	}
+	if (FlashTime >= FlashMaxTime)
+	{
+		_LEVEL = "_MainMenu";
+	}
+	//DRAW CLOUDS
+	if (cloudSpawnTime > 1)
+	{
+		CloudsDrawn.push_back(m_Clouds[rand() % m_Clouds.size()]);
+		CloudsDrawnPos.push_back(Vector2(50, rand() % 20));
+		cloudSpawnTime = 0;
+	}
+	for (int i = 0; i < CloudsDrawn.size(); i++)
+	{
+		window = CloudsDrawn[i].draw_asset(window, CloudsDrawnPos[i]);
+		CloudsDrawnPos[i].setX(CloudsDrawnPos[i].getX() - 1);
+	}
+	window = Logo.draw_asset(window, Vector2(2, 1));
+	window.setTextAtPoint(Vector2(0, 1), " Dinsey ", RED_BRIGHTWHITE_BG);
+	if (showStart)
+	{
+		window = m_Start.draw_ui(window);
+	}
+	if ((SYDEKeyCode::get(VK_SPACE)._CompareState(KEYDOWN)) && !introFlash)
+	{
+		introFlash = true;
+		InverseMax = 0.1f;
 	}
 	return window;
 }

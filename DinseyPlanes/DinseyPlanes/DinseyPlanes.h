@@ -58,6 +58,8 @@ private:
 	ConsoleWindow _BattleSelect(ConsoleWindow window, int windowWidth, int windowHeight);
 	ConsoleWindow _Battle(ConsoleWindow window, int windowWidth, int windowHeight);
 
+	ConsoleWindow _IntroScreen(ConsoleWindow window, int windowWidth, int windowHeight);
+
 	bool _startUp = true;
 
 	int PearlHarbourScene = 0;
@@ -65,6 +67,19 @@ private:
 	int NagasakiScene = 0;
 
 	float cloudSpawnTime = 0;
+
+	//INTRO
+	int direction = -1;
+	float InverseTime = 0.0f;
+	float InverseMax = 0.5f;
+	float FlashTime = 0.0f;
+	float FlashMaxTime = 1.0f;
+	CustomAsset Logo;
+
+	SYDELabel m_Start = SYDELabel("Press Space To Play", Vector2(10, 8),Vector2(20,1), BLACK, true);
+
+	bool showStart = false;
+	bool introFlash = false;
 
 	//Animations
 	CustomAnimationAsset m_PearlHarbour;
@@ -118,7 +133,7 @@ private:
 	//IntroTime
 	float IntroTimeTaken = 0;
 
-	std::string _LEVEL = "_MainMenu";
+	std::string _LEVEL = "_Intro";
 
 	std::string toLevelString(bool condition, string text) { if (condition) return text; else return "???"; }
 
