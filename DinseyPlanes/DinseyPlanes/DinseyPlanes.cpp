@@ -718,21 +718,61 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 	switch (char1_choice)
 	{
 	case 0:
-		window = m_Dinsey[0].draw_asset(window, Vector2(-6, 0));
+		if (player1stats)
+		{
+			window = m_Dinsey[2].draw_asset(window, Vector2(3, 5));
+			window.setTextAtPoint(Vector2(0, 11), "Speed-------", BLACK_BRIGHTGREEN_BG);
+			window.setTextAtPoint(Vector2(0, 12), "Defence", BLACK_YELLOW_BG);
+			window.setTextAtPoint(Vector2(0, 13), "Attack------", BLACK_BRIGHTGREEN_BG);
+		}
+		else
+		{
+			window = m_Dinsey[0].draw_asset(window, Vector2(-6, 0));
+		}
 		window.setTextAtPoint(Vector2(0, 18), "Dinsey", BLACK_BRIGHTWHITE_BG);
 		break;
 	case 1:
-		window = m_Dupty[0].draw_asset(window, Vector2(-6, 0));
+		if (player1stats)
+		{
+			window = m_Dupty[2].draw_asset(window, Vector2(3, 5));
+			window.setTextAtPoint(Vector2(0, 11), "Speed-", BLACK_RED_BG);
+			window.setTextAtPoint(Vector2(0, 12), "Defence-------", BLACK_BRIGHTGREEN_BG);
+			window.setTextAtPoint(Vector2(0, 13), "Attack------", BLACK_BRIGHTGREEN_BG);
+		}
+		else
+		{
+			window = m_Dupty[0].draw_asset(window, Vector2(-6, 0));
+		}
 		window.setTextAtPoint(Vector2(0, 18), "Dupty", BLACK_BRIGHTWHITE_BG);
 		break;
 	case 2:
-		window = m_Skibber[0].draw_asset(window, Vector2(-6, 0));
+		if (player1stats)
+		{
+			window = m_Skibber[2].draw_asset(window, Vector2(3, 5));
+			window.setTextAtPoint(Vector2(0, 11), "Speed---------", BLACK_BRIGHTGREEN_BG);
+			window.setTextAtPoint(Vector2(0, 12), "Defence---", BLACK_BRIGHTGREEN_BG);
+			window.setTextAtPoint(Vector2(0, 13), "Attack", BLACK_YELLOW_BG);
+		}
+		else
+		{
+			window = m_Skibber[0].draw_asset(window, Vector2(-6, 0));
+		}
 		window.setTextAtPoint(Vector2(0, 18), "Skibber", BLACK_BRIGHTWHITE_BG);
 		break;
 	case 3:
 		if (_SEMICOLON_UNLOCK)
 		{
-			window = m_SemiColon[0].draw_asset(window, Vector2(-6, 0));
+			if (player1stats)
+			{
+				window = m_SemiColon[2].draw_asset(window, Vector2(3, 5));
+				window.setTextAtPoint(Vector2(0, 11), "Speed", BLACK_RED_BG);
+				window.setTextAtPoint(Vector2(0, 12), "Defence------", BLACK_BRIGHTGREEN_BG);
+				window.setTextAtPoint(Vector2(0, 13), "Attack-------", BLACK_BRIGHTGREEN_BG);
+			}
+			else
+			{
+				window = m_SemiColon[0].draw_asset(window, Vector2(-6, 0));
+			}
 			window.setTextAtPoint(Vector2(0, 18), "Semi-Colon", BLACK_BRIGHTWHITE_BG);
 			break;
 		}
@@ -740,7 +780,17 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 	case 4:
 		if (_RIPPERONI_UNLOCK)
 		{
-			window = m_Ripperoni[0].draw_asset(window, Vector2(-6, 0));
+			if (player1stats)
+			{
+				window = m_Ripperoni[2].draw_asset(window, Vector2(3, 5));
+				window.setTextAtPoint(Vector2(0, 11), "Speed--------", BLACK_BRIGHTGREEN_BG);
+				window.setTextAtPoint(Vector2(0, 12), "Defen", BLACK_RED_BG);
+				window.setTextAtPoint(Vector2(0, 13), "Attack-----", BLACK_BRIGHTGREEN_BG);
+			}
+			else
+			{
+				window = m_Ripperoni[0].draw_asset(window, Vector2(-6, 0));
+			}
 			window.setTextAtPoint(Vector2(0, 18), "Ripperoni", BLACK_BRIGHTWHITE_BG);
 			break;
 		}
@@ -748,13 +798,33 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 	case 5:
 		if (_TSUBUMMER_UNLOCK)
 		{
-			window = m_Tsubummer[0].draw_asset(window, Vector2(-6, 0));
+			if (player1stats)
+			{
+				window = m_Tsubummer[2].draw_asset(window, Vector2(3, 5));
+				window.setTextAtPoint(Vector2(0, 11), "Speed---------", BLACK_BRIGHTGREEN_BG);
+				window.setTextAtPoint(Vector2(0, 12), "Def", BLACK_RED_BG);
+				window.setTextAtPoint(Vector2(0, 13), "Attack--------", BLACK_BRIGHTGREEN_BG);
+			}
+			else
+			{
+				window = m_Tsubummer[0].draw_asset(window, Vector2(-6, 0));
+			}
 			window.setTextAtPoint(Vector2(0, 18), "Tsubummer", BLACK_BRIGHTWHITE_BG);
 			break;
 		}
 		char1_choice++;
 	default:
-		window = m_Dinsey[0].draw_asset(window, Vector2(-6, 0));
+		if (player1stats)
+		{
+			window = m_Dinsey[2].draw_asset(window, Vector2(3, 5));
+			window.setTextAtPoint(Vector2(0, 11), "Speed-------", BLACK_BRIGHTGREEN_BG);
+			window.setTextAtPoint(Vector2(0, 12), "Defence", BLACK_YELLOW_BG);
+			window.setTextAtPoint(Vector2(0, 13), "Attack------", BLACK_BRIGHTGREEN_BG);
+		}
+		else
+		{
+			window = m_Dinsey[0].draw_asset(window, Vector2(-6, 0));
+		}
 		window.setTextAtPoint(Vector2(0, 18), "Dinsey", BLACK_BRIGHTWHITE_BG);
 		char1_choice = 0;
 		break;
@@ -762,21 +832,61 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 	switch (char2_choice)
 	{
 	case 0:
-		window = m_Dinsey[1].draw_asset(window, Vector2(0, 0));
+		if (player2stats)
+		{
+			window = m_Dinsey[3].draw_asset(window, Vector2(29, 5));
+			window.setTextAtPoint(Vector2(28, 11), "-------Speed", BLACK_BRIGHTGREEN_BG);
+			window.setTextAtPoint(Vector2(33, 12), "Defence", BLACK_YELLOW_BG);
+			window.setTextAtPoint(Vector2(28, 13), "------Attack", BLACK_BRIGHTGREEN_BG);
+		}
+		else
+		{
+			window = m_Dinsey[1].draw_asset(window, Vector2(0, 0));
+		}
 		window.setTextAtPoint(Vector2(34, 18), "Dinsey", WHITE);
 		break;
 	case 1:
-		window = m_Dupty[1].draw_asset(window, Vector2(0, 0));
+		if (player2stats)
+		{
+			window = m_Dupty[3].draw_asset(window, Vector2(29, 5));
+			window.setTextAtPoint(Vector2(34, 11), "-Speed", BLACK_RED_BG);
+			window.setTextAtPoint(Vector2(26, 12), "-------Defence", BLACK_BRIGHTGREEN_BG);
+			window.setTextAtPoint(Vector2(28, 13), "------Attack", BLACK_BRIGHTGREEN_BG);
+		}
+		else
+		{
+			window = m_Dupty[1].draw_asset(window, Vector2(0, 0));
+		}
 		window.setTextAtPoint(Vector2(35, 18), "Dupty", WHITE);
 		break;
 	case 2:
-		window = m_Skibber[1].draw_asset(window, Vector2(0, 0));
+		if (player2stats)
+		{
+			window = m_Skibber[3].draw_asset(window, Vector2(29, 5));
+			window.setTextAtPoint(Vector2(26, 11), "---------Speed", BLACK_BRIGHTGREEN_BG);
+			window.setTextAtPoint(Vector2(30, 12), "---Defence", BLACK_BRIGHTGREEN_BG);
+			window.setTextAtPoint(Vector2(34, 13), "Attack", BLACK_YELLOW_BG);
+		}
+		else
+		{
+			window = m_Skibber[1].draw_asset(window, Vector2(0, 0));
+		}
 		window.setTextAtPoint(Vector2(33, 18), "Skibber", WHITE);
 		break;
 	case 3:
 		if (_SEMICOLON_UNLOCK)
 		{
-			window = m_SemiColon[1].draw_asset(window, Vector2(0, 0));
+			if (player2stats)
+			{
+				window = m_SemiColon[3].draw_asset(window, Vector2(26, 5));
+				window.setTextAtPoint(Vector2(35, 11), "Speed", BLACK_RED_BG);
+				window.setTextAtPoint(Vector2(27, 12), "------Defence", BLACK_BRIGHTGREEN_BG);
+				window.setTextAtPoint(Vector2(27, 13), "-------Attack", BLACK_BRIGHTGREEN_BG);
+			}
+			else
+			{
+				window = m_SemiColon[1].draw_asset(window, Vector2(0, 0));
+			}
 			window.setTextAtPoint(Vector2(30, 18), "Semi-Colon", WHITE);
 			break;
 		}
@@ -784,7 +894,17 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 	case 4:
 		if (_RIPPERONI_UNLOCK)
 		{
-			window = m_Ripperoni[1].draw_asset(window, Vector2(0, 0));
+			if (player2stats)
+			{
+				window = m_Ripperoni[3].draw_asset(window, Vector2(29, 5));
+				window.setTextAtPoint(Vector2(27, 11), "--------Speed", BLACK_BRIGHTGREEN_BG);
+				window.setTextAtPoint(Vector2(35, 12), "Defen", BLACK_RED_BG);
+				window.setTextAtPoint(Vector2(29, 13), "-----Attack", BLACK_BRIGHTGREEN_BG);
+			}
+			else
+			{
+				window = m_Ripperoni[1].draw_asset(window, Vector2(0, 0));
+			}
 			window.setTextAtPoint(Vector2(31, 18), "Ripperoni", WHITE);
 			break;
 		}
@@ -792,13 +912,33 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 	case 5:
 		if (_TSUBUMMER_UNLOCK)
 		{
-			window = m_Tsubummer[1].draw_asset(window, Vector2(0, 0));
+			if (player2stats)
+			{
+				window = m_Tsubummer[3].draw_asset(window, Vector2(29, 5));
+				window.setTextAtPoint(Vector2(26, 11), "---------Speed", BLACK_BRIGHTGREEN_BG);
+				window.setTextAtPoint(Vector2(37, 12), "Def", BLACK_RED_BG);
+				window.setTextAtPoint(Vector2(26, 13),  "--------Attack", BLACK_BRIGHTGREEN_BG);
+			}
+			else
+			{
+				window = m_Tsubummer[1].draw_asset(window, Vector2(0, 0));
+			}
 			window.setTextAtPoint(Vector2(31, 18), "Tsubummer", WHITE);
 			break;
 		}
 		char2_choice++;
 	default:
-		window = m_Dinsey[1].draw_asset(window, Vector2(0, 0));
+		if (player2stats)
+		{
+			window = m_Dinsey[3].draw_asset(window, Vector2(37, 5));
+			window.setTextAtPoint(Vector2(28, 11), "-------Speed", BLACK_BRIGHTGREEN_BG);
+			window.setTextAtPoint(Vector2(33, 12), "Defence", BLACK_YELLOW_BG);
+			window.setTextAtPoint(Vector2(28, 13), "------Attack", BLACK_BRIGHTGREEN_BG);
+		}
+		else
+		{
+			window = m_Dinsey[1].draw_asset(window, Vector2(0, 0));
+		}
 		window.setTextAtPoint(Vector2(34, 18), "Dinsey", WHITE);
 		char2_choice = 0;
 		break;
@@ -809,6 +949,8 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 	window.setTextAtPoint(Vector2(14, 1), "Plane Select", BLACK_BRIGHTWHITE_BG);
 	window.setTextAtPoint(Vector2(33, 19), "<-J,L->", WHITE);
 	//KEY INPUT
+	player1stats = SYDEKeyCode::get('S')._CompareState(KEY);
+	player2stats = SYDEKeyCode::get('K')._CompareState(KEY);
 	if ((SYDEKeyCode::get('A')._CompareState(KEYDOWN)))
 	{
 		char1_choice--;

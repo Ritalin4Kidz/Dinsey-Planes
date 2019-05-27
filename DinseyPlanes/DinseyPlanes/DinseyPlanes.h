@@ -118,6 +118,9 @@ private:
 	CustomAsset Player1Plane;
 	CustomAsset Player2Plane;
 
+	bool player1stats = false;
+	bool player2stats = false;
+
 	Vector2 Play1Pos = Vector2(0, 14);
 	Vector2 Play2Pos = Vector2(32, 14);
 
