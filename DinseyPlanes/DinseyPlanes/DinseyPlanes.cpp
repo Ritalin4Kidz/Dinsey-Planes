@@ -266,6 +266,7 @@ void DinseyPlanes::_MainMenuInputVoids()
 				_LEVEL = "_Hiroshima";
 				HiroshimaScene = 0;
 				CloudsDrawn.clear();
+				CloudsDrawnPos.clear();
 				_LEVELS.setActive(false);
 			}
 			else if (_LEVELS.getSelected().m_Text == "9th Aug 1945")
@@ -273,6 +274,7 @@ void DinseyPlanes::_MainMenuInputVoids()
 				_LEVEL = "_Nagasaki";
 				NagasakiScene = 0;
 				CloudsDrawn.clear();
+				CloudsDrawnPos.clear();
 				_LEVELS.setActive(false);
 			}
 			else if (_LEVELS.getSelected().m_Text == "6/8/1945 Prologue")
@@ -1077,6 +1079,8 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		m_Explosion.setFrame(0);
 		Play1Pos = Vector2(0, 14);
 		Play2Pos = Vector2(32, 14);
+		CloudsDrawn.clear();
+		CloudsDrawnPos.clear();
 		BattleScene = 0;
 	}
 
