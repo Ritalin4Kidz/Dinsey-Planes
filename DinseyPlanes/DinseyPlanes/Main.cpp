@@ -117,21 +117,24 @@ void VolumeFunc()
 // MAIN FUNCTION
 int main()
 {
+	//DINSEY PLANES SETTINGS
 	Load();
 	VolumeFunc();
 	Save();
+	//SYDE ENGINE SETTINGS
 	GdiplusStartup(&gdiplusToken, &startupInput, 0);
 	DinseyPlanes m_Planes(astVars);
 	LPCWSTR title = L"Dinsey Planes";
 	SYDECredits::_GAMETITLE = "Dinsey Planes";
 	SYDECredits::_ORGANISATION = "Callum Hands \nIn Association With Freebee Games";
 	SetConsoleTitleW(title);
-	//opening();
 	SYDETIME deltaTime;
 	deltaTime.initialise(std::chrono::high_resolution_clock::now());
+	//OPENING SPLASHSCREENS
 	SYDEGamePlay::initialize_window(hOut, window);
 	SYDEGamePlay::opening_splashscreens(astVars.get_electronic_chime_file_path(), start, hOut, window, windowWidth, windowHeight, artVars);
 	SYDEGamePlay::hidden_splashsceen_001(astVars.get_squish_file_path(), start, hOut, window, windowWidth, windowHeight, astVars);
+	//GAMEPLAY
 	while (true)
 	{
 		window = SYDEGamePlay::play_game(&m_Planes, start, hOut, window, windowWidth, windowHeight, deltaTime);
