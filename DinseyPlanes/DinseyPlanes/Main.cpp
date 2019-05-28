@@ -16,6 +16,8 @@ struct ColourValues {
 	int dftg;
 	int dftb;
 
+	void operator=(ColourValues other) { r = other.r; g = other.g; b = other.b; }
+
 	void toDefault() { r = dftr; g = dftg; b = dftb; }
 	DWORD toRGB() { return RGB(r, g, b); }
 	string toRGBStr() { return to_string(r) + "," + to_string(g) + "," + to_string(b); }
@@ -96,7 +98,24 @@ vector<string> Split(string a_String, char splitter)
 	splitString[arraySize - 1] = a_String;
 	return splitString;
 }
-
+ColourValues _RGBLoad(string RGBstr, ColourValues rgbV)
+{
+	try {
+		vector<string> RGBLines;
+		RGBLines = Split(RGBstr, ',');
+		if (RGBLines.size() == 3)
+		{
+			std::istringstream(RGBLines[0]) >> rgbV.r;
+			std::istringstream(RGBLines[1]) >> rgbV.g;
+			std::istringstream(RGBLines[2]) >> rgbV.b;
+		}
+	}
+	catch (exception e)
+	{
+		rgbV.toDefault();
+	}
+	return rgbV;
+}
 void Load()
 {
 	ifstream File("EngineFiles\\Settings\\gameSettings.sc", ios::binary | ios::in);
@@ -113,88 +132,67 @@ void Load()
 			}
 			else if (FileLines[0] == "_Black")
 			{
-				try {
-					vector<string> RGBLines;
-					RGBLines = Split(FileLines[1], ',');
-					if (RGBLines.size() == 3)
-					{
-						std::istringstream(RGBLines[0]) >> _BLACK.r;
-						std::istringstream(RGBLines[1]) >> _BLACK.g;
-						std::istringstream(RGBLines[2]) >> _BLACK.b;
-					}
-				}
-				catch (exception e)
-				{
-					_BLACK.toDefault();
-				}
+				_BLACK = _RGBLoad(FileLines[1], _BLACK);
 			}
 			else if (FileLines[0] == "_Blue")
 			{
-				try {
-					vector<string> RGBLines;
-					RGBLines = Split(FileLines[1], ',');
-					if (RGBLines.size() == 3)
-					{
-						std::istringstream(RGBLines[0]) >> _BLUE.r;
-						std::istringstream(RGBLines[1]) >> _BLUE.g;
-						std::istringstream(RGBLines[2]) >> _BLUE.b;
-					}
-				}
-				catch (exception e)
-				{
-					_BLUE.toDefault();
-				}
+				_BLUE = _RGBLoad(FileLines[1], _BLUE);
 			}
 			else if (FileLines[0] == "_Green")
 			{
-				try {
-					vector<string> RGBLines;
-					RGBLines = Split(FileLines[1], ',');
-					if (RGBLines.size() == 3)
-					{
-						std::istringstream(RGBLines[0]) >> _GREEN.r;
-						std::istringstream(RGBLines[1]) >> _GREEN.g;
-						std::istringstream(RGBLines[2]) >> _GREEN.b;
-					}
-				}
-				catch (exception e)
-				{
-					_GREEN.toDefault();
-				}
+				_GREEN = _RGBLoad(FileLines[1], _GREEN);
 			}
 			else if (FileLines[0] == "_Aqua")
 			{
-				try {
-					vector<string> RGBLines;
-					RGBLines = Split(FileLines[1], ',');
-					if (RGBLines.size() == 3)
-					{
-						std::istringstream(RGBLines[0]) >> _AQUA.r;
-						std::istringstream(RGBLines[1]) >> _AQUA.g;
-						std::istringstream(RGBLines[2]) >> _AQUA.b;
-					}
-				}
-				catch (exception e)
-				{
-					_AQUA.toDefault();
-				}
+				_AQUA = _RGBLoad(FileLines[1], _AQUA);
 			}
 			else if (FileLines[0] == "_Red")
 			{
-				try {
-					vector<string> RGBLines;
-					RGBLines = Split(FileLines[1], ',');
-					if (RGBLines.size() == 3)
-					{
-						std::istringstream(RGBLines[0]) >> _RED.r;
-						std::istringstream(RGBLines[1]) >> _RED.g;
-						std::istringstream(RGBLines[2]) >> _RED.b;
-					}
-				}
-				catch (exception e)
-				{
-					_RED.toDefault();
-				}
+				_RED = _RGBLoad(FileLines[1], _RED);
+			}
+			else if (FileLines[0] == "_Purple")
+			{
+				_PURPLE = _RGBLoad(FileLines[1], _PURPLE);
+			}
+			else if (FileLines[0] == "_Yellow")
+			{
+				_YELLOW = _RGBLoad(FileLines[1], _YELLOW);
+			}
+			else if (FileLines[0] == "_White")
+			{
+				_WHITE = _RGBLoad(FileLines[1], _WHITE);
+			}
+			else if (FileLines[0] == "_Lightgrey")
+			{
+				_LIGHTGREY = _RGBLoad(FileLines[1], _LIGHTGREY);
+			}
+			else if (FileLines[0] == "_Darkblue")
+			{
+				_DARKBLUE = _RGBLoad(FileLines[1], _DARKBLUE);
+			}
+			else if (FileLines[0] == "_Brightgreen")
+			{
+				_BRIGHTGREEN = _RGBLoad(FileLines[1], _BRIGHTGREEN);
+			}
+			else if (FileLines[0] == "_Lightblue")
+			{
+				_LIGHTBLUE = _RGBLoad(FileLines[1], _LIGHTBLUE);
+			}
+			else if (FileLines[0] == "_Brightred")
+			{
+				_BRIGHTRED = _RGBLoad(FileLines[1], _BRIGHTRED);
+			}
+			else if (FileLines[0] == "_Lightpurple")
+			{
+				_LIGHTPURPLE = _RGBLoad(FileLines[1], _LIGHTPURPLE);
+			}
+			else if (FileLines[0] == "_Brightyellow")
+			{
+				_BRIGHTYELLOW = _RGBLoad(FileLines[1], _BRIGHTYELLOW);
+			}
+			else if (FileLines[0] == "_Brightwhite")
+			{
+				_BRIGHTWHITE = _RGBLoad(FileLines[1], _BRIGHTWHITE);
 			}
 		}
 	}
@@ -203,8 +201,25 @@ void Save()
 {
 	ofstream FileOut("EngineFiles\\Settings\\gameSettings.sc");
 	//LEVELS
+	FileOut << "//AUDIO" << endl;
 	FileOut << "_Volume:" + to_string(Volume) << endl;
+	FileOut << "//VISUALS"<< endl;
 	FileOut << "_Black:" + _BLACK.toRGBStr() << endl;
+	FileOut << "_Blue:" + _BLUE.toRGBStr() << endl;
+	FileOut << "_Green:" + _GREEN.toRGBStr() << endl;
+	FileOut << "_Aqua:" + _AQUA.toRGBStr() << endl;
+	FileOut << "_Red:" + _RED.toRGBStr() << endl;
+	FileOut << "_Purple:" + _PURPLE.toRGBStr() << endl;
+	FileOut << "_Yellow:" + _YELLOW.toRGBStr() << endl;
+	FileOut << "_White:" + _WHITE.toRGBStr() << endl;
+	FileOut << "_Lightgrey:" + _LIGHTGREY.toRGBStr() << endl;
+	FileOut << "_Darkblue:" + _DARKBLUE.toRGBStr() << endl;
+	FileOut << "_Brightgreen:" + _BRIGHTGREEN.toRGBStr() << endl;
+	FileOut << "_Lightblue:" + _LIGHTBLUE.toRGBStr() << endl;
+	FileOut << "_Brightred:" + _BRIGHTRED.toRGBStr() << endl;
+	FileOut << "_Lightpurple:" + _LIGHTPURPLE.toRGBStr() << endl;
+	FileOut << "_Brightyellow:" + _BRIGHTYELLOW.toRGBStr() << endl;
+	FileOut << "_Brightwhite:" + _BRIGHTWHITE.toRGBStr() << endl;
 }
 void VolumeFunc()
 {
