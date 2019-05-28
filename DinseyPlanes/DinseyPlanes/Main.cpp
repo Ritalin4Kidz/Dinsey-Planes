@@ -7,7 +7,7 @@ using namespace std;
 using namespace Gdiplus;
 //COLOR
 struct ColourValues {
-	ColourValues(int _r, int _g, int _b) { r = _r; dftr = r; g = _g; dftg = _g; b = _b; dftb = _b; }
+	ColourValues(int _r, int _g, int _b) { r = _r; dftr = _r; g = _g; dftg = _g; b = _b; dftb = _b; }
 	int r;
 	int g;
 	int b;
@@ -17,6 +17,7 @@ struct ColourValues {
 	int dftb;
 
 	void operator=(ColourValues other) { r = other.r; g = other.g; b = other.b; }
+	void set(int _r, int _g, int  _b) { r = _r; dftr = _r; g = _g; dftg = _g; b = _b; dftb = _b; }
 
 	void toDefault() { r = dftr; g = dftg; b = dftb; }
 	DWORD toRGB() { return RGB(r, g, b); }
@@ -247,12 +248,21 @@ void VolumeFunc()
 	}
 }
 // MAIN FUNCTION
-int main()
+int main(int argc, char* argv[])
 {
 	//DINSEY PLANES SETTINGS
 	Load();
 	VolumeFunc();
 	Save();
+	//ARGUMENT SETTINGS
+	for (int i = 0; i < argc; i++)
+	{
+		std::string arg = argv[i];
+		if (arg == "--sunset")
+		{
+			_AQUA.set(255, 166, 106);
+		}
+	}
 	//CONSOLE SETTINGS
 	CONSOLE_SCREEN_BUFFER_INFOEX pInfo;
 	pInfo.cbSize = sizeof(pInfo);

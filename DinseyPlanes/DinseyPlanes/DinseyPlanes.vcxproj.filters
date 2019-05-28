@@ -135,4 +135,7 @@
   <ItemGroup>
     <Library Include="SYDEEngine.lib" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="EngineFiles\Settings\gameSettings.sc" />
+  </ItemGroup>
 </Project>
