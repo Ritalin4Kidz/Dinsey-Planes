@@ -92,6 +92,8 @@ private:
 	CustomAnimationAsset m_Explosion;
 
 	//Assets
+	CustomAsset m_Mini;
+
 	CustomAsset m_Tutorial;
 	CustomAsset m_Credits;
 
