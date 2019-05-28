@@ -28,6 +28,15 @@ private:
 	float TimeTaken;
 };
 
+class MinimmeTest : public SYDEWindowGame {
+public:
+	MinimmeTest(AssetsClass astVars);
+	virtual ~MinimmeTest() {}
+	ConsoleWindow window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight) override;
+private:
+	CustomAsset m_Mini;
+};
+
 class DinseyPlanes : public SYDEWindowGame {
 public:
 	DinseyPlanes(AssetsClass astVars);
@@ -92,8 +101,6 @@ private:
 	CustomAnimationAsset m_Explosion;
 
 	//Assets
-	CustomAsset m_Mini;
-
 	CustomAsset m_Tutorial;
 	CustomAsset m_Credits;
 

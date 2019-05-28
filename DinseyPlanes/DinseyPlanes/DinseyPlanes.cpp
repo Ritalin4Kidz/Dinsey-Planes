@@ -143,7 +143,6 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 	
 	m_DinseyPlanes_MainMenu.setAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\MainMenu.bmp", 22, 20));
 	//MINIMME TEST
-	m_Mini.setAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\MinimmeDiscord\\tricksmusicr4k.bmp", 22, 20));
 	_LEVELS = SYDEMenu(vector<SYDEButton> { SYDEButton("7/12/1941 Prologue", Vector2(0, 1), Vector2(20, 1), BLACK, true),
 											SYDEButton("7th Dec 1941", Vector2(0, 2), Vector2(20, 1), BLACK, true),
 											SYDEButton("", Vector2(0, 3), Vector2(20, 1), BLACK, true),
@@ -249,15 +248,6 @@ ConsoleWindow DinseyPlanes::_MainMenu(ConsoleWindow window, int windowWidth, int
 		window = _LEVELS.draw_menu(window);
 	}
 	window = unlockPopUp.draw(window);
-	//testing mini
-	//for (int i = 0; i < windowWidth; i++)
-	//{
-	//	for (int ii = 0; ii < windowHeight; ii++)
-	//	{
-	//		window.setTextAtPoint(Vector2(i, ii), " ", AQUA_AQUA_BG);
-	//	}
-	//}
-	//window = m_Mini.draw_asset(window, Vector2(0, 0));
 	return window;
 }
 
@@ -1472,4 +1462,23 @@ void MainMenuPopUp::PopUp(string a_Text)
 {
 	PopUpBox.setText(a_Text);
 	TimeTaken = 0;
+}
+
+MinimmeTest::MinimmeTest(AssetsClass astVars)
+{
+	m_Mini.setAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\MinimmeDiscord\\minimme.bmp", 22, 20));
+}
+
+ConsoleWindow MinimmeTest::window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight)
+{
+	//testing mini
+	for (int i = 0; i < windowWidth; i++)
+	{
+		for (int ii = 0; ii < windowHeight; ii++)
+		{
+			window.setTextAtPoint(Vector2(i, ii), " ", AQUA_AQUA_BG);
+		}
+	}
+	window = m_Mini.draw_asset(window, Vector2(0, 0));
+	return window;
 }

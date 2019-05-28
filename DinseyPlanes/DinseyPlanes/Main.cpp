@@ -287,6 +287,7 @@ int main(int argc, char* argv[])
 	//SYDE ENGINE SETTINGS
 	GdiplusStartup(&gdiplusToken, &startupInput, 0);
 	DinseyPlanes m_Planes(astVars);
+	//MinimmeTest m_mini(astVars);
 	LPCWSTR title = L"Dinsey Planes";
 	SYDECredits::_GAMETITLE = "Dinsey Planes";
 	SYDECredits::_ORGANISATION = "Callum Hands \nIn Association With Freebee Games";
