@@ -33,6 +33,14 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 	m_Hiro = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Levels\\Hiroshima.bmp", 22, 20));
 	m_Naga = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Levels\\Nagasaki.bmp", 22, 20));
 
+	//CUTSCENES
+	m_PHS001 = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\\\Cutscenes\\PHS001.bmp", 22, 20));
+	m_PHS002 = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\\\Cutscenes\\PHS002.bmp", 22, 20));
+	m_PHS003 = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\\\Cutscenes\\PHS003.bmp", 22, 20));
+
+	m_HSS001 = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\\\Cutscenes\\HSS001.bmp", 22, 20));
+	m_HSS002 = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\\\Cutscenes\\HSS002.bmp", 22, 20));
+
 	m_Dinsey = vector<CustomAsset> {	CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Dinsey\\DinseyLeft.bmp", 22, 20)),
 										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Dinsey\\DinseyRight.bmp", 22, 20)),
 										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Dinsey\\DinseyGameLeft.bmp", 22, 20)),
@@ -165,13 +173,25 @@ ConsoleWindow DinseyPlanes::window_draw_game(ConsoleWindow window, int windowWid
 	{
 		return _PearlHarbour(window, windowWidth, windowHeight);
 	}
+	if (_LEVEL == "_PearlHarbour_PL")
+	{
+		return _PearlHarbourPrologue(window, windowWidth, windowHeight);
+	}
 	if (_LEVEL == "_Hiroshima")
 	{
 		return _Hiroshima(window, windowWidth, windowHeight);
 	}
+	if (_LEVEL == "_Hiroshima_PL")
+	{
+		return _HiroshimaPrologue(window, windowWidth, windowHeight);
+	}
 	if (_LEVEL == "_Nagasaki")
 	{
 		return _Nagasaki(window, windowWidth, windowHeight);
+	}
+	if (_LEVEL == "_Nagasaki_PL")
+	{
+		return _NagasakiPrologue(window, windowWidth, windowHeight);
 	}
 	if (_LEVEL == "_Level_Select")
 	{
@@ -200,7 +220,8 @@ ConsoleWindow DinseyPlanes::_MainMenu(ConsoleWindow window, int windowWidth, int
 	_LEVELS[3].setText(toLevelString(_PEARLHARBOURBEATEN, (string)("6th Aug 1945")));
 	_LEVELS[4].setText(toLevelString(_HIROSHIMABEATEN, (string)("9/8/1945 Prologue")));
 	_LEVELS[5].setText(toLevelString(_HIROSHIMABEATEN, (string)("9th Aug 1945")));
-	_LEVELS[6].setText(toLevelString(_NAGASAKIBEATEN, (string)("Dinsey's Bad Day")));
+	//_LEVELS[6].setText(toLevelString(_NAGASAKIBEATEN, (string)("Dinsey's Bad Day")));
+	_LEVELS[6].setText(toLevelString(true, (string)("TBA")));
 	_MainMenuInputVoids();
 	window = m_DinseyPlanes_MainMenu.draw_asset(window, Vector2(0, 0));
 	// Template window.setTextAtPoint(Vector2(0, 0), "", window.determineColourAtPoint(Vector2(0,0),BLACK, true));
@@ -279,16 +300,21 @@ void DinseyPlanes::_MainMenuInputVoids()
 			}
 			else if (_LEVELS.getSelected().m_Text == "6/8/1945 Prologue")
 			{
-				//_LEVEL = "_Hiroshima";
-				//HiroshimaScene = 0;
-				//CloudsDrawn.clear();
-				//_LEVELS.setActive(false);
+				_LEVEL = "_Hiroshima_PL";
+				Dialogue_HiroshimaScene = 0;
+				_LEVELS.setActive(false);
 			}
 			else if (_LEVELS.getSelected().m_Text == "7/12/1941 Prologue")
 			{
+				_LEVEL = "_PearlHarbour_PL";
+				Dialogue_PearlHarbourScene = 0;
+				_LEVELS.setActive(false);
 			}
 			else if (_LEVELS.getSelected().m_Text == "9/8/1945 Prologue")
 			{
+				_LEVEL = "_Nagasaki_PL";
+				Dialogue_NagasakiScene = 0;
+				_LEVELS.setActive(false);
 			}
 			else if (_LEVELS.getSelected().m_Text == "Dinsey's Bad Day")
 			{
@@ -690,17 +716,234 @@ ConsoleWindow DinseyPlanes::_Nagasaki(ConsoleWindow window, int windowWidth, int
 
 ConsoleWindow DinseyPlanes::_PearlHarbourPrologue(ConsoleWindow window, int windowWidth, int windowHeight)
 {
-	return ConsoleWindow();
+	if (SYDEKeyCode::get('A')._CompareState(KEYDOWN) || SYDEKeyCode::get(VK_SPACE)._CompareState(KEYDOWN))
+	{
+		Dialogue_PearlHarbourScene++;
+	}
+	switch (Dialogue_PearlHarbourScene)
+	{
+	case 0:
+		window = m_PHS001.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Purplous: Sir... The Americans....", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 1:
+		window = m_PHS001.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Purplous: They've threatened war with us", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 2:
+		window = m_PHS002.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Tonoda: Hmmmm...", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 3:
+		window = m_PHS002.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Tonoda: I see...", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 4:
+		window = m_PHS002.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Tonoda: This is most troubling", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 5:
+		window = m_PHS001.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Purplous: What ever should we do sir?", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 6:
+		window = m_PHS002.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Tonoda: Do not worry, I have a plan", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 7:
+		window = m_PHS002.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Tonoda: DINSOUS!", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 8:
+		window = m_PHS003.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Dinous: I'm here sir, what is it?", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 9:
+		window = m_PHS002.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Tonoda: I have a job for you", BLACK_BRIGHTWHITE_BG);
+		break;
+	default:
+		_LEVEL = "_MainMenu";
+		break;
+	}
+	return window;
 }
 
 ConsoleWindow DinseyPlanes::_HiroshimaPrologue(ConsoleWindow window, int windowWidth, int windowHeight)
 {
-	return ConsoleWindow();
+	if (SYDEKeyCode::get('A')._CompareState(KEYDOWN) || SYDEKeyCode::get(VK_SPACE)._CompareState(KEYDOWN))
+	{
+		Dialogue_HiroshimaScene++;
+	}
+	switch (Dialogue_HiroshimaScene)
+	{
+	case 0:
+		window = m_HSS001.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Samson: It's been nearly 4 years", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 1:
+		window = m_HSS001.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Samson: But today....", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 2:
+		window = m_HSS001.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Samson: TODAY WE FIGHT BACK!", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 3:
+		window = m_HSS001.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Samson: WE LIVE IN FEAR NO MORE!", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 4:
+		window = m_HSS001.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Samson: DINSPY!", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 5:
+		window = m_HSS002.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "DINSPY: YES SIR!", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 6:
+		window = m_HSS001.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Samson: Prepare your luggage", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 7:
+		window = m_HSS001.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Samson: You're going to Japan", BLACK_BRIGHTWHITE_BG);
+		break;
+	default:
+		_LEVEL = "_MainMenu";
+		break;
+	}
+	return window;
 }
 
 ConsoleWindow DinseyPlanes::_NagasakiPrologue(ConsoleWindow window, int windowWidth, int windowHeight)
 {
-	return ConsoleWindow();
+	if (SYDEKeyCode::get('A')._CompareState(KEYDOWN) || SYDEKeyCode::get(VK_SPACE)._CompareState(KEYDOWN))
+	{
+		Dialogue_NagasakiScene++;
+	}
+	switch (Dialogue_NagasakiScene)
+	{
+	case 0:
+		window = m_PHS001.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Purplous: Sir, our country is wounded", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 1:
+		window = m_PHS001.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Purplous: we must surrender to the US", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 2:
+		window = m_PHS002.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Tonoda: NEVER!!!", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 3:
+		window = m_PHS002.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Tonoda: I'D RATHER WE ALL DIE!!", BLACK_BRIGHTWHITE_BG);
+		break;
+	case 4:
+		window = m_PHS002.draw_asset(window, Vector2(0, 0));
+		break;
+	case 5:
+		window = m_PHS002.draw_asset(window, Vector2(0, 0));
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Tonoda: Do you hear something?", BLACK_BRIGHTWHITE_BG);
+		break;
+	default:
+		_LEVEL = "_MainMenu";
+		break;
+	}
+	return window;
 }
 
 ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth, int windowHeight)

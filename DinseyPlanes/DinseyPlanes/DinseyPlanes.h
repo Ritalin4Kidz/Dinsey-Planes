@@ -66,6 +66,10 @@ private:
 	int HiroshimaScene = 0;
 	int NagasakiScene = 0;
 
+	int Dialogue_PearlHarbourScene = 0;
+	int Dialogue_HiroshimaScene = 0;
+	int Dialogue_NagasakiScene = 0;
+
 	float cloudSpawnTime = 0;
 
 	//INTRO
@@ -90,6 +94,14 @@ private:
 	//Assets
 	CustomAsset m_Tutorial;
 	CustomAsset m_Credits;
+
+	//CUSTCENES
+	CustomAsset m_PHS001;
+	CustomAsset m_PHS002;
+	CustomAsset m_PHS003;
+
+	CustomAsset m_HSS001;
+	CustomAsset m_HSS002;
 
 	bool GetKey(char KeyCode);
 	CustomAsset m_DinseyPlanes_MainMenu;
