@@ -143,7 +143,7 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 	
 	m_DinseyPlanes_MainMenu.setAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\MainMenu.bmp", 22, 20));
 	//MINIMME TEST
-	m_Mini.setAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\MinimmeDiscord\\simon.bmp", 22, 20));
+	m_Mini.setAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\MinimmeDiscord\\tricksmusicr4k.bmp", 22, 20));
 	_LEVELS = SYDEMenu(vector<SYDEButton> { SYDEButton("7/12/1941 Prologue", Vector2(0, 1), Vector2(20, 1), BLACK, true),
 											SYDEButton("7th Dec 1941", Vector2(0, 2), Vector2(20, 1), BLACK, true),
 											SYDEButton("", Vector2(0, 3), Vector2(20, 1), BLACK, true),
