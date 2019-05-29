@@ -177,6 +177,7 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), WHITE);
 			GlobalSettings::GamePlaying = false;
 			system("DinseyPlanes --debug --rs");
+			//system("RestartDP");
 		}
 		else if (_Options.getSelected().m_Label == "35")
 		{

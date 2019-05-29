@@ -276,7 +276,7 @@ int main(int argc, char* argv[])
 		}
 		if (arg == "--rs")
 		{
-			GlobalSettings::rs = false;
+			GlobalSettings::rs = true;
 		}
 	}
 	//CONSOLE SETTINGS
@@ -314,8 +314,13 @@ int main(int argc, char* argv[])
 	deltaTime.initialise(std::chrono::high_resolution_clock::now());
 	//OPENING SPLASHSCREENS
 	if (GlobalSettings::rs) {
-		//TO DO
-		//FIX CONSOLE SCREEN SHRINK
+		CONSOLE_SCREEN_BUFFER_INFO SBInfo;
+		GetConsoleScreenBufferInfo(hOut, &SBInfo);
+		COORD removebuffer = {
+			SBInfo.srWindow.Right - SBInfo.srWindow.Left + 10,
+			SBInfo.srWindow.Bottom - SBInfo.srWindow.Top + 10
+		};
+		SetConsoleScreenBufferSize(hOut, removebuffer);
 	}
 	if (GlobalSettings::initWindow)
 	{
