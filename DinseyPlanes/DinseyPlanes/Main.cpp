@@ -266,6 +266,10 @@ int main(int argc, char* argv[])
 		{
 			GlobalSettings::_SCENE = "Debug";
 		}
+		if (arg == "--nocap")
+		{
+			GlobalSettings::FrameDelay_MS = 0;
+		}
 	}
 	//CONSOLE SETTINGS
 	CONSOLE_SCREEN_BUFFER_INFOEX pInfo;
