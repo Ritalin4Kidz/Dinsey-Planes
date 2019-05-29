@@ -1,6 +1,175 @@
 #include "pch.h"
 #include "DinseyPlanes.h"
 
+std::string GlobalSettings::_SCENE = "DinseyPlanes";
+int GlobalSettings::FrameDelay_MS = 30;
+bool GlobalSettings::PauseMode = false;
+bool GlobalSettings::debugMenu = false;
+DebugWindow::DebugWindow(AssetsClass astVars)
+{
+	_Options = SYDEMenu(vector<SYDEButton> {	SYDEButton("", Vector2(0, 1), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(0, 2), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(0, 3), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(0, 4), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(0, 5), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(0, 6), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(0, 7), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(0, 8), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(0, 9), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(0, 10), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(0, 11), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(0, 12), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(0, 13), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(0, 14), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(0, 15), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(0, 16), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(0, 17), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(0, 18), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 1), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 2), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 3), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 4), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 5), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 6), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 7), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 8), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 9), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 10), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 11), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 12), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 13), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 14), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 15), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 16), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 17), Vector2(20, 1), WHITE, true),
+												SYDEButton("", Vector2(20, 18), Vector2(20, 1), WHITE, true)
+	});
+	_Options[0].m_Label = "0";
+	_Options[1].m_Label = "1";
+	_Options[2].m_Label = "2";
+	_Options[3].m_Label = "3";
+	_Options[4].m_Label = "4";
+	_Options[5].m_Label = "5";
+	_Options[6].m_Label = "6";
+	_Options[7].m_Label = "7";
+	_Options[8].m_Label = "8";
+	_Options[9].m_Label = "9";
+	_Options[10].m_Label = "10";
+	_Options[11].m_Label = "11";
+	_Options[12].m_Label = "12";
+	_Options[13].m_Label = "13";
+	_Options[14].m_Label = "14";
+	_Options[15].m_Label = "15";
+	_Options[16].m_Label = "16";
+	_Options[17].m_Label = "17";
+	_Options[18].m_Label = "18";
+	_Options[19].m_Label = "19";
+	_Options[20].m_Label = "20";
+	_Options[21].m_Label = "21";
+	_Options[22].m_Label = "22";
+	_Options[23].m_Label = "23";
+	_Options[24].m_Label = "24";
+	_Options[25].m_Label = "25";
+	_Options[26].m_Label = "26";
+	_Options[27].m_Label = "27";
+	_Options[28].m_Label = "28";
+	_Options[29].m_Label = "29";
+	_Options[30].m_Label = "30";
+	_Options[31].m_Label = "31";
+	_Options[32].m_Label = "32";
+	_Options[33].m_Label = "33";
+	_Options[34].m_Label = "34";
+	_Options[35].m_Label = "35";
+	_Options.setActive(true);
+	_Options.setPos(Vector2(0, 0));
+	for (int i = 0; i < _Options.getSize(); i++)
+	{
+		_Options[i].setHighLight(RED);
+	}
+}
+
+ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight)
+{
+	for (int l = 0; l < windowWidth; l++)
+	{
+		for (int m = 0; m < windowHeight; m++)
+		{
+			window.setTextAtPoint(Vector2(l, m), " ", BLACK);
+		}
+	}
+	_Options[0].setText("Frame Delay:" + to_string(GlobalSettings::FrameDelay_MS));
+	_Options[1].setText("Pause Mode:" + to_string(GlobalSettings::PauseMode));
+	_Options[2].setText("Enable Menu:" + to_string(GlobalSettings::debugMenu));
+	_Options[3].setText("???");
+	_Options[4].setText("???");
+	_Options[5].setText("???");
+	_Options[6].setText("???");
+	_Options[7].setText("???");
+	_Options[8].setText("???");
+	_Options[9].setText("???");
+	_Options[10].setText("???");
+	_Options[11].setText("???");
+	_Options[12].setText("???");
+	_Options[13].setText("???");
+	_Options[14].setText("???");
+	_Options[15].setText("???");
+	_Options[16].setText("???");
+	_Options[17].setText("???");
+	_Options[18].setText("???");
+	_Options[19].setText("???");
+	_Options[20].setText("???");
+	_Options[21].setText("???");
+	_Options[22].setText("???");
+	_Options[23].setText("???");
+	_Options[24].setText("???");
+	_Options[25].setText("???");
+	_Options[26].setText("???");
+	_Options[27].setText("???");
+	_Options[28].setText("???");
+	_Options[29].setText("???");
+	_Options[30].setText("???");
+	_Options[31].setText("???");
+	_Options[32].setText("???");
+	_Options[33].setText("???");
+	_Options[34].setText("???");
+	_Options[35].setText("Play Game");
+
+	if (SYDEKeyCode::get(VK_TAB)._CompareState(KEYDOWN))
+	{
+		_Options.nextSelect();
+	}
+	if ((SYDEKeyCode::get('A')._CompareState(KEYDOWN)))
+	{
+		if (_Options.getSelected().m_Label == "0")
+		{
+			GlobalSettings::FrameDelay_MS += 10;
+			if (GlobalSettings::FrameDelay_MS > 200)
+			{
+				GlobalSettings::FrameDelay_MS = 0;
+			}
+		}
+		else if (_Options.getSelected().m_Label == "1")
+		{
+			GlobalSettings::PauseMode = !GlobalSettings::PauseMode;
+		}
+		else if (_Options.getSelected().m_Label == "2")
+		{
+			GlobalSettings::debugMenu = !GlobalSettings::debugMenu;
+		}
+		else if (_Options.getSelected().m_Label == "35")
+		{
+			GlobalSettings::_SCENE = "DinseyPlanes";
+		}
+	}
+	for (int i = 0; i < windowWidth; i++)
+	{
+		window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+	}
+	window.setTextAtPoint(Vector2(0, 19), "TAB: Select, A: Confirm", BLACK_BRIGHTWHITE_BG);
+
+	window = _Options.draw_menu(window);
+	return window;
+}
 DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 {
 	//ADD IN PEARL HARBOUR CUTSCENE
@@ -169,7 +338,16 @@ ConsoleWindow DinseyPlanes::window_draw_game(ConsoleWindow window, int windowWid
 			window.setTextAtPoint(Vector2(l, m), " ", WHITE_WHITE_BG);
 		}
 	}
-
+	//UNIVERSAL KEYS
+	if ((SYDEKeyCode::get('P')._CompareState(KEYDOWN) && GlobalSettings::PauseMode))
+	{
+		system("pause");
+		window.ClearWindow(false);
+	}
+	else if ((SYDEKeyCode::get(VK_BACK)._CompareState(KEYDOWN) && GlobalSettings::debugMenu))
+	{
+		GlobalSettings::_SCENE = "Debug";
+	}
 	if (_LEVEL == "_PearlHarbour")
 	{
 		return _PearlHarbour(window, windowWidth, windowHeight);

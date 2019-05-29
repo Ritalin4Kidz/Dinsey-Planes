@@ -14,6 +14,23 @@
 #include "SYDEstdafx.h"
 #include <sstream>
 
+class GlobalSettings {
+public:
+	static std::string _SCENE;
+	static int FrameDelay_MS;
+	static bool PauseMode;
+	static bool debugMenu;
+};
+
+class DebugWindow : public SYDEWindowGame {
+public:
+	DebugWindow(AssetsClass astVars);
+	virtual ~DebugWindow() {}
+	ConsoleWindow window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight) override;
+private:
+	SYDEMenu _Options;
+};
+
 class MainMenuPopUp {
 public:
 	MainMenuPopUp() {}

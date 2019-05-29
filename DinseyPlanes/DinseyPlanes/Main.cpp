@@ -262,6 +262,10 @@ int main(int argc, char* argv[])
 		{
 			_AQUA.set(255, 166, 106);
 		}
+		if (arg == "--debug")
+		{
+			GlobalSettings::_SCENE = "Debug";
+		}
 	}
 	//CONSOLE SETTINGS
 	CONSOLE_SCREEN_BUFFER_INFOEX pInfo;
@@ -287,6 +291,7 @@ int main(int argc, char* argv[])
 	//SYDE ENGINE SETTINGS
 	GdiplusStartup(&gdiplusToken, &startupInput, 0);
 	DinseyPlanes m_Planes(astVars);
+	DebugWindow m_Debug(astVars);
 	//MinimmeTest m_mini(astVars);
 	LPCWSTR title = L"Dinsey Planes";
 	SYDECredits::_GAMETITLE = "Dinsey Planes";
@@ -301,8 +306,14 @@ int main(int argc, char* argv[])
 	//GAMEPLAY
 	while (true)
 	{
-		window = SYDEGamePlay::play_game(&m_Planes, start, hOut, window, windowWidth, windowHeight, deltaTime);
+		if (GlobalSettings::_SCENE == "Debug")
+		{
+			window = SYDEGamePlay::play_game(&m_Debug, start, hOut, window, windowWidth, windowHeight, deltaTime);
+		}
+		else {
+			window = SYDEGamePlay::play_game(&m_Planes, start, hOut, window, windowWidth, windowHeight, deltaTime);
+		}
 		window.writeConsole();
-		SYDEFunctions::SYDESleep(30, SYDEDefaults::getDeltaTime());
+		SYDEFunctions::SYDESleep(GlobalSettings::FrameDelay_MS, SYDEDefaults::getDeltaTime());
 	}
 }
