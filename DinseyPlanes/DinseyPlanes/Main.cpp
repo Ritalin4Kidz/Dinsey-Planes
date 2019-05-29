@@ -292,6 +292,7 @@ int main(int argc, char* argv[])
 	GdiplusStartup(&gdiplusToken, &startupInput, 0);
 	DinseyPlanes m_Planes(astVars);
 	DebugWindow m_Debug(astVars);
+	PauseWindow m_Pause;
 	//MinimmeTest m_mini(astVars);
 	LPCWSTR title = L"Dinsey Planes";
 	SYDECredits::_GAMETITLE = "Dinsey Planes";
@@ -306,9 +307,30 @@ int main(int argc, char* argv[])
 	//GAMEPLAY
 	while (true)
 	{
+		//UNIVERSAL KEYS
+		if ((SYDEKeyCode::get('P')._CompareState(KEYDOWN) && GlobalSettings::PauseMode))
+		{
+			if (GlobalSettings::_SCENE != "Pause")
+			{
+				GlobalSettings::_LASTSCENE = GlobalSettings::_SCENE;
+				window.setTextAtPoint(Vector2(0, 1), "Paused: Press 'P' To Continue", WHITE);
+				GlobalSettings::_SCENE = "Pause";
+			}
+			else {
+				GlobalSettings::_SCENE = GlobalSettings::_LASTSCENE;
+			}
+		}
+		else if ((SYDEKeyCode::get(VK_BACK)._CompareState(KEYDOWN) && GlobalSettings::debugMenu))
+		{
+			GlobalSettings::_SCENE = "Debug";
+		}
 		if (GlobalSettings::_SCENE == "Debug")
 		{
 			window = SYDEGamePlay::play_game(&m_Debug, start, hOut, window, windowWidth, windowHeight, deltaTime);
+		}
+		else if (GlobalSettings::_SCENE == "Pause")
+		{
+			window = SYDEGamePlay::play_game(&m_Pause, start, hOut, window, windowWidth, windowHeight, deltaTime);
 		}
 		else {
 			window = SYDEGamePlay::play_game(&m_Planes, start, hOut, window, windowWidth, windowHeight, deltaTime);

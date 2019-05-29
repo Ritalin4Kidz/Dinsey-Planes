@@ -2,6 +2,7 @@
 #include "DinseyPlanes.h"
 
 std::string GlobalSettings::_SCENE = "DinseyPlanes";
+std::string GlobalSettings::_LASTSCENE = "";
 int GlobalSettings::FrameDelay_MS = 30;
 bool GlobalSettings::PauseMode = false;
 bool GlobalSettings::debugMenu = false;
@@ -338,16 +339,6 @@ ConsoleWindow DinseyPlanes::window_draw_game(ConsoleWindow window, int windowWid
 			window.setTextAtPoint(Vector2(l, m), " ", WHITE_WHITE_BG);
 		}
 	}
-	//UNIVERSAL KEYS
-	if ((SYDEKeyCode::get('P')._CompareState(KEYDOWN) && GlobalSettings::PauseMode))
-	{
-		system("pause");
-		window.ClearWindow(false);
-	}
-	else if ((SYDEKeyCode::get(VK_BACK)._CompareState(KEYDOWN) && GlobalSettings::debugMenu))
-	{
-		GlobalSettings::_SCENE = "Debug";
-	}
 	if (_LEVEL == "_PearlHarbour")
 	{
 		return _PearlHarbour(window, windowWidth, windowHeight);
@@ -402,24 +393,46 @@ ConsoleWindow DinseyPlanes::_MainMenu(ConsoleWindow window, int windowWidth, int
 	//_LEVELS[6].setText(toLevelString(_NAGASAKIBEATEN, (string)("Dinsey's Bad Day")));
 	_LEVELS[6].setText(toLevelString(true, (string)("TBA")));
 	_MainMenuInputVoids();
-	window = m_DinseyPlanes_MainMenu.draw_asset(window, Vector2(0, 0));
+	window = m_Sky.draw_asset(window, Vector2(0, 0));
+	cloudSpawnTime += SYDEDefaults::getDeltaTime();
+	//DRAW CLOUDS
+	if (cloudSpawnTime > 1)
+	{
+		CloudsDrawn.push_back(m_Clouds[rand() % m_Clouds.size()]);
+		CloudsDrawnPos.push_back(Vector2(50, rand() % 20));
+		cloudSpawnTime = 0;
+	}
+	for (int i = 0; i < CloudsDrawn.size(); i++)
+	{
+		window = CloudsDrawn[i].draw_asset(window, CloudsDrawnPos[i]);
+		CloudsDrawnPos[i].setX(CloudsDrawnPos[i].getX() - 1);
+	}
+	window = m_Dinsey[1].draw_asset(window, Vector2(0, 0));
 	// Template window.setTextAtPoint(Vector2(0, 0), "", window.determineColourAtPoint(Vector2(0,0),BLACK, true));
 	// UI - Title
-	window.setTextAtPoint(Vector2(2, 1), "Dinsey Planes", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
-
+	window = m_DinseyPlanesLBL.draw_ui(window);
+	//window.setTextAtPoint(Vector2(2, 1), "Dinsey Planes", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
 	if (!_LEVELS.getActive())
 	{
-		window.setTextAtPoint(Vector2(0, 11), "A. Level Select", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
-		window.setTextAtPoint(Vector2(0, 12), "B. Battle Mode", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
-		window.setTextAtPoint(Vector2(0, 13), "Z. Quit Game", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
+		LBL_Option1.setText("A. Level Select");
+		LBL_Option2.setText("B. Battle Mode");
+		LBL_Option3.setText("Z. Quit Game");
+		//window.setTextAtPoint(Vector2(0, 11), "A. Level Select", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
+		//window.setTextAtPoint(Vector2(0, 12), "B. Battle Mode", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
+		//window.setTextAtPoint(Vector2(0, 13), "Z. Quit Game", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
 	}
 	else 
 	{
-		window.setTextAtPoint(Vector2(0, 11), "TAB. Select", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
-		window.setTextAtPoint(Vector2(0, 12), "A. Confirm", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
-		window.setTextAtPoint(Vector2(0, 13), "Z. Back", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
+		LBL_Option1.setText("TAB. Select");
+		LBL_Option2.setText("A. Confirm");
+		LBL_Option3.setText("Z. Back");
+		//window.setTextAtPoint(Vector2(0, 11), "TAB. Select", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
+		//window.setTextAtPoint(Vector2(0, 12), "A. Confirm", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
+		//window.setTextAtPoint(Vector2(0, 13), "Z. Back", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
 	}
-
+	window = LBL_Option1.draw_ui(window);
+	window = LBL_Option2.draw_ui(window);
+	window = LBL_Option3.draw_ui(window);
 	//UI - MENU
 	if (_LEVELS.getActive())
 	{
@@ -513,7 +526,8 @@ ConsoleWindow DinseyPlanes::_LevelSelect(ConsoleWindow window, int windowWidth, 
 	window = m_DinseyPlanes_MainMenu.draw_asset(window, Vector2(0, 0));
 	// Template window.setTextAtPoint(Vector2(0, 0), "", window.determineColourAtPoint(Vector2(0,0),BLACK, true));
 	// UI - Level Select
-	window.setTextAtPoint(Vector2(2, 1), "Dinsey Planes", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
+	window = m_DinseyPlanesLBL.draw_ui(window);
+	//window.setTextAtPoint(Vector2(2, 1), "Dinsey Planes", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
 
 	window.setTextAtPoint(Vector2(0, 11), "A. 1st Sep 1939 (N/A)", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
 	window.setTextAtPoint(Vector2(0, 12), "B. 7th Dec 1941", window.determineColourAtPoint(Vector2(2, 1), BLACK, true));
@@ -681,6 +695,8 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 	//TO DO, ADD ANIMATION OF PLANE CRASHING INTO A HARBOUR, THEN LEVEL IS DONE
 	else {
 		_LEVEL = "_MainMenu";
+		CloudsDrawn.clear();
+		CloudsDrawnPos.clear();
 	}
 	return window;
 }
@@ -780,6 +796,8 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 			unlockPopUp.PopUp("Tsubummer Unlocked!");
 		}
 		_LEVEL = "_MainMenu";
+		CloudsDrawn.clear();
+		CloudsDrawnPos.clear();
 		m_Explosion.setFrame(0);
 		m_BombPos = Vector2(1, 5);
 		HiroshimaScene = 0;
@@ -884,6 +902,8 @@ ConsoleWindow DinseyPlanes::_Nagasaki(ConsoleWindow window, int windowWidth, int
 			unlockPopUp.PopUp("Ripperoni Unlocked!");
 		}
 		_LEVEL = "_MainMenu";
+		CloudsDrawn.clear();
+		CloudsDrawnPos.clear();
 		m_Explosion.setFrame(0);
 		m_BombPos = Vector2(1, 5);
 		NagasakiScene = 0;
@@ -983,6 +1003,8 @@ ConsoleWindow DinseyPlanes::_PearlHarbourPrologue(ConsoleWindow window, int wind
 		break;
 	default:
 		_LEVEL = "_MainMenu";
+		CloudsDrawn.clear();
+		CloudsDrawnPos.clear();
 		break;
 	}
 	return window;
@@ -1062,6 +1084,8 @@ ConsoleWindow DinseyPlanes::_HiroshimaPrologue(ConsoleWindow window, int windowW
 		break;
 	default:
 		_LEVEL = "_MainMenu";
+		CloudsDrawn.clear();
+		CloudsDrawnPos.clear();
 		break;
 	}
 	return window;
@@ -1120,6 +1144,8 @@ ConsoleWindow DinseyPlanes::_NagasakiPrologue(ConsoleWindow window, int windowWi
 		break;
 	default:
 		_LEVEL = "_MainMenu";
+		CloudsDrawn.clear();
+		CloudsDrawnPos.clear();
 		break;
 	}
 	return window;
@@ -1444,6 +1470,8 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 	if ((SYDEKeyCode::get('Z')._CompareState(KEYDOWN)))
 	{
 		_LEVEL = "_MainMenu";
+		CloudsDrawn.clear();
+		CloudsDrawnPos.clear();
 	}
 	if ((SYDEKeyCode::get(VK_SPACE)._CompareState(KEYDOWN)))
 	{
@@ -1567,6 +1595,8 @@ ConsoleWindow DinseyPlanes::_Battle(ConsoleWindow window, int windowWidth, int w
 	if (BattleScene == 2)
 	{
 		_LEVEL = "_Battle_Select";
+		CloudsDrawn.clear();
+		CloudsDrawnPos.clear();
 	}
 	return window;
 }
@@ -1595,6 +1625,8 @@ ConsoleWindow DinseyPlanes::_IntroScreen(ConsoleWindow window, int windowWidth, 
 	if (FlashTime >= FlashMaxTime)
 	{
 		_LEVEL = "_MainMenu";
+		CloudsDrawn.clear();
+		CloudsDrawnPos.clear();
 	}
 	//DRAW CLOUDS
 	if (cloudSpawnTime > 1)
@@ -1658,5 +1690,10 @@ ConsoleWindow MinimmeTest::window_draw_game(ConsoleWindow window, int windowWidt
 		}
 	}
 	window = m_Mini.draw_asset(window, Vector2(0, 0));
+	return window;
+}
+
+ConsoleWindow PauseWindow::window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight)
+{
 	return window;
 }

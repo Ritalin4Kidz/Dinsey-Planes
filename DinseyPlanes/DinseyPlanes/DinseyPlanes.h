@@ -17,6 +17,7 @@
 class GlobalSettings {
 public:
 	static std::string _SCENE;
+	static std::string _LASTSCENE;
 	static int FrameDelay_MS;
 	static bool PauseMode;
 	static bool debugMenu;
@@ -26,6 +27,15 @@ class DebugWindow : public SYDEWindowGame {
 public:
 	DebugWindow(AssetsClass astVars);
 	virtual ~DebugWindow() {}
+	ConsoleWindow window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight) override;
+private:
+	SYDEMenu _Options;
+};
+
+class PauseWindow : public SYDEWindowGame {
+public:
+	PauseWindow() {}
+	virtual ~PauseWindow() {}
 	ConsoleWindow window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight) override;
 private:
 	SYDEMenu _Options;
@@ -107,6 +117,12 @@ private:
 	CustomAsset Logo;
 
 	SYDELabel m_Start = SYDELabel("Press Space To Play", Vector2(10, 8),Vector2(20,1), BLACK, true);
+
+	SYDELabel m_DinseyPlanesLBL = SYDELabel("Dinsey Planes", Vector2(2, 1), Vector2(13, 1), BLACK, true);
+
+	SYDELabel LBL_Option1 = SYDELabel("", Vector2(0, 11), Vector2(20, 1), BLACK, true);
+	SYDELabel LBL_Option2 = SYDELabel("", Vector2(0, 12), Vector2(20, 1), BLACK, true);
+	SYDELabel LBL_Option3 = SYDELabel("", Vector2(0, 13), Vector2(20, 1), BLACK, true);
 
 	bool showStart = false;
 	bool introFlash = false;
