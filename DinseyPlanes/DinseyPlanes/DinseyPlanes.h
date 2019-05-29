@@ -25,7 +25,9 @@ public:
 	static bool rs;
 	static bool GamePlaying;
 	static bool letsplayer;
+	static bool framerate;
 
+	static SYDELabel m_fps;
 	static CustomAsset m_LP;
 };
 

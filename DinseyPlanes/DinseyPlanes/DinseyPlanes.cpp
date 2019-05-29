@@ -10,7 +10,9 @@ bool GlobalSettings::initWindow = true;
 bool GlobalSettings::rs = false;
 bool GlobalSettings::GamePlaying = true;
 bool GlobalSettings::letsplayer = false;
+bool GlobalSettings::framerate = false;
 
+SYDELabel GlobalSettings::m_fps = SYDELabel("", Vector2(35, 1), Vector2(5, 1), BRIGHTGREEN, true);;
 CustomAsset GlobalSettings::m_LP;
 
 DebugWindow::DebugWindow(AssetsClass astVars)
@@ -110,7 +112,7 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 	_Options[2].setText("Enable Menu:" + to_string(GlobalSettings::debugMenu));
 	_Options[3].setText("Pic Test");
 	_Options[4].setText("Twitch Mode:" + to_string(GlobalSettings::letsplayer));
-	_Options[5].setText("???");
+	_Options[5].setText("FPS:" + to_string(GlobalSettings::framerate));
 	_Options[6].setText("???");
 	_Options[7].setText("???");
 	_Options[8].setText("???");
@@ -181,6 +183,10 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 		{
 			GlobalSettings::letsplayer = !GlobalSettings::letsplayer;
 		}
+		else if (_Options.getSelected().m_Label == "5")
+		{
+			GlobalSettings::framerate = !GlobalSettings::framerate;
+		}
 		else if (_Options.getSelected().m_Label == "34")
 		{
 			//TRY FOR WHOLE REFRESH
@@ -201,6 +207,8 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 }
 DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 {
+	//GLOBAL SETTINGS
+	//GlobalSettings::m_fps = SYDELabel("", Vector2(0, 1), Vector2(3, 1), BRIGHTWHITE, true);
 	//ADD IN PEARL HARBOUR CUTSCENE
 	m_PearlHarbour.setAsset(vector<CustomAsset> {	CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_001.bmp", 22, 20)),
 													CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\PearlHarbour\\Scene_002.bmp", 22, 20)),

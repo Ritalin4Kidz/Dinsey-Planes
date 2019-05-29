@@ -201,7 +201,7 @@ void Load()
 }
 std::string ReturnRandomString()
 {
-	int rNum = rand() % 40;
+	int rNum = rand() % 41;
 	switch (rNum)
 	{
 	case 0:
@@ -284,6 +284,8 @@ std::string ReturnRandomString()
 		return "stop telling me to review planes";
 	case 39:
 		return "REEEEEEEEEEEEEEEE!!!!!!";
+	case 40:
+		return "ty for the support. keeps my lights on";
 	default:
 		return "OK... that was weird";
 		break;
@@ -477,6 +479,12 @@ int main(int argc, char* argv[])
 
 			//TEST
 			window = GlobalSettings::m_LP.draw_asset(window, Vector2(0, 0));
+		}
+		if (GlobalSettings::framerate)
+		{
+			float fps = 1.0f / SYDEDefaults::getDeltaTime();
+			GlobalSettings::m_fps.setText(std::to_string((int)fps) + "fps");
+			window = GlobalSettings::m_fps.draw_ui(window);
 		}
 		window.writeConsole();
 		SYDEFunctions::SYDESleep(GlobalSettings::FrameDelay_MS, SYDEDefaults::getDeltaTime());
