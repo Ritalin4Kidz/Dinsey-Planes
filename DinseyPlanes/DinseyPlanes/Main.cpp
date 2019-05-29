@@ -53,7 +53,9 @@ static ULONG_PTR gdiplusToken;
 static GdiplusStartupInput startupInput;
 
 int Volume = 2;
-
+CustomAsset LetsPlay;
+std::string lp_text = "Hey Guys we're playing dinsey planes";
+float timeTillNextText = 0.0f;
 ColourValues _BLACK(12, 12, 12);
 ColourValues _BLUE(0, 55, 218);
 ColourValues _GREEN(19,161,14);
@@ -198,6 +200,20 @@ void Load()
 		}
 	}
 }
+std::string ReturnRandomString()
+{
+	int rNum = rand() % 5;
+	switch (rNum)
+	{
+	case 0:
+		return "jimmyjamesxx, ty for the sub";
+	case 1:
+		return "that was pretty cool lmao";
+	default:
+		return "OK... that was weird";
+		break;
+	}
+}
 void Save()
 {
 	ofstream FileOut("EngineFiles\\Settings\\gameSettings.sc");
@@ -250,10 +266,16 @@ void VolumeFunc()
 // MAIN FUNCTION
 int main(int argc, char* argv[])
 {
+	//CUSTOM
+	LetsPlay = CustomAsset(10, 5, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\UI\\letsplayer.bmp", 5, 5));
 	//DINSEY PLANES SETTINGS
 	Load();
 	VolumeFunc();
 	Save();
+	//TITLES
+	LPCWSTR title = L"Dinsey Planes";
+	SYDECredits::_GAMETITLE = "Dinsey Planes";
+	SYDECredits::_ORGANISATION = "Callum Hands \nIn Association With Freebee Games";
 	//ARGUMENT SETTINGS
 	for (int i = 0; i < argc; i++)
 	{
@@ -265,6 +287,8 @@ int main(int argc, char* argv[])
 		if (arg == "--debug")
 		{
 			GlobalSettings::_SCENE = "Debug";
+			GlobalSettings::debugMenu = true;
+			title = L"Dinsey Planes(Debug)";
 		}
 		if (arg == "--nocap")
 		{
@@ -305,10 +329,7 @@ int main(int argc, char* argv[])
 	DinseyPlanes m_Planes(astVars);
 	DebugWindow m_Debug(astVars);
 	PauseWindow m_Pause;
-	//MinimmeTest m_mini(astVars);
-	LPCWSTR title = L"Dinsey Planes";
-	SYDECredits::_GAMETITLE = "Dinsey Planes";
-	SYDECredits::_ORGANISATION = "Callum Hands \nIn Association With Freebee Games";
+	MinimmeTest m_mini(astVars);
 	SetConsoleTitleW(title);
 	SYDETIME deltaTime;
 	deltaTime.initialise(std::chrono::high_resolution_clock::now());
@@ -356,8 +377,31 @@ int main(int argc, char* argv[])
 		{
 			window = SYDEGamePlay::play_game(&m_Pause, start, hOut, window, windowWidth, windowHeight, deltaTime);
 		}
+		else if (GlobalSettings::_SCENE == "MiniTest")
+		{
+			window = SYDEGamePlay::play_game(&m_mini, start, hOut, window, windowWidth, windowHeight, deltaTime);
+		}
 		else {
 			window = SYDEGamePlay::play_game(&m_Planes, start, hOut, window, windowWidth, windowHeight, deltaTime);
+		}
+
+		if (GlobalSettings::letsplayer)
+		{
+			for (int i = 0; i < windowWidth; i++)
+			{
+				window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+			}
+			window.setTextAtPoint(Vector2(0, 19), lp_text, BLACK_BRIGHTWHITE_BG);
+			timeTillNextText += SYDEDefaults::getDeltaTime();
+			if (timeTillNextText >= 5.0f)
+			{
+				timeTillNextText = 0;
+				//CHANGE TEXT
+				lp_text = ReturnRandomString();
+			}
+
+			//FIX THIS
+			window = LetsPlay.draw_asset(window, Vector2(0, 0));
 		}
 		window.writeConsole();
 		SYDEFunctions::SYDESleep(GlobalSettings::FrameDelay_MS, SYDEDefaults::getDeltaTime());

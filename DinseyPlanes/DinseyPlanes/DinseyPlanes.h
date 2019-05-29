@@ -24,6 +24,7 @@ public:
 	static bool initWindow;
 	static bool rs;
 	static bool GamePlaying;
+	static bool letsplayer;
 };
 
 class DebugWindow : public SYDEWindowGame {

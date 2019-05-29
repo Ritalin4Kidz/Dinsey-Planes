@@ -1,5 +1,5 @@
 //AUDIO
-_Volume:2
+_Volume:1
 //VISUALS
 _Black:12,12,12
 _Blue:0,55,218

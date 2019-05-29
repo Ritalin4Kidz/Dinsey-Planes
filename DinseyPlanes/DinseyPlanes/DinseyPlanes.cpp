@@ -9,6 +9,7 @@ bool GlobalSettings::debugMenu = false;
 bool GlobalSettings::initWindow = true;
 bool GlobalSettings::rs = false;
 bool GlobalSettings::GamePlaying = true;
+bool GlobalSettings::letsplayer = false;
 DebugWindow::DebugWindow(AssetsClass astVars)
 {
 	_Options = SYDEMenu(vector<SYDEButton> {	SYDEButton("", Vector2(0, 1), Vector2(20, 1), WHITE, true),
@@ -104,8 +105,8 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 	_Options[0].setText("Frame Delay:" + to_string(GlobalSettings::FrameDelay_MS));
 	_Options[1].setText("Pause Mode:" + to_string(GlobalSettings::PauseMode));
 	_Options[2].setText("Enable Menu:" + to_string(GlobalSettings::debugMenu));
-	_Options[3].setText("???");
-	_Options[4].setText("???");
+	_Options[3].setText("Pic Test");
+	_Options[4].setText("Twitch Mode:" + to_string(GlobalSettings::letsplayer));
 	_Options[5].setText("???");
 	_Options[6].setText("???");
 	_Options[7].setText("???");
@@ -169,6 +170,14 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 		{
 			GlobalSettings::debugMenu = !GlobalSettings::debugMenu;
 		}
+		else if (_Options.getSelected().m_Label == "3")
+		{
+			GlobalSettings::_SCENE = "MiniTest";
+		}
+		else if (_Options.getSelected().m_Label == "4")
+		{
+			GlobalSettings::letsplayer = !GlobalSettings::letsplayer;
+		}
 		else if (_Options.getSelected().m_Label == "34")
 		{
 			//TRY FOR WHOLE REFRESH
@@ -220,12 +229,12 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 	m_Naga = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Levels\\Nagasaki.bmp", 22, 20));
 
 	//CUTSCENES
-	m_PHS001 = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\\\Cutscenes\\PHS001.bmp", 22, 20));
-	m_PHS002 = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\\\Cutscenes\\PHS002.bmp", 22, 20));
-	m_PHS003 = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\\\Cutscenes\\PHS003.bmp", 22, 20));
+	m_PHS001 = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\Cutscenes\\PHS001.bmp", 22, 20));
+	m_PHS002 = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\Cutscenes\\PHS002.bmp", 22, 20));
+	m_PHS003 = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\Cutscenes\\PHS003.bmp", 22, 20));
 
-	m_HSS001 = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\\\Cutscenes\\HSS001.bmp", 22, 20));
-	m_HSS002 = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\\\Cutscenes\\HSS002.bmp", 22, 20));
+	m_HSS001 = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\Cutscenes\\HSS001.bmp", 22, 20));
+	m_HSS002 = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\Cutscenes\\HSS002.bmp", 22, 20));
 
 	m_Dinsey = vector<CustomAsset> {	CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Dinsey\\DinseyLeft.bmp", 22, 20)),
 										CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Dinsey\\DinseyRight.bmp", 22, 20)),
