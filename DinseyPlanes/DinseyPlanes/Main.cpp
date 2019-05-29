@@ -53,7 +53,6 @@ static ULONG_PTR gdiplusToken;
 static GdiplusStartupInput startupInput;
 
 int Volume = 2;
-CustomAsset LetsPlay;
 std::string lp_text = "Hey Guys we're playing dinsey planes";
 float timeTillNextText = 0.0f;
 ColourValues _BLACK(12, 12, 12);
@@ -202,13 +201,89 @@ void Load()
 }
 std::string ReturnRandomString()
 {
-	int rNum = rand() % 5;
+	int rNum = rand() % 40;
 	switch (rNum)
 	{
 	case 0:
 		return "jimmyjamesxx, ty for the sub";
 	case 1:
 		return "that was pretty cool lmao";
+	case 2:
+		return "well...didn't expect that";
+	case 3:
+		return "so as i was saying before";
+	case 4:
+		return "micron ty for the follow";
+	case 5:
+		return "ummmm.....";
+	case 6:
+		return "what was i saying?...";
+	case 7:
+		return "xx_SPY006 ty for the sub";
+	case 8:
+		return "i tried mangos for the first time";
+	case 9:
+		return "i don't really like them";
+	case 10:
+		return "i might play league later";
+	case 11:
+		return "r4k ty for the cheeky sub";
+	case 12:
+		return "sometimes i get lonely..";
+	case 13:
+		return "andrew ty for the follow";
+	case 14:
+		return "holy s***balls dude!";
+	case 15:
+		return "sorry about any swears everyone";
+	case 16:
+		return "this is a family friendly stream";
+	case 17:
+		return "where my mods at in chat?";
+	case 18:
+		return "evil_guy43 ty for the sub";
+	case 19:
+		return "i know only 20 people are watching but";
+	case 20:
+		return "oh damn did you guys see that?";
+	case 21:
+		return "who would make a plane based game?";
+	case 22:
+		return "did you guys read the news lately?";
+	case 23:
+		return "this is my 125th stream in a row btw";
+	case 24:
+		return "i might play black ops 4 later";
+	case 25:
+		return "turns out drugs cure disease";
+	case 26:
+		return "turns out the pm is crooked";
+	case 27:
+		return "turns out brexit isn't american";
+	case 28:
+		return "turns out frank black is white";
+	case 29:
+		return "turns out barry white is black";
+	case 30:
+		return "turns out soylent green is people";
+	case 31:
+		return "turns out star wars is bad lmao";
+	case 32:
+		return "MUM!!! WHERE'S MY TENDIES?!!";
+	case 33:
+		return "MUM!!! WHERE'S MY REDBULL?!!";
+	case 34:
+		return "F*** wtf just happened there?";
+	case 35:
+		return "dinsey planes is a terrible name";
+	case 36:
+		return "i'm still waiting on dinsey cars";
+	case 37:
+		return "DinseyFan ty for the sub";
+	case 38:
+		return "stop telling me to review planes";
+	case 39:
+		return "REEEEEEEEEEEEEEEE!!!!!!";
 	default:
 		return "OK... that was weird";
 		break;
@@ -267,7 +342,7 @@ void VolumeFunc()
 int main(int argc, char* argv[])
 {
 	//CUSTOM
-	LetsPlay = CustomAsset(10, 5, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\UI\\letsplayer.bmp", 5, 5));
+	//LetsPlay = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\UI\\letsplayer.bmp", 22, 20));
 	//DINSEY PLANES SETTINGS
 	Load();
 	VolumeFunc();
@@ -400,8 +475,8 @@ int main(int argc, char* argv[])
 				lp_text = ReturnRandomString();
 			}
 
-			//FIX THIS
-			window = LetsPlay.draw_asset(window, Vector2(0, 0));
+			//TEST
+			window = GlobalSettings::m_LP.draw_asset(window, Vector2(0, 0));
 		}
 		window.writeConsole();
 		SYDEFunctions::SYDESleep(GlobalSettings::FrameDelay_MS, SYDEDefaults::getDeltaTime());

@@ -10,6 +10,9 @@ bool GlobalSettings::initWindow = true;
 bool GlobalSettings::rs = false;
 bool GlobalSettings::GamePlaying = true;
 bool GlobalSettings::letsplayer = false;
+
+CustomAsset GlobalSettings::m_LP;
+
 DebugWindow::DebugWindow(AssetsClass astVars)
 {
 	_Options = SYDEMenu(vector<SYDEButton> {	SYDEButton("", Vector2(0, 1), Vector2(20, 1), WHITE, true),
@@ -352,6 +355,9 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 	{
 		_LEVELS[i].setHighLight(RED);
 	}
+
+	GlobalSettings::m_LP = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\UI\\letsplayer.bmp", 22, 20));
+
 	_Load();
 }
 
