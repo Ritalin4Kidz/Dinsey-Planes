@@ -6,6 +6,9 @@ std::string GlobalSettings::_LASTSCENE = "";
 int GlobalSettings::FrameDelay_MS = 30;
 bool GlobalSettings::PauseMode = false;
 bool GlobalSettings::debugMenu = false;
+bool GlobalSettings::initWindow = true;
+bool GlobalSettings::rs = false;
+bool GlobalSettings::GamePlaying = true;
 DebugWindow::DebugWindow(AssetsClass astVars)
 {
 	_Options = SYDEMenu(vector<SYDEButton> {	SYDEButton("", Vector2(0, 1), Vector2(20, 1), WHITE, true),
@@ -132,9 +135,18 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 	_Options[31].setText("???");
 	_Options[32].setText("???");
 	_Options[33].setText("???");
-	_Options[34].setText("???");
+	_Options[34].setText("Restart");
 	_Options[35].setText("Play Game");
 
+	for (int i = 0; i < windowWidth; i++)
+	{
+		window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
+	}
+	window.setTextAtPoint(Vector2(0, 19), "TAB: Select, A: Confirm", BLACK_BRIGHTWHITE_BG);
+
+	window = _Options.draw_menu(window);
+
+	//INPUTS
 	if (SYDEKeyCode::get(VK_TAB)._CompareState(KEYDOWN))
 	{
 		_Options.nextSelect();
@@ -157,18 +169,21 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 		{
 			GlobalSettings::debugMenu = !GlobalSettings::debugMenu;
 		}
+		else if (_Options.getSelected().m_Label == "34")
+		{
+			//TRY FOR WHOLE REFRESH
+			window.ClearWindow(true);
+			system("cls");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), WHITE);
+			GlobalSettings::GamePlaying = false;
+			system("DinseyPlanes --debug --rs");
+		}
 		else if (_Options.getSelected().m_Label == "35")
 		{
 			GlobalSettings::_SCENE = "DinseyPlanes";
 		}
 	}
-	for (int i = 0; i < windowWidth; i++)
-	{
-		window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
-	}
-	window.setTextAtPoint(Vector2(0, 19), "TAB: Select, A: Confirm", BLACK_BRIGHTWHITE_BG);
 
-	window = _Options.draw_menu(window);
 	return window;
 }
 DinseyPlanes::DinseyPlanes(AssetsClass astVars)

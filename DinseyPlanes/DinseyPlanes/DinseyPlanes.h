@@ -21,6 +21,9 @@ public:
 	static int FrameDelay_MS;
 	static bool PauseMode;
 	static bool debugMenu;
+	static bool initWindow;
+	static bool rs;
+	static bool GamePlaying;
 };
 
 class DebugWindow : public SYDEWindowGame {

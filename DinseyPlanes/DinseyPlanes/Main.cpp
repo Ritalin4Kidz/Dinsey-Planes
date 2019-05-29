@@ -270,6 +270,14 @@ int main(int argc, char* argv[])
 		{
 			GlobalSettings::FrameDelay_MS = 0;
 		}
+		if (arg == "--initfalse")
+		{
+			GlobalSettings::initWindow = false;
+		}
+		if (arg == "--rs")
+		{
+			GlobalSettings::rs = false;
+		}
 	}
 	//CONSOLE SETTINGS
 	CONSOLE_SCREEN_BUFFER_INFOEX pInfo;
@@ -305,11 +313,18 @@ int main(int argc, char* argv[])
 	SYDETIME deltaTime;
 	deltaTime.initialise(std::chrono::high_resolution_clock::now());
 	//OPENING SPLASHSCREENS
-	SYDEGamePlay::initialize_window(hOut, window);
+	if (GlobalSettings::rs) {
+		//TO DO
+		//FIX CONSOLE SCREEN SHRINK
+	}
+	if (GlobalSettings::initWindow)
+	{
+		SYDEGamePlay::initialize_window(hOut, window);
+	}
 	SYDEGamePlay::opening_splashscreens(astVars.get_electronic_chime_file_path(), start, hOut, window, windowWidth, windowHeight, artVars);
 	SYDEGamePlay::hidden_splashsceen_001(astVars.get_squish_file_path(), start, hOut, window, windowWidth, windowHeight, astVars);
 	//GAMEPLAY
-	while (true)
+	while (GlobalSettings::GamePlaying)
 	{
 		//UNIVERSAL KEYS
 		if ((SYDEKeyCode::get('P')._CompareState(KEYDOWN) && GlobalSettings::PauseMode))
@@ -342,4 +357,6 @@ int main(int argc, char* argv[])
 		window.writeConsole();
 		SYDEFunctions::SYDESleep(GlobalSettings::FrameDelay_MS, SYDEDefaults::getDeltaTime());
 	}
+	system("cls");
+	return NULL;
 }
