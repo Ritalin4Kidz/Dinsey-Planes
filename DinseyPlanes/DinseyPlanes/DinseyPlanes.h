@@ -13,6 +13,12 @@
 #include <gdiplus.h>
 #include "SYDEstdafx.h"
 #include <sstream>
+#include <cstdio>
+#include <iostream>
+#include <memory>
+#include <stdexcept>
+#include <string>
+#include <array>
 
 class GlobalSettings {
 public:
@@ -29,6 +35,19 @@ public:
 
 	static SYDELabel m_fps;
 	static CustomAsset m_LP;
+};
+
+class ConsoleSYDE : public SYDEWindowGame {
+public:
+	ConsoleSYDE() { _CmdLine.setActive(true); }
+	virtual ~ConsoleSYDE() {}
+	ConsoleWindow window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight) override;
+	std::string exec(std::string cmd);
+private:
+	SYDELabel _cmd = SYDELabel("", Vector2(0, 1), Vector2(39, 1), WHITE, false);
+	SYDELabel _cmds = SYDELabel("", Vector2(0, 2), Vector2(39, 17), WHITE, false);
+	SYDETextBox _CmdLine = SYDETextBox(Vector2(0,19), Vector2(40,1), BLACK_BRIGHTWHITE_BG);
+	float m_TextDelay = 0.2f;
 };
 
 class DebugWindow : public SYDEWindowGame {

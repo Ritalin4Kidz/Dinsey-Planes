@@ -113,7 +113,7 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 	_Options[3].setText("Pic Test");
 	_Options[4].setText("Twitch Mode:" + to_string(GlobalSettings::letsplayer));
 	_Options[5].setText("FPS:" + to_string(GlobalSettings::framerate));
-	_Options[6].setText("???");
+	_Options[6].setText("Syde Console");
 	_Options[7].setText("???");
 	_Options[8].setText("???");
 	_Options[9].setText("???");
@@ -186,6 +186,10 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 		else if (_Options.getSelected().m_Label == "5")
 		{
 			GlobalSettings::framerate = !GlobalSettings::framerate;
+		}
+		else if (_Options.getSelected().m_Label == "6")
+		{
+			GlobalSettings::_SCENE = "Console";
 		}
 		else if (_Options.getSelected().m_Label == "34")
 		{
@@ -1735,4 +1739,62 @@ ConsoleWindow MinimmeTest::window_draw_game(ConsoleWindow window, int windowWidt
 ConsoleWindow PauseWindow::window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight)
 {
 	return window;
+}
+
+ConsoleWindow ConsoleSYDE::window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight)
+{
+	m_TextDelay += SYDEDefaults::getDeltaTime();
+	if (SYDEKeyCode::get(VK_RETURN)._CompareState(KEYDOWN))
+	{
+		_cmd.setText(_CmdLine.m_Text);
+		_cmds.setText(exec(_CmdLine.m_Text));
+		_CmdLine.removeText(_CmdLine.m_Text.size());
+	}
+	else if (SYDEKeyCode::get(VK_LEFT)._CompareState(KEYDOWN))
+	{
+		_CmdLine.removeText(1);
+	}
+	else if (m_TextDelay > 0.05f && !SYDEKeyCode::get(VK_LEFT)._CompareState(KEY))
+	{
+		_CmdLine.addText(SYDEKeyCode::KeysDown());
+		m_TextDelay = 0;
+	}
+	window = _cmd.draw_ui(window);
+	window = _cmds.draw_ui(window);
+	window = _CmdLine.draw_ui(window);
+	return window;
+}
+
+std::string ConsoleSYDE::exec(std::string cmd)
+{
+	std::string Error = "";
+	// NO VALUE CHANGES IN HERE, JUST CHECKING SHIT
+	if (cmd == "TEST")
+	{
+		return "test thing works";
+	}
+	if (cmd == "SCENELAST")
+	{
+		if (GlobalSettings::_LASTSCENE != "")
+		{
+			return GlobalSettings::_LASTSCENE;
+		}
+		Error = "SL001: LastScene is non existant";
+	}
+	if (cmd == "LP")
+	{
+		if (GlobalSettings::letsplayer)
+		{
+			return "Letsplayer == true";
+		}
+		else {
+			return "Letsplayer == false";
+		}
+	}
+
+	if (Error == "")
+	{
+		Error = "Unable to find command: " + cmd;
+	}
+	return "Error: " + Error;
 }

@@ -405,6 +405,7 @@ int main(int argc, char* argv[])
 	GdiplusStartup(&gdiplusToken, &startupInput, 0);
 	DinseyPlanes m_Planes(astVars);
 	DebugWindow m_Debug(astVars);
+	ConsoleSYDE m_SYDECNSL;
 	PauseWindow m_Pause;
 	MinimmeTest m_mini(astVars);
 	SetConsoleTitleW(title);
@@ -457,6 +458,10 @@ int main(int argc, char* argv[])
 		else if (GlobalSettings::_SCENE == "MiniTest")
 		{
 			window = SYDEGamePlay::play_game(&m_mini, start, hOut, window, windowWidth, windowHeight, deltaTime);
+		}
+		else if (GlobalSettings::_SCENE == "Console")
+		{
+			window = SYDEGamePlay::play_game(&m_SYDECNSL, start, hOut, window, windowWidth, windowHeight, deltaTime);
 		}
 		else {
 			window = SYDEGamePlay::play_game(&m_Planes, start, hOut, window, windowWidth, windowHeight, deltaTime);
