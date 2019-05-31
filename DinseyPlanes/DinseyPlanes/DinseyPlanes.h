@@ -19,6 +19,7 @@
 #include <stdexcept>
 #include <string>
 #include <array>
+#include "DPFunc.h"
 
 class GlobalSettings {
 public:
@@ -32,6 +33,7 @@ public:
 	static bool GamePlaying;
 	static bool letsplayer;
 	static bool framerate;
+	static int VolumeLVL;
 
 	static SYDELabel m_fps;
 	static CustomAsset m_LP;

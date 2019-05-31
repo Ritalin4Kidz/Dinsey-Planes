@@ -1,5 +1,28 @@
 #include "pch.h"
 #include "DPFunc.h"
+DWORD DPFunc::VOLUME_LOW = DWORD(858993459);
+DWORD DPFunc::VOLUME_NML = DWORD(1717986918);
+DWORD DPFunc::VOLUME_MED = DWORD(-1717986918);
+DWORD DPFunc::VOLUME_HIG = DWORD(-858993459);
+DWORD DPFunc::VOLUME_OFF = DWORD(0);
+
+ColourValues DPFunc::_BLACK = ColourValues(12, 12, 12);
+ColourValues DPFunc::_BLUE = ColourValues(0, 55, 218);
+ColourValues DPFunc::_GREEN = ColourValues(19, 161, 14);
+ColourValues DPFunc::_AQUA = ColourValues(58, 150, 221);
+ColourValues DPFunc::_RED = ColourValues(197, 15, 31);
+ColourValues DPFunc::_PURPLE = ColourValues(136, 23, 152);
+ColourValues DPFunc::_YELLOW = ColourValues(193, 156, 0);
+ColourValues DPFunc::_WHITE = ColourValues(204, 204, 204);
+ColourValues DPFunc::_LIGHTGREY = ColourValues(118, 118, 118);
+ColourValues DPFunc::_DARKBLUE = ColourValues(59, 120, 255);
+ColourValues DPFunc::_BRIGHTGREEN = ColourValues(22, 198, 12);
+ColourValues DPFunc::_LIGHTBLUE = ColourValues(97, 214, 214);
+ColourValues DPFunc::_BRIGHTRED = ColourValues(231, 72, 86);
+ColourValues DPFunc::_LIGHTPURPLE = ColourValues(180, 0, 158);
+ColourValues DPFunc::_BRIGHTYELLOW = ColourValues(249, 241, 165);
+ColourValues DPFunc::_BRIGHTWHITE = ColourValues(242, 242, 242);
+
 std::string DPFunc::ReturnRandomString()
 {
 	int rNum = rand() % 93;
@@ -194,3 +217,243 @@ std::string DPFunc::ReturnRandomString()
 		break;
 	}
 }
+
+std::string DPFunc::FindCommand(std::string cmd)
+{
+	std::string cmdRtn = "";
+	for (int i = 0; i < _Commands.size(); i++)
+	{
+		if (_Commands[i][0] == cmd[0])
+		{
+			cmdRtn += _Commands[i] + ",";
+		}
+	}
+	if (cmdRtn == "")
+	{
+		return "No possible commands found";
+	}
+	return "Possible Commands: " + cmdRtn;
+}
+
+void DPFunc::VolumeFunc(int volume)
+{
+	switch (volume)
+	{
+	case 0:
+		waveOutSetVolume(0, VOLUME_OFF);
+		break;
+	case 1:
+		waveOutSetVolume(0, VOLUME_LOW);
+		break;
+	case 2:
+		waveOutSetVolume(0, VOLUME_NML);
+		break;
+	case 3:
+		waveOutSetVolume(0, VOLUME_MED);
+		break;
+	case 4:
+		waveOutSetVolume(0, VOLUME_HIG);
+		break;
+	default:
+		waveOutSetVolume(0, VOLUME_NML);
+		volume = 2;
+		break;
+	}
+}
+
+ColourValues DPFunc::_RGBLoad(std::string RGBstr, ColourValues rgbV)
+{
+	try {
+		std::vector<std::string> RGBLines;
+		RGBLines = Split(RGBstr, ',');
+		if (RGBLines.size() == 3)
+		{
+			std::istringstream(RGBLines[0]) >> rgbV.r;
+			std::istringstream(RGBLines[1]) >> rgbV.g;
+			std::istringstream(RGBLines[2]) >> rgbV.b;
+		}
+	}
+	catch (std::exception e)
+	{
+		rgbV.toDefault();
+	}
+	return rgbV;
+}
+
+void DPFunc::Load()
+{
+	std::ifstream File("EngineFiles\\Settings\\gameSettings.sc", std::ios::binary | std::ios::in);
+	if (File.is_open())
+	{
+		std::string line;
+		std::vector<std::string> FileLines;
+		while (getline(File, line, '\n'))
+		{
+			FileLines = Split(line, ':');
+			if (FileLines[0] == "_Volume")
+			{
+				std::istringstream(FileLines[1]) >> GlobalSettings::VolumeLVL;
+			}
+			else if (FileLines[0] == "_Black")
+			{
+				_BLACK = _RGBLoad(FileLines[1], _BLACK);
+			}
+			else if (FileLines[0] == "_Blue")
+			{
+				_BLUE = _RGBLoad(FileLines[1], _BLUE);
+			}
+			else if (FileLines[0] == "_Green")
+			{
+				_GREEN = _RGBLoad(FileLines[1], _GREEN);
+			}
+			else if (FileLines[0] == "_Aqua")
+			{
+				_AQUA = _RGBLoad(FileLines[1], _AQUA);
+			}
+			else if (FileLines[0] == "_Red")
+			{
+				_RED = _RGBLoad(FileLines[1], _RED);
+			}
+			else if (FileLines[0] == "_Purple")
+			{
+				_PURPLE = _RGBLoad(FileLines[1], _PURPLE);
+			}
+			else if (FileLines[0] == "_Yellow")
+			{
+				_YELLOW = _RGBLoad(FileLines[1], _YELLOW);
+			}
+			else if (FileLines[0] == "_White")
+			{
+				_WHITE = _RGBLoad(FileLines[1], _WHITE);
+			}
+			else if (FileLines[0] == "_Lightgrey")
+			{
+				_LIGHTGREY = _RGBLoad(FileLines[1], _LIGHTGREY);
+			}
+			else if (FileLines[0] == "_Darkblue")
+			{
+				_DARKBLUE = _RGBLoad(FileLines[1], _DARKBLUE);
+			}
+			else if (FileLines[0] == "_Brightgreen")
+			{
+				_BRIGHTGREEN = _RGBLoad(FileLines[1], _BRIGHTGREEN);
+			}
+			else if (FileLines[0] == "_Lightblue")
+			{
+				_LIGHTBLUE = _RGBLoad(FileLines[1], _LIGHTBLUE);
+			}
+			else if (FileLines[0] == "_Brightred")
+			{
+				_BRIGHTRED = _RGBLoad(FileLines[1], _BRIGHTRED);
+			}
+			else if (FileLines[0] == "_Lightpurple")
+			{
+				_LIGHTPURPLE = _RGBLoad(FileLines[1], _LIGHTPURPLE);
+			}
+			else if (FileLines[0] == "_Brightyellow")
+			{
+				_BRIGHTYELLOW = _RGBLoad(FileLines[1], _BRIGHTYELLOW);
+			}
+			else if (FileLines[0] == "_Brightwhite")
+			{
+				_BRIGHTWHITE = _RGBLoad(FileLines[1], _BRIGHTWHITE);
+			}
+		}
+	}
+}
+
+void DPFunc::Save()
+{
+	ofstream FileOut("EngineFiles\\Settings\\gameSettings.sc");
+	//LEVELS
+	FileOut << "//AUDIO" << endl;
+	FileOut << "_Volume:" + std::to_string(GlobalSettings::VolumeLVL) << endl;
+	FileOut << "//VISUALS" << endl;
+	FileOut << "_Black:" + _BLACK.toRGBStr() << endl;
+	FileOut << "_Blue:" + _BLUE.toRGBStr() << endl;
+	FileOut << "_Green:" + _GREEN.toRGBStr() << endl;
+	FileOut << "_Aqua:" + _AQUA.toRGBStr() << endl;
+	FileOut << "_Red:" + _RED.toRGBStr() << endl;
+	FileOut << "_Purple:" + _PURPLE.toRGBStr() << endl;
+	FileOut << "_Yellow:" + _YELLOW.toRGBStr() << endl;
+	FileOut << "_White:" + _WHITE.toRGBStr() << endl;
+	FileOut << "_Lightgrey:" + _LIGHTGREY.toRGBStr() << endl;
+	FileOut << "_Darkblue:" + _DARKBLUE.toRGBStr() << endl;
+	FileOut << "_Brightgreen:" + _BRIGHTGREEN.toRGBStr() << endl;
+	FileOut << "_Lightblue:" + _LIGHTBLUE.toRGBStr() << endl;
+	FileOut << "_Brightred:" + _BRIGHTRED.toRGBStr() << endl;
+	FileOut << "_Lightpurple:" + _LIGHTPURPLE.toRGBStr() << endl;
+	FileOut << "_Brightyellow:" + _BRIGHTYELLOW.toRGBStr() << endl;
+	FileOut << "_Brightwhite:" + _BRIGHTWHITE.toRGBStr() << endl;
+}
+
+void DPFunc::ColourPalette(HANDLE hOut, bool initRS, ConsoleWindow window)
+{
+	CONSOLE_SCREEN_BUFFER_INFOEX pInfo;
+	pInfo.cbSize = sizeof(pInfo);
+	GetConsoleScreenBufferInfoEx(hOut, &pInfo);
+	pInfo.ColorTable[0] = COLORREF(DPFunc::_BLACK.toRGB());
+	pInfo.ColorTable[1] = COLORREF(DPFunc::_BLUE.toRGB());
+	pInfo.ColorTable[2] = COLORREF(DPFunc::_GREEN.toRGB());
+	pInfo.ColorTable[3] = COLORREF(DPFunc::_AQUA.toRGB());
+	pInfo.ColorTable[4] = COLORREF(DPFunc::_RED.toRGB());
+	pInfo.ColorTable[5] = COLORREF(DPFunc::_PURPLE.toRGB());
+	pInfo.ColorTable[6] = COLORREF(DPFunc::_YELLOW.toRGB());
+	pInfo.ColorTable[7] = COLORREF(DPFunc::_WHITE.toRGB());
+	pInfo.ColorTable[8] = COLORREF(DPFunc::_LIGHTGREY.toRGB());
+	pInfo.ColorTable[9] = COLORREF(DPFunc::_DARKBLUE.toRGB());
+	pInfo.ColorTable[10] = COLORREF(DPFunc::_BRIGHTGREEN.toRGB());
+	pInfo.ColorTable[11] = COLORREF(DPFunc::_LIGHTBLUE.toRGB());
+	pInfo.ColorTable[12] = COLORREF(DPFunc::_BRIGHTRED.toRGB());
+	pInfo.ColorTable[13] = COLORREF(DPFunc::_LIGHTPURPLE.toRGB());
+	pInfo.ColorTable[14] = COLORREF(DPFunc::_BRIGHTYELLOW.toRGB());
+	pInfo.ColorTable[15] = COLORREF(DPFunc::_BRIGHTWHITE.toRGB());
+	SetConsoleScreenBufferInfoEx(hOut, &pInfo);
+	if (initRS)
+	{
+		CONSOLE_SCREEN_BUFFER_INFO SBInfo;
+		GetConsoleScreenBufferInfo(hOut, &SBInfo);
+		COORD removebuffer = {
+			SBInfo.srWindow.Right - SBInfo.srWindow.Left + 10,
+			SBInfo.srWindow.Bottom - SBInfo.srWindow.Top + 10
+		};
+		SetConsoleScreenBufferSize(hOut, removebuffer);
+		SYDEGamePlay::initialize_window(hOut, window);
+	}
+}
+
+std::vector<std::string> DPFunc::Split(std::string a_String, char splitter)
+{
+	int arraySize = 1;
+	for (int i = 0; i < a_String.length(); i++)
+	{
+		if (a_String[i] == splitter)
+		{
+			arraySize++;
+		}
+	}
+	std::vector<std::string> splitString(arraySize);
+	int arrayNo = 0;
+	while (arrayNo < arraySize - 1)
+	{
+		for (int i = 0; i < a_String.length(); i++)
+		{
+			if (a_String[i] == splitter)
+			{
+				splitString[arrayNo] = a_String.substr(0, i);
+				a_String = a_String.substr(i + 1, a_String.length() - i);
+				arrayNo++;
+				break;
+			}
+		}
+	}
+	splitString[arraySize - 1] = a_String;
+	return splitString;
+}
+
+std::vector<std::string> DPFunc::_Commands = {
+	"TEST",
+	"SCENELAST",
+	"LP",
+	"DPRS"
+};

@@ -11,6 +11,7 @@ bool GlobalSettings::rs = false;
 bool GlobalSettings::GamePlaying = true;
 bool GlobalSettings::letsplayer = false;
 bool GlobalSettings::framerate = false;
+int GlobalSettings::VolumeLVL = 2;
 
 SYDELabel GlobalSettings::m_fps = SYDELabel("", Vector2(35, 1), Vector2(5, 1), BRIGHTGREEN, true);;
 CustomAsset GlobalSettings::m_LP;
@@ -114,11 +115,11 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 	_Options[4].setText("Twitch Mode:" + to_string(GlobalSettings::letsplayer));
 	_Options[5].setText("FPS:" + to_string(GlobalSettings::framerate));
 	_Options[6].setText("Syde Console");
-	_Options[7].setText("???");
-	_Options[8].setText("???");
-	_Options[9].setText("???");
-	_Options[10].setText("???");
-	_Options[11].setText("???");
+	_Options[7].setText("Volume:" + to_string(GlobalSettings::VolumeLVL));
+	_Options[8].setText("Save Settings");
+	_Options[9].setText("Load Settings");
+	_Options[10].setText("Sunset");
+	_Options[11].setText("Blue Sky");
 	_Options[12].setText("???");
 	_Options[13].setText("???");
 	_Options[14].setText("???");
@@ -140,7 +141,7 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 	_Options[30].setText("???");
 	_Options[31].setText("???");
 	_Options[32].setText("???");
-	_Options[33].setText("???");
+	_Options[33].setText("Refresh Colour");
 	_Options[34].setText("Restart");
 	_Options[35].setText("Play Game");
 
@@ -190,6 +191,37 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 		else if (_Options.getSelected().m_Label == "6")
 		{
 			GlobalSettings::_SCENE = "Console";
+		}
+		else if (_Options.getSelected().m_Label == "7")
+		{
+			GlobalSettings::VolumeLVL++;
+			if (GlobalSettings::VolumeLVL >= 5)
+			{
+				GlobalSettings::VolumeLVL = 0;
+			}
+			DPFunc::VolumeFunc(GlobalSettings::VolumeLVL);
+		}
+		else if (_Options.getSelected().m_Label == "8")
+		{
+			DPFunc::Save(); //SAVE COLOUR AND VOLUME SETTINGS
+		}
+		else if (_Options.getSelected().m_Label == "9")
+		{
+			DPFunc::Load(); //LOAD COLOUR AND VOLUME SETTINGS
+		}
+		else if (_Options.getSelected().m_Label == "10")
+		{
+			DPFunc::_AQUA.set(255, 166, 106);
+		}
+		else if (_Options.getSelected().m_Label == "11")
+		{
+			DPFunc::_AQUA.set(58, 150, 221);
+		}
+		else if (_Options.getSelected().m_Label == "33")
+		{
+			system("cls");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), WHITE);
+			DPFunc::ColourPalette(GetStdHandle(STD_OUTPUT_HANDLE), true, window);
 		}
 		else if (_Options.getSelected().m_Label == "34")
 		{
@@ -1769,11 +1801,11 @@ std::string ConsoleSYDE::exec(std::string cmd)
 {
 	std::string Error = "";
 	// NO VALUE CHANGES IN HERE, JUST CHECKING SHIT
-	if (cmd == "TEST")
+	if (cmd == DPFunc::_Commands[0])
 	{
 		return "test thing works";
 	}
-	if (cmd == "SCENELAST")
+	if (cmd == DPFunc::_Commands[1])
 	{
 		if (GlobalSettings::_LASTSCENE != "")
 		{
@@ -1781,7 +1813,7 @@ std::string ConsoleSYDE::exec(std::string cmd)
 		}
 		Error = "SL001: LastScene is non existant";
 	}
-	if (cmd == "LP")
+	if (cmd == DPFunc::_Commands[2])
 	{
 		if (GlobalSettings::letsplayer)
 		{
@@ -1791,10 +1823,21 @@ std::string ConsoleSYDE::exec(std::string cmd)
 			return "Letsplayer == false";
 		}
 	}
-
+	if (cmd == DPFunc::_Commands[3])
+	{
+		try {
+			system("cls");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), WHITE);
+			GlobalSettings::GamePlaying = false;
+			system("DinseyPlanes --debug --rs");
+		}
+		catch (exception e) {
+			Error = e.what();
+		}
+	}
 	if (Error == "")
 	{
-		Error = "Unable to find command: " + cmd;
+		Error = "Unable to find command: " + cmd + ". " +  DPFunc::FindCommand(cmd);
 	}
 	return "Error: " + Error;
 }
