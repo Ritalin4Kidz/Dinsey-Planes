@@ -212,6 +212,8 @@ std::string DPFunc::ReturnRandomString()
 		return "are some of you unsubbing & resubbing?";
 	case 92:
 		return "i want to sleep soon.....";
+	case 93:
+		return "subscribe to minimme";
 	default:
 		return "OK... that was weird";
 		break;

@@ -13,6 +13,9 @@ bool GlobalSettings::letsplayer = false;
 bool GlobalSettings::framerate = false;
 int GlobalSettings::VolumeLVL = 2;
 
+//USE TO FILL OUT WINDOW SHIT
+std::string GlobalSettings::FillStr = " ";
+
 bool GlobalSettings::_PEARLHARBOURBEATEN = false;
 bool GlobalSettings::_HIROSHIMABEATEN = false;
 bool GlobalSettings::_NAGASAKIBEATEN = false;
@@ -21,7 +24,7 @@ bool GlobalSettings::_TSUBUMMER_UNLOCK = false;
 bool GlobalSettings::_RIPPERONI_UNLOCK = false;
 
 SYDELabel GlobalSettings::m_fps = SYDELabel("", Vector2(35, 1), Vector2(5, 1), BRIGHTGREEN, true);;
-CustomAsset GlobalSettings::m_LP;
+CustomAnimationAsset GlobalSettings::m_LP;
 
 DebugWindow::DebugWindow(AssetsClass astVars)
 {
@@ -417,8 +420,20 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 		_LEVELS[i].setHighLight(RED);
 	}
 
-	GlobalSettings::m_LP = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\UI\\letsplayer.bmp", 22, 20));
-
+	GlobalSettings::m_LP = CustomAnimationAsset(vector<CustomAsset> {	CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\LetsPlayer\\lp_001.bmp", 22, 20)),
+																		CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\LetsPlayer\\lp_001.bmp", 22, 20)),
+																		CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\LetsPlayer\\lp_001.bmp", 22, 20)),
+																		CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\LetsPlayer\\lp_001.bmp", 22, 20)),
+																		CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\LetsPlayer\\lp_001.bmp", 22, 20)),
+																		CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\LetsPlayer\\lp_001.bmp", 22, 20)),
+																		CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\LetsPlayer\\lp_002.bmp", 22, 20)),
+																		CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\LetsPlayer\\lp_002.bmp", 22, 20)),
+																		CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\LetsPlayer\\lp_002.bmp", 22, 20)),
+																		CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\LetsPlayer\\lp_002.bmp", 22, 20)),
+																		CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\LetsPlayer\\lp_002.bmp", 22, 20)),
+																		CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Animations\\LetsPlayer\\lp_002.bmp", 22, 20))
+	});
+	GlobalSettings::m_LP.setLooping(true);
 	DPFunc::LoadGame();
 }
 

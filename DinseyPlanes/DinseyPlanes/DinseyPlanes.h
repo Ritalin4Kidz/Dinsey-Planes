@@ -35,6 +35,8 @@ public:
 	static bool framerate;
 	static int VolumeLVL;
 
+	static std::string FillStr;
+
 	// Unlocks
 	static bool _PEARLHARBOURBEATEN;
 	static bool _HIROSHIMABEATEN;
@@ -45,7 +47,7 @@ public:
 	static bool _RIPPERONI_UNLOCK;
 
 	static SYDELabel m_fps;
-	static CustomAsset m_LP;
+	static CustomAnimationAsset m_LP;
 };
 
 class ConsoleSYDE : public SYDEWindowGame {
