@@ -387,6 +387,64 @@ void DPFunc::Save()
 	FileOut << "_Brightwhite:" + _BRIGHTWHITE.toRGBStr() << endl;
 }
 
+void DPFunc::LoadGame()
+{
+	ifstream File("EngineFiles\\Settings\\dp_Saves.sc", ios::binary | ios::in);
+	if (File.is_open())
+	{
+		string line;
+		vector<string> FileLines;
+		while (getline(File, line, '\n'))
+		{
+			FileLines = Split(line, ':');
+			if (FileLines[0] == "_PEARLHARBOURBEATEN")
+			{
+				std::istringstream(FileLines[1]) >> GlobalSettings::_PEARLHARBOURBEATEN;
+			}
+			if (FileLines[0] == "_HIROSHIMABEATEN")
+			{
+				std::istringstream(FileLines[1]) >> GlobalSettings::_HIROSHIMABEATEN;
+			}
+			if (FileLines[0] == "_NAGASAKIBEATEN")
+			{
+				std::istringstream(FileLines[1]) >> GlobalSettings::_NAGASAKIBEATEN;
+			}
+			if (FileLines[0] == "_SEMICOLON_UNLOCK")
+			{
+				std::istringstream(FileLines[1]) >> GlobalSettings::_SEMICOLON_UNLOCK;
+			}
+			if (FileLines[0] == "_TSUBUMMER_UNLOCK")
+			{
+				std::istringstream(FileLines[1]) >> GlobalSettings::_TSUBUMMER_UNLOCK;
+			}
+			if (FileLines[0] == "_RIPPERONI_UNLOCK")
+			{
+				std::istringstream(FileLines[1]) >> GlobalSettings::_RIPPERONI_UNLOCK;
+			}
+		}
+	}
+}
+
+void DPFunc::SaveGame()
+{
+	ofstream FileOut("EngineFiles\\Settings\\dp_Saves.sc");
+	//LEVELS
+	FileOut << "_PEARLHARBOURBEATEN:" + to_string(GlobalSettings::_PEARLHARBOURBEATEN) << endl;
+	FileOut << "_HIROSHIMABEATEN:" + to_string(GlobalSettings::_HIROSHIMABEATEN) << endl;
+	FileOut << "_NAGASAKIBEATEN:" + to_string(GlobalSettings::_NAGASAKIBEATEN) << endl;
+	//CHARACTERS
+	FileOut << "_SEMICOLON_UNLOCK:" + to_string(GlobalSettings::_SEMICOLON_UNLOCK) << endl;
+	FileOut << "_TSUBUMMER_UNLOCK:" + to_string(GlobalSettings::_TSUBUMMER_UNLOCK) << endl;
+	FileOut << "_RIPPERONI_UNLOCK:" + to_string(GlobalSettings::_RIPPERONI_UNLOCK) << endl;
+}
+
+void DPFunc::RefreshColour(ConsoleWindow window)
+{
+	system("cls");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), WHITE);
+	DPFunc::ColourPalette(GetStdHandle(STD_OUTPUT_HANDLE), true, window);
+}
+
 void DPFunc::ColourPalette(HANDLE hOut, bool initRS, ConsoleWindow window)
 {
 	CONSOLE_SCREEN_BUFFER_INFOEX pInfo;

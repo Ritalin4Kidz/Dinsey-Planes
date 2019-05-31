@@ -61,6 +61,11 @@ public:
 	static void Load();
 	static void Save();
 
+	static void LoadGame();
+	static void SaveGame();
+
+	static void RefreshColour(ConsoleWindow window);
+
 	static void ColourPalette(HANDLE hOut, bool initRS, ConsoleWindow window);
 
 	static std::vector<std::string> Split(std::string a_String, char splitter);

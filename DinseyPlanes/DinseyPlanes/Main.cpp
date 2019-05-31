@@ -58,23 +58,33 @@ int main(int argc, char* argv[])
 		{
 			DPFunc::_AQUA.set(255, 166, 106);
 		}
-		if (arg == "--debug")
+		else if (arg == "--debug")
 		{
 			GlobalSettings::_SCENE = "Debug";
 			GlobalSettings::debugMenu = true;
 			title = L"Dinsey Planes(Debug)";
 		}
-		if (arg == "--nocap")
+		else if (arg == "--nocap")
 		{
 			GlobalSettings::FrameDelay_MS = 0;
 		}
-		if (arg == "--initfalse")
+		else if (arg == "--initfalse")
 		{
 			GlobalSettings::initWindow = false;
 		}
-		if (arg == "--rs")
+		else if (arg == "--rs")
 		{
 			GlobalSettings::rs = true;
+		}
+		else if (arg == "--Watch_Me_Xplode")
+		{
+			GlobalSettings::_NAGASAKIBEATEN = true;
+			GlobalSettings::_HIROSHIMABEATEN = true;
+			GlobalSettings::_PEARLHARBOURBEATEN = true;
+
+			GlobalSettings::_SEMICOLON_UNLOCK = true;
+			GlobalSettings::_RIPPERONI_UNLOCK = true;
+			GlobalSettings::_TSUBUMMER_UNLOCK = true;
 		}
 	}
 	//CONSOLE SETTINGS

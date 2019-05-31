@@ -35,6 +35,15 @@ public:
 	static bool framerate;
 	static int VolumeLVL;
 
+	// Unlocks
+	static bool _PEARLHARBOURBEATEN;
+	static bool _HIROSHIMABEATEN;
+	static bool _NAGASAKIBEATEN;
+	//CHARACTER UNLOCKS
+	static bool _SEMICOLON_UNLOCK;
+	static bool _TSUBUMMER_UNLOCK;
+	static bool _RIPPERONI_UNLOCK;
+
 	static SYDELabel m_fps;
 	static CustomAsset m_LP;
 };
@@ -107,8 +116,6 @@ private:
 	void _LevelSelectInputVoids();
 
 	vector<string> _Split(string a_String, char splitter);
-	void _Load();
-	void _Save();
 
 	ConsoleWindow _PearlHarbour(ConsoleWindow window, int windowWidth, int windowHeight);
 	ConsoleWindow _Hiroshima(ConsoleWindow window, int windowWidth, int windowHeight);
@@ -211,11 +218,6 @@ private:
 
 	float IntroCountDown = 3.5f;
 
-	//CHARACTER UNLOCKS
-	bool _SEMICOLON_UNLOCK = false;
-	bool _TSUBUMMER_UNLOCK = false;
-	bool _RIPPERONI_UNLOCK = false;
-
 	//IntroTime
 	float IntroTimeTaken = 0;
 
@@ -226,10 +228,6 @@ private:
 	int char1_choice = 0;
 	int char2_choice = 1;
 
-	// Unlocks
-	bool _PEARLHARBOURBEATEN = false;
-	bool _HIROSHIMABEATEN = false;
-	bool _NAGASAKIBEATEN = false;
 	SYDEMenu _LEVELS;
 
 	//OTHER ETC

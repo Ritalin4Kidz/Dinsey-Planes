@@ -13,6 +13,13 @@ bool GlobalSettings::letsplayer = false;
 bool GlobalSettings::framerate = false;
 int GlobalSettings::VolumeLVL = 2;
 
+bool GlobalSettings::_PEARLHARBOURBEATEN = false;
+bool GlobalSettings::_HIROSHIMABEATEN = false;
+bool GlobalSettings::_NAGASAKIBEATEN = false;
+bool GlobalSettings::_SEMICOLON_UNLOCK = false;
+bool GlobalSettings::_TSUBUMMER_UNLOCK = false;
+bool GlobalSettings::_RIPPERONI_UNLOCK = false;
+
 SYDELabel GlobalSettings::m_fps = SYDELabel("", Vector2(35, 1), Vector2(5, 1), BRIGHTGREEN, true);;
 CustomAsset GlobalSettings::m_LP;
 
@@ -120,7 +127,7 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 	_Options[9].setText("Load Settings");
 	_Options[10].setText("Sunset");
 	_Options[11].setText("Blue Sky");
-	_Options[12].setText("???");
+	_Options[12].setText("Night Time");
 	_Options[13].setText("???");
 	_Options[14].setText("???");
 	_Options[15].setText("???");
@@ -139,8 +146,8 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 	_Options[28].setText("???");
 	_Options[29].setText("???");
 	_Options[30].setText("???");
-	_Options[31].setText("???");
-	_Options[32].setText("???");
+	_Options[31].setText("Save Game");
+	_Options[32].setText("Load Game");
 	_Options[33].setText("Refresh Colour");
 	_Options[34].setText("Restart");
 	_Options[35].setText("Play Game");
@@ -217,11 +224,21 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 		{
 			DPFunc::_AQUA.set(58, 150, 221);
 		}
+		else if (_Options.getSelected().m_Label == "12")
+		{
+			DPFunc::_AQUA.set(20, 24, 82);
+		}
+		else if (_Options.getSelected().m_Label == "31")
+		{
+			DPFunc::SaveGame();
+		}
+		else if (_Options.getSelected().m_Label == "32")
+		{
+			DPFunc::LoadGame();
+		}
 		else if (_Options.getSelected().m_Label == "33")
 		{
-			system("cls");
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), WHITE);
-			DPFunc::ColourPalette(GetStdHandle(STD_OUTPUT_HANDLE), true, window);
+			DPFunc::RefreshColour(window);
 		}
 		else if (_Options.getSelected().m_Label == "34")
 		{
@@ -402,7 +419,7 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 
 	GlobalSettings::m_LP = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\UI\\letsplayer.bmp", 22, 20));
 
-	_Load();
+	DPFunc::LoadGame();
 }
 
 ConsoleWindow DinseyPlanes::window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight)
@@ -461,10 +478,10 @@ ConsoleWindow DinseyPlanes::window_draw_game(ConsoleWindow window, int windowWid
 
 ConsoleWindow DinseyPlanes::_MainMenu(ConsoleWindow window, int windowWidth, int windowHeight)
 {
-	_LEVELS[2].setText(toLevelString(_PEARLHARBOURBEATEN, (string)("6/8/1945 Prologue")));
-	_LEVELS[3].setText(toLevelString(_PEARLHARBOURBEATEN, (string)("6th Aug 1945")));
-	_LEVELS[4].setText(toLevelString(_HIROSHIMABEATEN, (string)("9/8/1945 Prologue")));
-	_LEVELS[5].setText(toLevelString(_HIROSHIMABEATEN, (string)("9th Aug 1945")));
+	_LEVELS[2].setText(toLevelString(GlobalSettings::_PEARLHARBOURBEATEN, (string)("6/8/1945 Prologue")));
+	_LEVELS[3].setText(toLevelString(GlobalSettings::_PEARLHARBOURBEATEN, (string)("6th Aug 1945")));
+	_LEVELS[4].setText(toLevelString(GlobalSettings::_HIROSHIMABEATEN, (string)("9/8/1945 Prologue")));
+	_LEVELS[5].setText(toLevelString(GlobalSettings::_HIROSHIMABEATEN, (string)("9th Aug 1945")));
 	//_LEVELS[6].setText(toLevelString(_NAGASAKIBEATEN, (string)("Dinsey's Bad Day")));
 	_LEVELS[6].setText(toLevelString(true, (string)("TBA")));
 	_MainMenuInputVoids();
@@ -531,7 +548,7 @@ void DinseyPlanes::_MainMenuInputVoids()
 		}
 		if ((SYDEKeyCode::get('Z')._CompareState(KEYDOWN)))
 		{
-			_Save();
+			DPFunc::SaveGame();
 			exit(NULL);
 		}
 	}
@@ -656,57 +673,6 @@ vector<string> DinseyPlanes::_Split(string a_String, char splitter)
 	return splitString;
 }
 
-void DinseyPlanes::_Load()
-{
-	ifstream File("EngineFiles\\Settings\\dp_Saves.sc", ios::binary | ios::in);
-	if (File.is_open())
-	{
-		string line;
-		vector<string> FileLines;
-		while (getline(File, line, '\n'))
-		{
-			FileLines = _Split(line, ':');
-			if (FileLines[0] == "_PEARLHARBOURBEATEN")
-			{
-				std::istringstream(FileLines[1]) >> _PEARLHARBOURBEATEN;
-			}
-			if (FileLines[0] == "_HIROSHIMABEATEN")
-			{
-				std::istringstream(FileLines[1]) >> _HIROSHIMABEATEN;
-			}
-			if (FileLines[0] == "_NAGASAKIBEATEN")
-			{
-				std::istringstream(FileLines[1]) >> _NAGASAKIBEATEN;
-			}
-			if (FileLines[0] == "_SEMICOLON_UNLOCK")
-			{
-				std::istringstream(FileLines[1]) >> _SEMICOLON_UNLOCK;
-			}
-			if (FileLines[0] == "_TSUBUMMER_UNLOCK")
-			{
-				std::istringstream(FileLines[1]) >> _TSUBUMMER_UNLOCK;
-			}
-			if (FileLines[0] == "_RIPPERONI_UNLOCK")
-			{
-				std::istringstream(FileLines[1]) >> _RIPPERONI_UNLOCK;
-			}
-		}
-	}
-}
-
-void DinseyPlanes::_Save()
-{
-	ofstream FileOut("EngineFiles\\Settings\\dp_Saves.sc");
-	//LEVELS
-	FileOut << "_PEARLHARBOURBEATEN:" + to_string(_PEARLHARBOURBEATEN) << endl;
-	FileOut << "_HIROSHIMABEATEN:" + to_string(_HIROSHIMABEATEN) << endl;
-	FileOut << "_NAGASAKIBEATEN:" + to_string(_NAGASAKIBEATEN) << endl;
-	//CHARACTERS
-	FileOut << "_SEMICOLON_UNLOCK:" + to_string(_SEMICOLON_UNLOCK) << endl;
-	FileOut << "_TSUBUMMER_UNLOCK:" + to_string(_TSUBUMMER_UNLOCK) << endl;
-	FileOut << "_RIPPERONI_UNLOCK:" + to_string(_RIPPERONI_UNLOCK) << endl;
-}
-
 ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth, int windowHeight)
 {
 	if (PearlHarbourScene == 0)
@@ -752,9 +718,9 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 		if ((SYDEKeyCode::get('Q')._CompareState(KEYDOWN)))
 		{
 			PearlHarbourScene++;
-			if (!_SEMICOLON_UNLOCK)
+			if (!GlobalSettings::_SEMICOLON_UNLOCK)
 			{
-				_SEMICOLON_UNLOCK = true;
+				GlobalSettings::_SEMICOLON_UNLOCK = true;
 				unlockPopUp.PopUp("Semi-Colon Unlocked!");
 			}
 		}
@@ -764,7 +730,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
 		window.setTextAtPoint(Vector2(0, 19), "Level Complete: Press 'Q' To Return", WHITE);
-		_PEARLHARBOURBEATEN = true;
+		GlobalSettings::_PEARLHARBOURBEATEN = true;
 		//Sleep(100);
 	}
 	//TO DO, ADD ANIMATION OF PLANE CRASHING INTO A HARBOUR, THEN LEVEL IS DONE
@@ -865,9 +831,9 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 	}
 	if (HiroshimaScene == 6)
 	{
-		if (!_TSUBUMMER_UNLOCK)
+		if (!GlobalSettings::_TSUBUMMER_UNLOCK)
 		{
-			_TSUBUMMER_UNLOCK = true;
+			GlobalSettings::_TSUBUMMER_UNLOCK = true;
 			unlockPopUp.PopUp("Tsubummer Unlocked!");
 		}
 		_LEVEL = "_MainMenu";
@@ -876,7 +842,7 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 		m_Explosion.setFrame(0);
 		m_BombPos = Vector2(1, 5);
 		HiroshimaScene = 0;
-		_HIROSHIMABEATEN = true;
+		GlobalSettings::_HIROSHIMABEATEN = true;
 	}
 	//ONCE BOMB IS OFF SCREEN, PLAY AN ANIMATION.
 	return window;
@@ -971,9 +937,9 @@ ConsoleWindow DinseyPlanes::_Nagasaki(ConsoleWindow window, int windowWidth, int
 	}
 	if (NagasakiScene == 6)
 	{
-		if (!_RIPPERONI_UNLOCK)
+		if (!GlobalSettings::_RIPPERONI_UNLOCK)
 		{
-			_RIPPERONI_UNLOCK = true;
+			GlobalSettings::_RIPPERONI_UNLOCK = true;
 			unlockPopUp.PopUp("Ripperoni Unlocked!");
 		}
 		_LEVEL = "_MainMenu";
@@ -982,7 +948,7 @@ ConsoleWindow DinseyPlanes::_Nagasaki(ConsoleWindow window, int windowWidth, int
 		m_Explosion.setFrame(0);
 		m_BombPos = Vector2(1, 5);
 		NagasakiScene = 0;
-		_NAGASAKIBEATEN = true;
+		GlobalSettings::_NAGASAKIBEATEN = true;
 	}
 	//ONCE BOMB IS OFF SCREEN, PLAY AN ANIMATION.
 	return window;
@@ -1285,7 +1251,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		window.setTextAtPoint(Vector2(0, 18), "Skibber", BLACK_BRIGHTWHITE_BG);
 		break;
 	case 3:
-		if (_SEMICOLON_UNLOCK)
+		if (GlobalSettings::_SEMICOLON_UNLOCK)
 		{
 			if (player1stats)
 			{
@@ -1303,7 +1269,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		}
 		char1_choice++;
 	case 4:
-		if (_RIPPERONI_UNLOCK)
+		if (GlobalSettings::_RIPPERONI_UNLOCK)
 		{
 			if (player1stats)
 			{
@@ -1321,7 +1287,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		}
 		char1_choice++;
 	case 5:
-		if (_TSUBUMMER_UNLOCK)
+		if (GlobalSettings::_TSUBUMMER_UNLOCK)
 		{
 			if (player1stats)
 			{
@@ -1399,7 +1365,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		window.setTextAtPoint(Vector2(33, 18), "Skibber", WHITE);
 		break;
 	case 3:
-		if (_SEMICOLON_UNLOCK)
+		if (GlobalSettings::_SEMICOLON_UNLOCK)
 		{
 			if (player2stats)
 			{
@@ -1417,7 +1383,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		}
 		char2_choice++;
 	case 4:
-		if (_RIPPERONI_UNLOCK)
+		if (GlobalSettings::_RIPPERONI_UNLOCK)
 		{
 			if (player2stats)
 			{
@@ -1435,7 +1401,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		}
 		char2_choice++;
 	case 5:
-		if (_TSUBUMMER_UNLOCK)
+		if (GlobalSettings::_TSUBUMMER_UNLOCK)
 		{
 			if (player2stats)
 			{
@@ -1486,15 +1452,15 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		switch (char1_choice)
 		{
 			case 5:
-				if (_TSUBUMMER_UNLOCK)
+				if (GlobalSettings::_TSUBUMMER_UNLOCK)
 					break;
 				char1_choice--;
 			case 4:
-				if (_RIPPERONI_UNLOCK)
+				if (GlobalSettings::_RIPPERONI_UNLOCK)
 					break;
 				char1_choice--;
 			case 3:
-				if (_SEMICOLON_UNLOCK)
+				if (GlobalSettings::_SEMICOLON_UNLOCK)
 					break;
 				char1_choice--;
 			default:
@@ -1519,15 +1485,15 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		switch (char2_choice)
 		{
 			case 5:
-				if (_TSUBUMMER_UNLOCK)
+				if (GlobalSettings::_TSUBUMMER_UNLOCK)
 					break;
 				char2_choice--;
 			case 4:
-				if (_RIPPERONI_UNLOCK)
+				if (GlobalSettings::_RIPPERONI_UNLOCK)
 					break;
 				char2_choice--;
 			case 3:
-				if (_SEMICOLON_UNLOCK)
+				if (GlobalSettings::_SEMICOLON_UNLOCK)
 					break;
 				char2_choice--;
 			default:
