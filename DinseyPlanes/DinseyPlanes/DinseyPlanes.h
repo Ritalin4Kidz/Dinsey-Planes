@@ -234,4 +234,5 @@ private:
 
 	//OTHER ETC
 	MainMenuPopUp unlockPopUp =  MainMenuPopUp(2.5f);
+	bool init = true;
 };

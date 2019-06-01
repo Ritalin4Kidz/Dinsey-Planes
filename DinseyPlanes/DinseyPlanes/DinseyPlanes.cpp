@@ -13,9 +13,6 @@ bool GlobalSettings::letsplayer = false;
 bool GlobalSettings::framerate = false;
 int GlobalSettings::VolumeLVL = 2;
 
-//USE TO FILL OUT WINDOW SHIT
-std::string GlobalSettings::FillStr = " ";
-
 bool GlobalSettings::_PEARLHARBOURBEATEN = false;
 bool GlobalSettings::_HIROSHIMABEATEN = false;
 bool GlobalSettings::_NAGASAKIBEATEN = false;
@@ -1659,6 +1656,12 @@ ConsoleWindow DinseyPlanes::_Battle(ConsoleWindow window, int windowWidth, int w
 
 ConsoleWindow DinseyPlanes::_IntroScreen(ConsoleWindow window, int windowWidth, int windowHeight)
 {
+	if (init)
+	{
+		//MASSIVE TO DO: GET ACTUAL MUSIC FOR THIS
+		PlaySound(L"EngineFiles\\Sounds\\Music\\placeholder.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+		init = false;
+	}
 	window = m_Sky.draw_asset(window, Vector2(0, 0));
 	cloudSpawnTime += SYDEDefaults::getDeltaTime();
 	InverseTime += SYDEDefaults::getDeltaTime();
@@ -1706,6 +1709,7 @@ ConsoleWindow DinseyPlanes::_IntroScreen(ConsoleWindow window, int windowWidth, 
 	{
 		introFlash = true;
 		InverseMax = 0.1f;
+		PlaySound(NULL, NULL, SND_FILENAME);
 	}
 	return window;
 }
