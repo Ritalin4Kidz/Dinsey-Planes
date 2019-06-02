@@ -266,6 +266,28 @@ std::string DPFunc::ReturnRandomString()
 		return "i might hop off soon";
 	case 119:
 		return "thank you everyone for watching";
+	case 120:
+		return "so some rumours have been circulating";
+	case 121:
+		return "i want to say that it's all true...";
+	case 122:
+		return "f** what was I on about?...";
+	case 123:
+		return "oh yeah so yesterday...";
+	case 124:
+		return "i was out doing gardening";
+	case 125:
+		return "i swear to god i just saw a ufo";
+	case 126:
+		return "i'm trying to contact the dinsey dev";
+	case 127:
+		return "they don't seem to want to talk";
+	case 128:
+		return "btw im speaking over the game";
+	case 129:
+		return "this game's story is bonkers";
+	case 130:
+		return "thank you everyone for watching";
 	default:
 		return "OK... that was weird";
 		break;
