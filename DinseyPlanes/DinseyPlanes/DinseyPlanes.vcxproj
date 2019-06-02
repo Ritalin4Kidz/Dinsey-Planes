@@ -168,6 +168,7 @@
     <ClInclude Include="CustomAsset.h" />
     <ClInclude Include="Defaults.h" />
     <ClInclude Include="DinseyPlanes.h" />
+    <ClInclude Include="DPaint.h" />
     <ClInclude Include="DPFunc.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="pch.h" />
@@ -192,6 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DinseyPlanes.cpp" />
+    <ClCompile Include="DPaint.cpp" />
     <ClCompile Include="DPFunc.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">

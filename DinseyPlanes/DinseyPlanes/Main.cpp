@@ -3,6 +3,7 @@
 #include "DinseyPlanes.h"
 #include <Windows.h>
 #include "DPFunc.h"
+#include "DPaint.h"
 
 using namespace std;
 using namespace Gdiplus;
@@ -76,6 +77,10 @@ int main(int argc, char* argv[])
 		{
 			GlobalSettings::rs = true;
 		}
+		else if (arg == "--paint")
+		{
+			GlobalSettings::_SCENE = "Paint";
+		}
 		else if (arg == "--Watch_Me_Xplode")
 		{
 			GlobalSettings::_NAGASAKIBEATEN = true;
@@ -92,6 +97,7 @@ int main(int argc, char* argv[])
 	//SYDE ENGINE SETTINGS
 	GdiplusStartup(&gdiplusToken, &startupInput, 0);
 	DinseyPlanes m_Planes(astVars);
+	PaintWindow m_Paint(windowWidth, windowHeight);
 	DebugWindow m_Debug(astVars);
 	ConsoleSYDE m_SYDECNSL;
 	PauseWindow m_Pause;
@@ -150,6 +156,10 @@ int main(int argc, char* argv[])
 		else if (GlobalSettings::_SCENE == "Console")
 		{
 			window = SYDEGamePlay::play_game(&m_SYDECNSL, start, hOut, window, windowWidth, windowHeight, deltaTime);
+		}
+		else if (GlobalSettings::_SCENE == "Paint")
+		{
+			window = SYDEGamePlay::play_game(&m_Paint, start, hOut, window, windowWidth, windowHeight, deltaTime);
 		}
 		else {
 			window = SYDEGamePlay::play_game(&m_Planes, start, hOut, window, windowWidth, windowHeight, deltaTime);

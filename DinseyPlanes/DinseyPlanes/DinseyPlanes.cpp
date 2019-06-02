@@ -128,7 +128,7 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 	_Options[10].setText("Sunset");
 	_Options[11].setText("Blue Sky");
 	_Options[12].setText("Night Time");
-	_Options[13].setText("???");
+	_Options[13].setText("SYDE Paint");
 	_Options[14].setText("???");
 	_Options[15].setText("???");
 	_Options[16].setText("???");
@@ -227,6 +227,10 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 		else if (_Options.getSelected().m_Label == "12")
 		{
 			DPFunc::_AQUA.set(20, 24, 82);
+		}
+		else if (_Options.getSelected().m_Label == "13")
+		{
+			GlobalSettings::_SCENE = "Paint";
 		}
 		else if (_Options.getSelected().m_Label == "31")
 		{

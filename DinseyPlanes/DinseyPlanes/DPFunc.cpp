@@ -25,7 +25,7 @@ ColourValues DPFunc::_BRIGHTWHITE = ColourValues(242, 242, 242);
 
 std::string DPFunc::ReturnRandomString()
 {
-	int rNum = rand() % 107;
+	int rNum = rand() % 121;
 	switch (rNum)
 	{
 	case 0:
@@ -240,6 +240,32 @@ std::string DPFunc::ReturnRandomString()
 		return "i'm here to f*** bitches lmaoo";
 	case 106:
 		return "....forgot what i was saying";
+	case 107:
+		return "camowa man how are you doing?";
+	case 108:
+		return "hey freebee it has been a while man";
+	case 109:
+		return "b0nex thanks for the follow dude";
+	case 110:
+		return "auri hey man thanks for the sub";
+	case 111:
+		return "ashymashyxx hey ty for the sub";
+	case 112:
+		return "andysjimmies hey man welcome";
+	case 113:
+		return "white welcome to the stream";
+	case 114:
+		return "doppel how are you doing bud?";
+	case 115:
+		return "ohbawaswoompy ty for the sub";
+	case 116:
+		return "turtles my lad how you going?";
+	case 117:
+		return "bbc thank you for the follow";
+	case 118:
+		return "i might hop off soon";
+	case 119:
+		return "thank you everyone for watching";
 	default:
 		return "OK... that was weird";
 		break;
