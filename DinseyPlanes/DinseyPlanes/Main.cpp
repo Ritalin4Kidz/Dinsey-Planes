@@ -51,6 +51,7 @@ int main(int argc, char* argv[])
 	LPCWSTR title = L"Dinsey Planes";
 	SYDECredits::_GAMETITLE = "Dinsey Planes";
 	SYDECredits::_ORGANISATION = "Callum Hands \nIn Association With Freebee Games";
+	bool cheating = false;
 	//ARGUMENT SETTINGS
 	for (int i = 0; i < argc; i++)
 	{
@@ -69,6 +70,10 @@ int main(int argc, char* argv[])
 		{
 			GlobalSettings::FrameDelay_MS = 0;
 		}
+		else if (arg == "--fps")
+		{
+			GlobalSettings::framerate = true;
+		}
 		else if (arg == "--initfalse")
 		{
 			GlobalSettings::initWindow = false;
@@ -83,13 +88,8 @@ int main(int argc, char* argv[])
 		}
 		else if (arg == "--Watch_Me_Xplode")
 		{
-			GlobalSettings::_NAGASAKIBEATEN = true;
-			GlobalSettings::_HIROSHIMABEATEN = true;
-			GlobalSettings::_PEARLHARBOURBEATEN = true;
-
-			GlobalSettings::_SEMICOLON_UNLOCK = true;
-			GlobalSettings::_RIPPERONI_UNLOCK = true;
-			GlobalSettings::_TSUBUMMER_UNLOCK = true;
+			cheating = true;
+			title = L"Dinsey Planes With A Filthy Cheat";
 		}
 	}
 	//CONSOLE SETTINGS
@@ -121,6 +121,18 @@ int main(int argc, char* argv[])
 	}
 	SYDEGamePlay::opening_splashscreens(astVars.get_electronic_chime_file_path(), start, hOut, window, windowWidth, windowHeight, artVars);
 	SYDEGamePlay::hidden_splashsceen_001(astVars.get_squish_file_path(), start, hOut, window, windowWidth, windowHeight, astVars);
+	if (cheating)
+	{
+		GlobalSettings::_NAGASAKIBEATEN = true;
+		GlobalSettings::_HIROSHIMABEATEN = true;
+		GlobalSettings::_PEARLHARBOURBEATEN = true;
+
+		GlobalSettings::_SEMICOLON_UNLOCK = true;
+		GlobalSettings::_RIPPERONI_UNLOCK = true;
+		GlobalSettings::_TSUBUMMER_UNLOCK = true;
+
+
+	}
 	//GAMEPLAY
 	while (GlobalSettings::GamePlaying)
 	{

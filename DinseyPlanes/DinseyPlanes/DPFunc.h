@@ -29,6 +29,8 @@ class DPFunc {
 public:
 	static std::string ReturnRandomString();
 	static std::vector<std::string> _Commands;
+	static std::vector<std::string> _GameScenes;
+	static int _GameScenes_Selection;
 
 	static std::string FindCommand(std::string cmd);
 	static void VolumeFunc(int volume);

@@ -25,7 +25,7 @@ ColourValues DPFunc::_BRIGHTWHITE = ColourValues(242, 242, 242);
 
 std::string DPFunc::ReturnRandomString()
 {
-	int rNum = rand() % 121;
+	int rNum = rand() % 133;
 	switch (rNum)
 	{
 	case 0:
@@ -287,7 +287,9 @@ std::string DPFunc::ReturnRandomString()
 	case 129:
 		return "this game's story is bonkers";
 	case 130:
-		return "thank you everyone for watching";
+		return "dialogue here is kinda stupid";
+	case 131:
+		return "*yawn* this is getting boring";
 	default:
 		return "OK... that was weird";
 		break;
@@ -591,3 +593,18 @@ std::vector<std::string> DPFunc::_Commands = {
 	"LP",
 	"DPRS"
 };
+
+std::vector<std::string> DPFunc::_GameScenes = {
+	"_Intro",
+	"_PearlHarbour",
+	"_PearlHarbour_PL",
+	"_Hiroshima",
+	"_Hiroshima_PL",
+	"_Nagasaki",
+	"_Nagasaki_PL",
+	"_Battle_Select",
+	"_Battle",
+	"_MainMenu",
+	"_Credits"
+};
+int DPFunc::_GameScenes_Selection = 0;

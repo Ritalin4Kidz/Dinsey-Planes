@@ -25,6 +25,7 @@ class GlobalSettings {
 public:
 	static std::string _SCENE;
 	static std::string _LASTSCENE;
+	static std::string _LEVEL;
 	static int FrameDelay_MS;
 	static bool PauseMode;
 	static bool debugMenu;
@@ -129,6 +130,8 @@ private:
 
 	ConsoleWindow _DinseyBadDay(ConsoleWindow window, int windowWidth, int windowHeight);
 
+	ConsoleWindow _Credits(ConsoleWindow window, int windowWidth, int windowHeight);
+
 	ConsoleWindow _BattleSelect(ConsoleWindow window, int windowWidth, int windowHeight);
 	ConsoleWindow _Battle(ConsoleWindow window, int windowWidth, int windowHeight);
 
@@ -161,6 +164,9 @@ private:
 	SYDELabel LBL_Option1 = SYDELabel("", Vector2(0, 11), Vector2(20, 1), BLACK, true);
 	SYDELabel LBL_Option2 = SYDELabel("", Vector2(0, 12), Vector2(20, 1), BLACK, true);
 	SYDELabel LBL_Option3 = SYDELabel("", Vector2(0, 13), Vector2(20, 1), BLACK, true);
+	SYDELabel LBL_Option4 = SYDELabel("", Vector2(0, 14), Vector2(20, 1), BLACK, true);
+
+	SYDELabel Disclaimer = SYDELabel("The characters in Dinsey Planes are fictional. Please do not recreate the stunts performed by the planes, they are trained professionals. This game is a parody, please do not take it seriously. Made in association with Freebee Games. Freebee Network and it's subsidiaries are the creative moniker for Callum Hands & Luke Alexander, since November 2015.", Vector2(0, 7), Vector2(40, 10), BRIGHTWHITE, true);
 
 	bool showStart = false;
 	bool introFlash = false;
@@ -204,6 +210,7 @@ private:
 	//OBJECTS
 	CustomAsset m_Plane;
 	CustomAsset m_Bomb;
+	CustomAsset m_BoxUI;
 	Vector2 m_BombPos = Vector2(1,5);
 
 	//Battle Mode
@@ -222,8 +229,6 @@ private:
 
 	//IntroTime
 	float IntroTimeTaken = 0;
-
-	std::string _LEVEL = "_Intro";
 
 	std::string toLevelString(bool condition, string text) { if (condition) return text; else return "???"; }
 
