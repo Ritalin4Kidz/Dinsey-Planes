@@ -605,6 +605,7 @@ std::vector<std::string> DPFunc::_GameScenes = {
 	"_Battle_Select",
 	"_Battle",
 	"_MainMenu",
-	"_Credits"
+	"_Credits",
+	"_Dinsey"
 };
 int DPFunc::_GameScenes_Selection = 0;

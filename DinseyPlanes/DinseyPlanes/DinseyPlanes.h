@@ -142,6 +142,8 @@ private:
 	int PearlHarbourScene = 0;
 	int HiroshimaScene = 0;
 	int NagasakiScene = 0;
+	int DinseyScene = 0;
+	Vector2 Dinsey_Pos = Vector2(1, 5);
 
 	int Dialogue_PearlHarbourScene = 0;
 	int Dialogue_HiroshimaScene = 0;

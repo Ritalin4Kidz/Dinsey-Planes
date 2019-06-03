@@ -505,6 +505,10 @@ ConsoleWindow DinseyPlanes::window_draw_game(ConsoleWindow window, int windowWid
 	{
 		return _NagasakiPrologue(window, windowWidth, windowHeight);
 	}
+	if (GlobalSettings::_LEVEL == "_Dinsey")
+	{
+		return _DinseyBadDay(window, windowWidth, windowHeight);
+	}
 	if (GlobalSettings::_LEVEL == "_Level_Select")
 	{
 		return _LevelSelect(window, windowWidth, windowHeight);
@@ -536,8 +540,7 @@ ConsoleWindow DinseyPlanes::_MainMenu(ConsoleWindow window, int windowWidth, int
 	_LEVELS[3].setText(toLevelString(GlobalSettings::_PEARLHARBOURBEATEN, (string)("6th Aug 1945")));
 	_LEVELS[4].setText(toLevelString(GlobalSettings::_HIROSHIMABEATEN, (string)("9/8/1945 Prologue")));
 	_LEVELS[5].setText(toLevelString(GlobalSettings::_HIROSHIMABEATEN, (string)("9th Aug 1945")));
-	//_LEVELS[6].setText(toLevelString(_NAGASAKIBEATEN, (string)("Dinsey's Bad Day")));
-	_LEVELS[6].setText(toLevelString(true, (string)("TBA")));
+	_LEVELS[6].setText(toLevelString(GlobalSettings::_NAGASAKIBEATEN, (string)("Dinsey's Bad Day")));
 	_MainMenuInputVoids();
 	window = m_Sky.draw_asset(window, Vector2(0, 0));
 	cloudSpawnTime += SYDEDefaults::getDeltaTime();
@@ -662,6 +665,13 @@ void DinseyPlanes::_MainMenuInputVoids()
 			}
 			else if (_LEVELS.getSelected().m_Text == "Dinsey's Bad Day")
 			{
+				GlobalSettings::_LEVEL = "_Dinsey";
+				DinseyScene = 0;
+				IntroTimeTaken = 0;
+				CloudsDrawn.clear();
+				CloudsDrawnPos.clear();
+				Dinsey_Pos = Vector2(1, 5);
+				_LEVELS.setActive(false);
 			}
 			// ELSE IF FOR OTHER LEVELS
 		}
@@ -1410,7 +1420,155 @@ ConsoleWindow DinseyPlanes::_NagasakiPrologue(ConsoleWindow window, int windowWi
 
 ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth, int windowHeight)
 {
-	return ConsoleWindow();
+	window = m_Sky.draw_asset(window, Vector2(0, 0));
+	cloudSpawnTime += SYDEDefaults::getDeltaTime();
+	if (DinseyScene < 8)
+	{
+		if (SYDEKeyCode::get('W')._CompareState(KEY) && Dinsey_Pos.getY() > 1)
+		{
+			Dinsey_Pos.addY(-1);
+		}
+		if (SYDEKeyCode::get('S')._CompareState(KEY) && Dinsey_Pos.getY() < 15)
+		{
+			Dinsey_Pos.addY(1);
+		}
+		//DRAW CLOUDS
+		if (cloudSpawnTime > 1)
+		{
+			CloudsDrawn.push_back(m_Clouds[rand() % m_Clouds.size()]);
+			CloudsDrawnPos.push_back(Vector2(50, rand() % 20));
+			cloudSpawnTime = 0;
+		}
+		for (int i = 0; i < CloudsDrawn.size(); i++)
+		{
+			window = CloudsDrawn[i].draw_asset(window, CloudsDrawnPos[i]);
+			CloudsDrawnPos[i].setX(CloudsDrawnPos[i].getX() - 1);
+		}
+		//DRAW PLANE
+		window = m_Plane.draw_asset(window, Dinsey_Pos);
+	}
+	if (DinseyScene == 0)
+	{
+		IntroTimeTaken += SYDEDefaults::getDeltaTime();
+		if (IntroTimeTaken >= 3)
+		{
+			DinseyScene++;
+			IntroTimeTaken = 0;
+		}
+	}
+	else if (DinseyScene == 1)
+	{
+		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
+		window = m_Dupty[3].draw_asset(window, Vector2(32, 1));
+		window.setTextAtPoint(Vector2(32, 6), "Dupty", WHITE);
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Hey Dinsey, what you up to bud?(A)", WHITE);
+		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
+		{
+			DinseyScene++;
+		}
+	}
+	else if (DinseyScene == 2)
+	{
+		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
+		window = m_Dinsey[3].draw_asset(window, Vector2(32, 1));
+		window.setTextAtPoint(Vector2(32, 6), "Dinsey", WHITE);
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Not much Dupty, just chilling(A)", WHITE);
+		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
+		{
+			DinseyScene++;
+		}
+	}
+	else if (DinseyScene == 3)
+	{
+		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
+		window = m_Dinsey[3].draw_asset(window, Vector2(32, 1));
+		window.setTextAtPoint(Vector2(32, 6), "Dinsey", WHITE);
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Cruising in the sky, no worries(A)", WHITE);
+		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
+		{
+			DinseyScene++;
+		}
+	}
+	else if (DinseyScene == 4)
+	{
+		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
+		window = m_Dinsey[3].draw_asset(window, Vector2(32, 1));
+		window.setTextAtPoint(Vector2(32, 6), "Dinsey", WHITE);
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Why? what's up mr Dups?(A)", WHITE);
+		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
+		{
+			DinseyScene++;
+		}
+	}
+	else if (DinseyScene == 5)
+	{
+		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
+		window = m_Dupty[3].draw_asset(window, Vector2(32, 1));
+		window.setTextAtPoint(Vector2(32, 6), "Dupty", WHITE);
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Minimme's doing a signing!!(A)", WHITE);
+		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
+		{
+			DinseyScene++;
+		}
+	}
+	else if (DinseyScene == 6)
+	{
+		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
+		window = m_Dupty[3].draw_asset(window, Vector2(32, 1));
+		window.setTextAtPoint(Vector2(32, 6), "Dupty", WHITE);
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Meet me at westfield(A)", WHITE);
+		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
+		{
+			DinseyScene++;
+		}
+	}
+	else if (DinseyScene == 7)
+	{
+		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
+		window = m_Dinsey[3].draw_asset(window, Vector2(32, 1));
+		window.setTextAtPoint(Vector2(32, 6), "Dinsey", WHITE);
+		for (int i = 0; i < windowWidth; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
+		}
+		window.setTextAtPoint(Vector2(0, 19), "Oh heck yeah, i'll meet you there(A)", WHITE);
+		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
+		{
+			DinseyScene++;
+		}
+	}
+	else {
+		GlobalSettings::_LEVEL = "_MainMenu";
+		CloudsDrawn.clear();
+		CloudsDrawnPos.clear();
+		Dinsey_Pos = Vector2(1, 5);
+		DinseyScene = 0;
+	}
+	return window;
 }
 
 ConsoleWindow DinseyPlanes::_Credits(ConsoleWindow window, int windowWidth, int windowHeight)
