@@ -32,20 +32,26 @@ public:
 	Launcher();
 	~Launcher() {}
 	ConsoleWindow window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight) override;
+	string on_off_str(bool aBool) { if (aBool) return "On"; else return "Off"; }
 private:
 	SYDEMenu m_Options;
+	bool m_BackupSaves = true;
 };
 
 Launcher::Launcher()
 {
 	m_Options = SYDEMenu(vector<SYDEButton>{
-		SYDEButton("Download Latest", Vector2(0, 2), Vector2(20, 1), WHITE, true),
-		SYDEButton("Play Game", Vector2(0, 3), Vector2(20, 1), WHITE, true),
+		SYDEButton("Back Up Saves: " + on_off_str(m_BackupSaves), Vector2(0, 2), Vector2(20, 1), WHITE, true),
+		SYDEButton("Download Latest", Vector2(0, 3), Vector2(20, 1), WHITE, true),
+		SYDEButton("Play Game", Vector2(0, 4), Vector2(20, 1), WHITE, true),
+		SYDEButton("Play Game Debug", Vector2(0, 5), Vector2(20, 1), WHITE, true)
 	});
 	m_Options.setActive(true);
 	m_Options.setPos(Vector2(0, 0));
 	m_Options[0].m_Label = "0";
 	m_Options[1].m_Label = "1";
+	m_Options[2].m_Label = "2";
+	m_Options[3].m_Label = "3";
 	for (int i = 0; i < m_Options.getSize(); i++)
 	{
 		m_Options[i].setHighLight(RED);
@@ -70,11 +76,33 @@ ConsoleWindow Launcher::window_draw_game(ConsoleWindow window, int windowWidth, 
 	{
 		if (m_Options.getSelected().m_Label == "0")
 		{
+			m_BackupSaves = !m_BackupSaves;
+		}
+		if (m_Options.getSelected().m_Label == "1")
+		{
+			if (m_BackupSaves)
+			{
+				system("start BackupSaves");
+			}
 			system("start Download https://github.com/Ritalin4Kidz/Dinsey-Planes/releases/latest/download/DinseyPlanes.zip");
 		}
-		else if (m_Options.getSelected().m_Label == "1")
+		else if (m_Options.getSelected().m_Label == "2")
 		{
+			if (m_BackupSaves)
+			{
+				system("start ReloadSaves");
+			}
 			system("cd Extract && start DinseyPlanes");
+			//system("start DinseyPlanes");
+			exit(NULL);
+		}
+		else if (m_Options.getSelected().m_Label == "3")
+		{
+			if (m_BackupSaves)
+			{
+				system("start ReloadSaves");
+			}
+			system("cd Extract && start debugMode");
 			//system("start DinseyPlanes");
 			exit(NULL);
 		}
