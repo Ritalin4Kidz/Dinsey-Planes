@@ -2032,7 +2032,8 @@ ConsoleWindow DinseyPlanes::_Credits(ConsoleWindow window, int windowWidth, int 
 	window.setTextAtPoint(Vector2(0, 2), "Dinsey Planes Created By Callum Hands", BRIGHTWHITE);
 	window.setTextAtPoint(Vector2(0, 3), "ritalin4kidz.github.io", BRIGHTWHITE);
 	window.setTextAtPoint(Vector2(0, 4), "Music: ", BRIGHTWHITE);
-	window.setTextAtPoint(Vector2(0, 5), "Additional Art:", BRIGHTWHITE);
+	window.setTextAtPoint(Vector2(0, 5), "Additional Art: Tricksmusic, Labcat", BRIGHTWHITE);
+	window.setTextAtPoint(Vector2(0, 6), " ", BRIGHTWHITE);
 	window = Disclaimer.draw_ui(window);
 	window.setTextAtPoint(Vector2(0, 19), "Press 'Z' to go back...", BLACK_BRIGHTWHITE_BG);
 	return window;
