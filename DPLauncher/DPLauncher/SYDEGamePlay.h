@@ -21,6 +21,7 @@ public:
 	static void initialize_window(const HANDLE hOut, ConsoleWindow& window);
 
 	static void opening_splashscreens(LPCWSTR chimePath, COORD start, const HANDLE hOut, ConsoleWindow& window, int windowWidth, int windowHeight, Artwork artVars);
+	static void activate_bySplashscreen(LPCWSTR chimePath, COORD start, const HANDLE hOut, ConsoleWindow& window, int windowWidth, int windowHeight, Artwork artVars);
 
 	static void hidden_splashsceen_001(LPCWSTR chimePath, COORD start, const HANDLE hOut, ConsoleWindow& window, int windowWidth, int windowHeight, AssetsClass astVars);
 	static void reset_void(COORD start, const HANDLE hOut, ConsoleWindow& window, int windowWidth, int windowHeight);

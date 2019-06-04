@@ -20,10 +20,12 @@ public:
 
 	SYDEButton& operator[](int i) { return m_Items[i]; }
 
+	void prevSelect();
 	void nextSelect();
 	void hiLight();
 
 	int getSize() { return m_Items.size(); }
+	int getSelectedNumber() { return selectionNumber; }
 	SYDEButton& getSelected() { return m_Items[selectionNumber]; }
 	void setPos(Vector2 newPos) { m_Pos = newPos; }
 private:

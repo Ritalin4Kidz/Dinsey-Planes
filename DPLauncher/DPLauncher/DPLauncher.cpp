@@ -36,15 +36,16 @@ public:
 private:
 	SYDEMenu m_Options;
 	bool m_BackupSaves = true;
+	CustomAsset bg;
 };
 
 Launcher::Launcher()
 {
 	m_Options = SYDEMenu(vector<SYDEButton>{
-		SYDEButton("Back Up Saves: " + on_off_str(m_BackupSaves), Vector2(0, 2), Vector2(20, 1), WHITE, true),
-		SYDEButton("Download Latest", Vector2(0, 3), Vector2(20, 1), WHITE, true),
-		SYDEButton("Play Game", Vector2(0, 4), Vector2(20, 1), WHITE, true),
-		SYDEButton("Play Game Debug", Vector2(0, 5), Vector2(20, 1), WHITE, true)
+		SYDEButton("Back Up Saves: " + on_off_str(m_BackupSaves), Vector2(0, 16), Vector2(20, 1), BLACK, true),
+		SYDEButton("Download Latest", Vector2(0, 17), Vector2(20, 1), BLACK, true),
+		SYDEButton("Play Game", Vector2(0, 18), Vector2(20, 1), BLACK, true),
+		SYDEButton("Play Game Debug", Vector2(0, 19), Vector2(20, 1), BLACK, true)
 	});
 	m_Options.setActive(true);
 	m_Options.setPos(Vector2(0, 0));
@@ -56,17 +57,12 @@ Launcher::Launcher()
 	{
 		m_Options[i].setHighLight(RED);
 	}
+	bg = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\pearl_bg.bmp", 22, 20));
 }
 
 ConsoleWindow Launcher::window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight)
 {
-	for (int i = 0; i < windowWidth; i++)
-	{
-		for (int j = 0; j < windowHeight; j++)
-		{
-			window.setTextAtPoint(Vector2(i, j), " ", BLACK);
-		}
-	}
+	window = bg.draw_asset(window, Vector2(0, 0));
 	if (SYDEKeyCode::get(VK_TAB)._CompareState(KEYDOWN))
 	{
 		m_Options.nextSelect();
@@ -125,7 +121,14 @@ int main(int argc, char* argv[])
 	Launcher m_Launcher;
 	deltaTime.initialise(std::chrono::high_resolution_clock::now());
 	SYDEGamePlay::initialize_window(hOut, window);
-	SYDEGamePlay::opening_splashscreens(astVars.get_electronic_chime_file_path(), start, hOut, window, windowWidth, windowHeight, artVars);
+	for (int i = 0; i < windowWidth; i++)
+	{
+		for (int j = 0; j < windowHeight; j++)
+		{
+			window.setTextAtPoint(Vector2(i, j), " ", BRIGHTWHITE_BRIGHTWHITE_BG);
+		}
+	}
+	SYDEGamePlay::activate_bySplashscreen(astVars.get_electronic_chime_file_path(), start, hOut, window, windowWidth, windowHeight, artVars);
 	//GAMEPLAY
 	while (true)
 	{
