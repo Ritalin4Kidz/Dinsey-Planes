@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DPLauncher", "DPLauncher\DPLauncher.vcxproj", "{27844CE8-7D4C-41C1-A75D-03A5C59E8D0E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27844CE8-7D4C-41C1-A75D-03A5C59E8D0E}.Debug|x64.ActiveCfg = Debug|x64
+		{27844CE8-7D4C-41C1-A75D-03A5C59E8D0E}.Debug|x64.Build.0 = Debug|x64
+		{27844CE8-7D4C-41C1-A75D-03A5C59E8D0E}.Debug|x86.ActiveCfg = Debug|Win32
+		{27844CE8-7D4C-41C1-A75D-03A5C59E8D0E}.Debug|x86.Build.0 = Debug|Win32
+		{27844CE8-7D4C-41C1-A75D-03A5C59E8D0E}.Release|x64.ActiveCfg = Release|x64
+		{27844CE8-7D4C-41C1-A75D-03A5C59E8D0E}.Release|x64.Build.0 = Release|x64
+		{27844CE8-7D4C-41C1-A75D-03A5C59E8D0E}.Release|x86.ActiveCfg = Release|Win32
+		{27844CE8-7D4C-41C1-A75D-03A5C59E8D0E}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6F5213A1-D3C3-44BA-AA9D-B6350B41DD3A}
+	EndGlobalSection
+EndGlobal
