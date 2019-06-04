@@ -86,6 +86,15 @@ int main(int argc, char* argv[])
 		{
 			GlobalSettings::_SCENE = "Paint";
 		}
+		else if (arg == "--dinsey")
+		{
+			GlobalSettings::_PLANEFLAVOUR = "Dinsey";
+		}
+		else if (arg == "--dupty")
+		{
+			GlobalSettings::_PLANEFLAVOUR = "Dupty";
+			title = L"Dupty Planes";
+		}
 		else if (arg == "--Watch_Me_Xplode")
 		{
 			cheating = true;

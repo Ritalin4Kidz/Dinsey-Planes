@@ -26,7 +26,12 @@ public:
 	static std::string _SCENE;
 	static std::string _LASTSCENE;
 	static std::string _LEVEL;
+	static std::string FillStr;
+	static std::string _PLANEFLAVOUR;
+
 	static int FrameDelay_MS;
+	static int VolumeLVL;
+	
 	static bool PauseMode;
 	static bool debugMenu;
 	static bool initWindow;
@@ -34,9 +39,6 @@ public:
 	static bool GamePlaying;
 	static bool letsplayer;
 	static bool framerate;
-	static int VolumeLVL;
-
-	static std::string FillStr;
 
 	// Unlocks
 	static bool _PEARLHARBOURBEATEN;
@@ -119,7 +121,7 @@ private:
 	void _LevelSelectInputVoids();
 
 	vector<string> _Split(string a_String, char splitter);
-
+	//DINSEY PLANES
 	ConsoleWindow _PearlHarbour(ConsoleWindow window, int windowWidth, int windowHeight);
 	ConsoleWindow _Hiroshima(ConsoleWindow window, int windowWidth, int windowHeight);
 	ConsoleWindow _Nagasaki(ConsoleWindow window, int windowWidth, int windowHeight);
@@ -129,7 +131,7 @@ private:
 	ConsoleWindow _NagasakiPrologue(ConsoleWindow window, int windowWidth, int windowHeight);
 
 	ConsoleWindow _DinseyBadDay(ConsoleWindow window, int windowWidth, int windowHeight);
-
+	//DUPTY PLANES
 	ConsoleWindow _Credits(ConsoleWindow window, int windowWidth, int windowHeight);
 
 	ConsoleWindow _BattleSelect(ConsoleWindow window, int windowWidth, int windowHeight);
@@ -144,6 +146,8 @@ private:
 	int NagasakiScene = 0;
 	int DinseyScene = 0;
 	Vector2 Dinsey_Pos = Vector2(1, 5);
+	Vector2 Ripper_Pos = Vector2(50, 5);
+	Vector2 Tsubummer_Pos = Vector2(50, 13);
 
 	int Dialogue_PearlHarbourScene = 0;
 	int Dialogue_HiroshimaScene = 0;
@@ -161,7 +165,7 @@ private:
 
 	SYDELabel m_Start = SYDELabel("Press Space To Play", Vector2(10, 8),Vector2(20,1), BLACK, true);
 
-	SYDELabel m_DinseyPlanesLBL = SYDELabel("Dinsey Planes", Vector2(2, 1), Vector2(13, 1), BLACK, true);
+	SYDELabel m_DinseyPlanesLBL = SYDELabel(GlobalSettings::_PLANEFLAVOUR + " Planes", Vector2(2, 1), Vector2(13, 1), BLACK, true);;
 
 	SYDELabel LBL_Option1 = SYDELabel("", Vector2(0, 11), Vector2(20, 1), BLACK, true);
 	SYDELabel LBL_Option2 = SYDELabel("", Vector2(0, 12), Vector2(20, 1), BLACK, true);
@@ -182,6 +186,9 @@ private:
 	//Assets
 	CustomAsset m_Tutorial;
 	CustomAsset m_Credits;
+
+	CustomAsset m_Minimme;
+	CustomAsset m_MinimmeFoot;
 
 	//CUSTCENES
 	CustomAsset m_PHS001;
