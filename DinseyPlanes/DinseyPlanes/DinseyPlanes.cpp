@@ -144,8 +144,8 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 	_Options[23].setText("???");
 	_Options[24].setText("???");
 	_Options[25].setText("???");
-	_Options[26].setText("???");
-	_Options[27].setText("???");
+	_Options[26].setText("Open Settings Dir");
+	_Options[27].setText("Change Flavour");
 	_Options[28].setText("Sound Test");
 	_Options[29].setText("Unlock All");
 	_Options[30].setText("Unlock None");
@@ -243,6 +243,25 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 				DPFunc::_GameScenes_Selection = 0;
 			}
 			GlobalSettings::_LEVEL = DPFunc::_GameScenes[DPFunc::_GameScenes_Selection];
+		}
+		else if (_Options.getSelected().m_Label == "26")
+		{
+			system("Start EngineFiles\\Settings");
+		}
+		else if (_Options.getSelected().m_Label == "27")
+		{
+			window.ClearWindow(true);
+			system("cls");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), WHITE);
+			GlobalSettings::GamePlaying = false;
+			if (GlobalSettings::_PLANEFLAVOUR == "Dinsey")
+			{
+				system("DinseyPlanes --dupty --debug --rs");
+			}
+			if (GlobalSettings::_PLANEFLAVOUR == "Dupty")
+			{
+				system("DinseyPlanes --dinsey --debug --rs");
+			}
 		}
 		else if (_Options.getSelected().m_Label == "28")
 		{
