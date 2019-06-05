@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include <string>
 #include <vector>
+#include <math.h>
 
 using namespace std;
 using namespace Gdiplus;
@@ -36,6 +37,7 @@ public:
 private:
 	SYDEMenu m_Options;
 	bool m_BackupSaves = true;
+	vector<CustomAsset> bgArr;
 	CustomAsset bg;
 };
 
@@ -57,7 +59,14 @@ Launcher::Launcher()
 	{
 		m_Options[i].setHighLight(RED);
 	}
-	bg = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\pearl_bg.bmp", 22, 20));
+	//TODO, CREATE A RNADOM BG FOR EVERY LOAD
+	bgArr = vector<CustomAsset>{	CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\pearl_bg.bmp", 22, 20)),
+									CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\dp_bg.bmp", 22, 20)),
+									CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\action_bg.bmp", 22, 20)),
+	};
+	srand(time(NULL));
+	int bgChoice = rand() % bgArr.size();
+	bg = bgArr[bgChoice];
 }
 
 ConsoleWindow Launcher::window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight)
@@ -81,6 +90,7 @@ ConsoleWindow Launcher::window_draw_game(ConsoleWindow window, int windowWidth, 
 				system("start BackupSaves");
 			}
 			system("start Download https://github.com/Ritalin4Kidz/Dinsey-Planes/releases/latest/download/DinseyPlanes.zip");
+			exit(NULL);
 		}
 		else if (m_Options.getSelected().m_Label == "2")
 		{

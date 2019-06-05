@@ -172,6 +172,8 @@ private:
 	SYDELabel LBL_Option3 = SYDELabel("", Vector2(0, 13), Vector2(20, 1), BLACK, true);
 	SYDELabel LBL_Option4 = SYDELabel("", Vector2(0, 14), Vector2(20, 1), BLACK, true);
 
+	SYDELabel LBL_vNumber = SYDELabel("0.1.0.0beta", Vector2(0, 19), Vector2(20, 1), BLACK, true);
+
 	SYDELabel Disclaimer = SYDELabel("The characters in Dinsey Planes are fictional. Please do not recreate the stunts performed by the planes, they are trained professionals. This game is a parody, please do not take it seriously. Made in association with Freebee Games. Freebee Network and it's subsidiaries are the creative moniker for Callum Hands & Luke Alexander, since November 2015.", Vector2(0, 7), Vector2(40, 10), BRIGHTWHITE, true);
 
 	bool showStart = false;

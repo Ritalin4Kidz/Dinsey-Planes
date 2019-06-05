@@ -620,6 +620,7 @@ ConsoleWindow DinseyPlanes::_MainMenu(ConsoleWindow window, int windowWidth, int
 	window = LBL_Option1.draw_ui(window);
 	window = LBL_Option2.draw_ui(window);
 	window = LBL_Option3.draw_ui(window);
+	window = LBL_vNumber.draw_ui(window);
 	//UI - MENU
 	if (_LEVELS.getActive())
 	{
