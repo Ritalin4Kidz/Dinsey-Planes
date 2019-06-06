@@ -169,6 +169,7 @@
     <ClInclude Include="CustomAnimationAsset.h" />
     <ClInclude Include="CustomAsset.h" />
     <ClInclude Include="Defaults.h" />
+    <ClInclude Include="json.hpp" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PhysicsObject.h" />
