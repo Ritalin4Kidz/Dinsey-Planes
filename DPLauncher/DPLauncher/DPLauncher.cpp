@@ -186,6 +186,7 @@ void ReleaseNotes::RefresherNotes()
 		json release_notes = json::parse(ifs);
 		string notes = release_notes["body"];
 		string temp = "";
+		m_Labels.clear();
 		m_Labels.push_back(SYDELabel("", Vector2(0, 1), Vector2(40, 1), WHITE, true));
 		int m_LabelNo = 0;
 		for (int i = 0; i < notes.size(); i++)
