@@ -20,8 +20,11 @@ public:
 class SecAction : public IAction {
 public:
 	SecAction() {}
+	SecAction(void(*f)()) { m_f = f; }
 	virtual ~SecAction() {}
 	void actionVoid() override;
+private:
+	void(*m_f)();
 };
 
 class MainActionClass {
@@ -31,14 +34,24 @@ public:
 
 	void DoAction(IAction &action);
 private:
+
 };
 
+void testVoid()
+{
+	std::cout << "this is a test project!\n";
+}
+
+void testVoid2()
+{
+	std::cout << "this is not a test project!\n";
+}
 
 int main()
 {
 	MainAction m;
 	MainActionClass mC;
-	SecAction s;
+	SecAction s(testVoid2);
 	mC.DoAction(m);
 	mC.DoAction(s);
 }
@@ -55,5 +68,5 @@ void MainAction::actionVoid()
 
 void SecAction::actionVoid()
 {
-	std::cout << "This is an action test\n";
+	m_f();
 }
