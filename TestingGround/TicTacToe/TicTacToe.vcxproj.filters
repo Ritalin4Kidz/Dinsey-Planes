@@ -18,6 +18,108 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Activation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Artwork.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetsClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundObj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BoardPiece.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Characters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Concerto.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomAnimationAsset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomAsset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Defaults.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ReiventTheWheel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBody.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SYDEButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SYDECredits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SYDEGamePlay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SYDEKey.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SYDEKeyCode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SYDELabel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SYDEMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SYDEstdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SYDETextBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SYDETime.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SYDEUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SYDEWindowGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Trap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -26,5 +128,13 @@
     <ClCompile Include="TicTacToe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="SYDEEngine.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="EngineFiles\Sounds\electronicchime.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>
