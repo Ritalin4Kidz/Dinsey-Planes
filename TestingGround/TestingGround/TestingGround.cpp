@@ -10,6 +10,10 @@ public:
 	void actionVoid();
 };
 
+class PlaceHolders {
+public:
+	static void NullFunction();
+};
 class MainAction : public IAction {
 public:
 	MainAction() {}
@@ -19,7 +23,7 @@ public:
 
 class SecAction : public IAction {
 public:
-	SecAction() {}
+	SecAction() { m_f = PlaceHolders::NullFunction; }
 	SecAction(void(*f)()) { m_f = f; }
 	virtual ~SecAction() {}
 	void actionVoid() override;
@@ -51,7 +55,7 @@ int main()
 {
 	MainAction m;
 	MainActionClass mC;
-	SecAction s(testVoid2);
+	SecAction s;
 	mC.DoAction(m);
 	mC.DoAction(s);
 }
@@ -69,4 +73,8 @@ void MainAction::actionVoid()
 void SecAction::actionVoid()
 {
 	m_f();
+}
+
+void PlaceHolders::NullFunction()
+{
 }
