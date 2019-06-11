@@ -29,6 +29,37 @@ vector<string> cheatCodes;
 static ULONG_PTR gdiplusToken;
 static GdiplusStartupInput startupInput;
 string SCENE = "Launcher";
+
+class GLOBAL {
+public:
+	static string gs_GameFlavour;
+
+	static bool gs_Debug;
+	static bool gs_FPSCounter;
+	static bool gs_NoCap;
+
+	static string toX(bool setting);
+	static string toArguments();
+
+	static void nextFlavor();
+
+private:
+	static vector<string> Flavours;
+	static int _flavNum;
+};
+
+vector<string> GLOBAL::Flavours = {
+	"dinsey",
+	"dupty"
+};
+string GLOBAL::gs_GameFlavour = "dinsey";
+
+bool GLOBAL::gs_Debug = false;
+bool GLOBAL::gs_FPSCounter = false;
+bool GLOBAL::gs_NoCap = false;
+
+int GLOBAL::_flavNum = 0;
+
 class Launcher : public SYDEWindowGame {
 public:
 	Launcher();
@@ -54,14 +85,25 @@ private:
 	vector<SYDELabel> m_Labels;
 };
 
+class LaunchOptions : public SYDEWindowGame {
+public:
+	LaunchOptions();
+	~LaunchOptions() {}
+
+	ConsoleWindow window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight) override;
+private:
+	SYDEMenu m_LaunchOptions;
+};
+
 Launcher::Launcher()
 {
 	m_Options = SYDEMenu(vector<SYDEButton>{
-		SYDEButton("Back Up Saves: " + on_off_str(m_BackupSaves), Vector2(0, 16), Vector2(20, 1), BLACK, true),
-		SYDEButton("Download Latest", Vector2(0, 17), Vector2(20, 1), BLACK, true),
-		SYDEButton("Play Game", Vector2(0, 18), Vector2(20, 1), BLACK, true),
-		SYDEButton("Play Game Debug", Vector2(0, 19), Vector2(20, 1), BLACK, true),
-			SYDEButton("Release Notes", Vector2(0, 15), Vector2(20, 1), BLACK, true)
+		SYDEButton("Back Up Saves: " + on_off_str(m_BackupSaves), Vector2(0, 15), Vector2(20, 1), BLACK, true),
+		SYDEButton("Download Latest", Vector2(0, 16), Vector2(20, 1), BLACK, true),
+		SYDEButton("Play Game", Vector2(0, 17), Vector2(20, 1), BLACK, true),
+		SYDEButton("Play Game Debug", Vector2(0, 18), Vector2(20, 1), BLACK, true),
+			SYDEButton("Launch Options", Vector2(0, 13), Vector2(20, 1), BLACK, true),
+			SYDEButton("Release Notes", Vector2(0, 14), Vector2(20, 1), BLACK, true)
 	});
 	m_Options.setActive(true);
 	m_Options.setPos(Vector2(0, 0));
@@ -69,7 +111,8 @@ Launcher::Launcher()
 	m_Options[1].m_Label = "1";
 	m_Options[2].m_Label = "2";
 	m_Options[3].m_Label = "3";
-	m_Options[4].m_Label = "Notes";
+	m_Options[4].m_Label = "LaunchOptions";
+	m_Options[5].m_Label = "Notes";
 	for (int i = 0; i < m_Options.getSize(); i++)
 	{
 		m_Options[i].setHighLight(RED);
@@ -98,9 +141,14 @@ ConsoleWindow Launcher::window_draw_game(ConsoleWindow window, int windowWidth, 
 		{
 			SCENE = "Release";
 		}
+		if (m_Options.getSelected().m_Label == "LaunchOptions")
+		{
+			SCENE = "LaunchOptions";
+		}
 		if (m_Options.getSelected().m_Label == "0")
 		{
 			m_BackupSaves = !m_BackupSaves;
+			m_Options[0].setText("Back Up Saves: " + on_off_str(m_BackupSaves));
 		}
 		if (m_Options.getSelected().m_Label == "1")
 		{
@@ -117,7 +165,11 @@ ConsoleWindow Launcher::window_draw_game(ConsoleWindow window, int windowWidth, 
 			{
 				system("start ReloadSaves");
 			}
-			system("cd Extract && start DinseyPlanes");
+			string arg = "cd Extract && start DinseyPlanes" + GLOBAL::toArguments();
+			char *cstr = new char[arg.size() + 1];
+			arg.copy(cstr, arg.size() + 1);
+			cstr[arg.size()] = '\0';
+			system(cstr);
 			//system("start DinseyPlanes");
 			exit(NULL);
 		}
@@ -132,6 +184,7 @@ ConsoleWindow Launcher::window_draw_game(ConsoleWindow window, int windowWidth, 
 			exit(NULL);
 		}
 	}
+	window.setTextAtPoint(Vector2(0, 19), "TAB: Next Option, A: Select Option           ", BLACK_BRIGHTWHITE_BG);
 	window.setTextAtPoint(Vector2(0, 1), " Dinsey Planes Launcher ", RED_BRIGHTWHITE_BG);
 	return window;
 }
@@ -148,6 +201,7 @@ int main(int argc, char* argv[])
 	SetConsoleTitleW(title);
 	SYDETIME deltaTime;
 	Launcher m_Launcher;
+	LaunchOptions m_LOptions;
 	ReleaseNotes m_ReleaseNotes;
 	deltaTime.initialise(std::chrono::high_resolution_clock::now());
 	SYDEGamePlay::initialize_window(hOut, window);
@@ -165,6 +219,10 @@ int main(int argc, char* argv[])
 		if (SCENE == "Launcher")
 		{
 			window = SYDEGamePlay::play_game(&m_Launcher, start, hOut, window, windowWidth, windowHeight, deltaTime);
+		}
+		if (SCENE == "LaunchOptions")
+		{
+			window = SYDEGamePlay::play_game(&m_LOptions, start, hOut, window, windowWidth, windowHeight, deltaTime);
 		}
 		if (SCENE == "Release")
 		{
@@ -248,4 +306,109 @@ ConsoleWindow ReleaseNotes::window_draw_game(ConsoleWindow window, int windowWid
 		RefresherNotes();
 	}
 	return window;
+}
+
+LaunchOptions::LaunchOptions()
+{
+	m_LaunchOptions = SYDEMenu(vector<SYDEButton>{
+			SYDEButton("Debug: ", Vector2(0, 1), Vector2(20, 1), WHITE, true),
+			SYDEButton("Flavour: ", Vector2(0, 2), Vector2(20, 1), WHITE, true),
+			SYDEButton("Framerate: ", Vector2(0, 3), Vector2(20, 1), WHITE, true),
+			SYDEButton("No FPS Cap: ", Vector2(0, 4), Vector2(20, 1), WHITE, true),
+			SYDEButton("Back", Vector2(0, 5), Vector2(20, 1), WHITE, true)
+	});
+	m_LaunchOptions[0].m_Label = "0";
+	m_LaunchOptions[1].m_Label = "1";
+	m_LaunchOptions[2].m_Label = "2";
+	m_LaunchOptions[3].m_Label = "3";
+	m_LaunchOptions[4].m_Label = "4";
+
+	for (int i = 0; i < m_LaunchOptions.getSize(); i++)
+	{
+		m_LaunchOptions[i].setHighLight(RED);
+	}
+}
+
+ConsoleWindow LaunchOptions::window_draw_game(ConsoleWindow window, int windowWidth, int windowHeight)
+{
+	for (int i = 0; i < windowWidth; i++)
+	{
+		for (int j = 0; j < windowHeight; j++)
+		{
+			window.setTextAtPoint(Vector2(i, j), " ", BLACK);
+		}
+	}
+	if (SYDEKeyCode::get(VK_TAB)._CompareState(KEYDOWN))
+	{
+		m_LaunchOptions.nextSelect();
+	}
+	m_LaunchOptions[0].setText("Debug: " + GLOBAL::toX(GLOBAL::gs_Debug));
+	m_LaunchOptions[1].setText("Flavour: " + GLOBAL::gs_GameFlavour);
+	m_LaunchOptions[2].setText("Framerate: " + GLOBAL::toX(GLOBAL::gs_FPSCounter));
+	m_LaunchOptions[3].setText("No FPS Cap: " + GLOBAL::toX(GLOBAL::gs_NoCap));
+
+	if ((SYDEKeyCode::get('A')._CompareState(KEYDOWN)))
+	{
+		if (m_LaunchOptions.getSelected().m_Label == "0")
+		{
+			GLOBAL::gs_Debug = !GLOBAL::gs_Debug;
+		}
+		if (m_LaunchOptions.getSelected().m_Label == "1")
+		{
+			GLOBAL::nextFlavor();
+		}
+		if (m_LaunchOptions.getSelected().m_Label == "2")
+		{
+			GLOBAL::gs_FPSCounter = !GLOBAL::gs_FPSCounter;
+		}
+		if (m_LaunchOptions.getSelected().m_Label == "3")
+		{
+			GLOBAL::gs_NoCap = !GLOBAL::gs_NoCap;
+		}
+		if (m_LaunchOptions.getSelected().m_Label == "4")
+		{
+			SCENE = "Launcher";
+		}
+	}
+	window = m_LaunchOptions.draw_menu(window);
+	window.setTextAtPoint(Vector2(0, 19), "TAB: Next Option, A: Select Option                      ", BRIGHTWHITE);
+	return window;
+}
+
+string GLOBAL::toX(bool setting)
+{
+	if (setting)
+	{
+		return "X";
+	}
+	return " ";
+}
+
+string GLOBAL::toArguments()
+{
+	string temp = " ";
+	if (gs_Debug)
+	{
+		temp += "--debug ";
+	}
+	if (gs_FPSCounter)
+	{
+		temp += "--fps ";
+	}
+	if (gs_NoCap)
+	{
+		temp += "--nocap ";
+	}
+	temp += "--" + gs_GameFlavour;
+	return temp;
+}
+
+void GLOBAL::nextFlavor()
+{
+	_flavNum++;
+	if (_flavNum >= Flavours.size())
+	{
+		_flavNum = 0;
+	}
+	gs_GameFlavour = Flavours[_flavNum];
 }
