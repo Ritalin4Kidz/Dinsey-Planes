@@ -121,6 +121,7 @@ Launcher::Launcher()
 	bgArr = vector<CustomAsset>{	CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\pearl_bg.bmp", 22, 20)),
 									CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\dp_bg.bmp", 22, 20)),
 									CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\action_bg.bmp", 22, 20)),
+									CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\logo_bg.bmp", 22, 20)),
 	};
 	srand(time(NULL));
 	int bgChoice = rand() % bgArr.size();
@@ -135,6 +136,12 @@ ConsoleWindow Launcher::window_draw_game(ConsoleWindow window, int windowWidth, 
 		m_Options.nextSelect();
 	}
 	window = m_Options.draw_menu(window);
+	if (SYDEKeyCode::get('B')._CompareState(KEYDOWN))
+	{
+		srand(time(NULL));
+		int bgChoice = rand() % bgArr.size();
+		bg = bgArr[bgChoice];
+	}
 	if ((SYDEKeyCode::get('A')._CompareState(KEYDOWN)))
 	{
 		if (m_Options.getSelected().m_Label == "Notes")
