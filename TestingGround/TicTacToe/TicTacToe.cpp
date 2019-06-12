@@ -99,6 +99,10 @@ public:
 
 	bool CheckWinner(Player player);
 private:
+	SYDELabel __player1winstally = SYDELabel("Player 1 Wins: 0",Vector2(22,7),Vector2(18,1),BLACK,true);
+	SYDELabel __player2winstally = SYDELabel("Player 2 Wins: 0", Vector2(22, 8), Vector2(18, 1), BLACK, true);
+	SYDELabel __drawstally = SYDELabel("Drawn: 0", Vector2(22, 9), Vector2(18, 1), BLACK, true);
+
 	vector<TicTacToePiece> m_Board;
 	CustomAsset m_bg;
 	Cursor m_Cursor;
@@ -108,7 +112,13 @@ private:
 
 	bool Play1Turn = true;
 
+	int turns = 0;
+
 	bool winner = false;
+
+	int player1wins = 0;
+	int player2wins = 0;
+	int drawn = 0;
 
 };
 
@@ -207,7 +217,9 @@ ConsoleWindow TicTacToe::window_draw_game(ConsoleWindow window, int windowWidth,
 	window = m_bg.draw_asset(window, Vector2(0, 0));
 	window = m_Cursor.draw(window, atPos(m_Cursor.getPos()).getPos());
 	window = draw_board(window);
-
+	window = __player1winstally.draw_ui(window);
+	window = __player2winstally.draw_ui(window);
+	window = __drawstally.draw_ui(window);
 	//WINNER STATE
 	if (winner)
 	{
@@ -220,6 +232,22 @@ ConsoleWindow TicTacToe::window_draw_game(ConsoleWindow window, int windowWidth,
 			}
 			Player1.clearVals();
 			Player2.clearVals();
+			turns = 0;
+			winner = false;
+		}
+	}
+	else if (turns > 8)
+	{
+		window.setTextAtPoint(Vector2(0, 19), "Draw, Press R To Restart", BLACK_WHITE_BG);
+		if (SYDEKeyCode::get('R')._CompareState(KEYDOWN))
+		{
+			for (int i = 0; i < m_Board.size(); i++)
+			{
+				m_Board[i].setMarker("--");
+			}
+			Player1.clearVals();
+			Player2.clearVals();
+			turns = 0;
 			winner = false;
 		}
 	}
@@ -276,9 +304,23 @@ ConsoleWindow TicTacToe::window_draw_game(ConsoleWindow window, int windowWidth,
 					MarkerAtPos(m_Cursor.getPos(), Player2);
 				}
 				//CHECK FOR WINNER
-				if (CheckWinner(Player1) || CheckWinner(Player2))
+				if (CheckWinner(Player1))
 				{
+					player1wins++;
+					__player1winstally.setText("Player 1 Wins: " + to_string(player1wins));
 					winner = true;
+				}
+				if (CheckWinner(Player2))
+				{
+					player2wins++;
+					__player2winstally.setText("Player 2 Wins: " + to_string(player2wins));
+					winner = true;
+				}
+				turns++;
+				if (turns > 8)
+				{
+					drawn++;
+					__drawstally.setText("Drawn: " + to_string(drawn));
 				}
 				Play1Turn = !Play1Turn;
 			}
