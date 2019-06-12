@@ -115,6 +115,7 @@ private:
 	int turns = 0;
 
 	bool winner = false;
+	bool border = false;
 
 	int player1wins = 0;
 	int player2wins = 0;
@@ -220,6 +221,12 @@ ConsoleWindow TicTacToe::window_draw_game(ConsoleWindow window, int windowWidth,
 	window = __player1winstally.draw_ui(window);
 	window = __player2winstally.draw_ui(window);
 	window = __drawstally.draw_ui(window);
+
+	if (SYDEKeyCode::get('B')._CompareState(KEYDOWN))
+	{
+		border = !border;
+	}
+
 	//WINNER STATE
 	if (winner)
 	{
@@ -337,6 +344,20 @@ ConsoleWindow TicTacToe::draw_board(ConsoleWindow window)
 	for (int i = 0; i < m_Board.size(); i++)
 	{
 		window.setTextAtPoint(m_Board[i].getPos(), m_Board[i].getMarker(), window.determineColourAtPoint(m_Board[i].getPos(), BLACK, true));
+	}
+	//FILLING BLANKS
+	if (border)
+	{
+		for (int i = 0; i < m_Board.size(); i++)
+		{
+			if (m_Board[i].getBoardPos().getX() < 2)
+				window.setTextAtPoint(Vector2(m_Board[i].getPos().getX() + 2, m_Board[i].getPos().getY()), "  ", BLACK);
+		}
+		for (int i = 2; i < 11; i++)
+		{
+			window.setTextAtPoint(Vector2(i, 3), "  ", BLACK);
+			window.setTextAtPoint(Vector2(i, 5), "  ", BLACK);
+		}
 	}
 	return window;
 }
