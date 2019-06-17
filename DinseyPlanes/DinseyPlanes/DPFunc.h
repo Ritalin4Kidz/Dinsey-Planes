@@ -23,6 +23,11 @@ struct DialogueClass {
 	std::string string_sure_tonoda = "I sure do Mr Tonoda!(A)";
 	std::string string_when_ready_dinsous = "Good..Good..When you're ready dinsous(A)";
 
+	//MISSION 2 Dialogue
+	std::string string_hiroshima_reached = "Have you reached Hiroshima yet?(A)";
+	std::string string_just_reached = "Just arrived now boss!(A)";
+	std::string string_deliver_package = "Excellent... Deliver the package(A)";
+
 };
 
 struct ColourValues {

@@ -941,7 +941,7 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Have you reached Hiroshima yet?(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_hiroshima_reached, WHITE);
 		if ((SYDEKeyCode::get('A')._CompareState(KEYDOWN)))
 		{
 			HiroshimaScene++;
@@ -956,7 +956,7 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Just arrived now boss!(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_just_reached, WHITE);
 		if ((SYDEKeyCode::get('A')._CompareState(KEYDOWN)))
 		{
 			HiroshimaScene++;
@@ -971,7 +971,7 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Excellent... Deliver the package(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_deliver_package, WHITE);
 		if ((SYDEKeyCode::get('A')._CompareState(KEYDOWN)))
 		{
 			HiroshimaScene++;
