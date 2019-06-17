@@ -1197,7 +1197,7 @@ ConsoleWindow DinseyPlanes::_Nagasaki(ConsoleWindow window, int windowWidth, int
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Level Complete: Press 'Q' To Return", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_q_to_return, WHITE);
 	}
 	else if (NagasakiScene == 10)
 	{
@@ -1232,7 +1232,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbourPrologue(ConsoleWindow window, int wind
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Purplous: Sir... The Americans....", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_purplous + m_DialogueClass.string_the_americans, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 1:
 		window = m_PHS001.draw_asset(window, Vector2(0, 0));

@@ -44,7 +44,12 @@ struct DialogueClass {
 	//AYE AYE CAPTAIN
 	std::string string_aye_aye = "Aye Aye Captain(A)";
 
+	//DIALOGUE 1
+	std::string string_the_americans = ": Sir... The Americans....";
+
 	//CHARACTERS
+	//Purplous
+	std::string string_purplous = "Purplous";
 	//SAMSON
 	std::string string_samson = "Samson";
 	//DINSPY
