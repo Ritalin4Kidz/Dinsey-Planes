@@ -888,7 +888,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Level Complete: Press 'Q' To Return", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_q_to_return, WHITE);
 		GlobalSettings::_PEARLHARBOURBEATEN = true;
 		//Sleep(100);
 	}
@@ -936,7 +936,7 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 	{
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Dupty[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Samson", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_samson, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
@@ -951,7 +951,7 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 	{
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Dinsey[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Dinspy", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_dinspy, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
@@ -966,7 +966,7 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 	{
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Dupty[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Samson", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_samson, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
@@ -979,7 +979,7 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 	}
 	else if (HiroshimaScene == 4)
 	{
-		window.setTextAtPoint(Vector2(0, 19), "Tutorial: Press 'B' To Use A Bomb            ", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.bomb_tutorial, WHITE);
 		if ((SYDEKeyCode::get('B')._CompareState(KEYDOWN)))
 		{
 			HiroshimaScene++;
@@ -1031,7 +1031,7 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Level Complete: Press 'Q' To Return", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_q_to_return, WHITE);
 	}
 	else if (HiroshimaScene == 9)
 	{
@@ -1087,12 +1087,12 @@ ConsoleWindow DinseyPlanes::_Nagasaki(ConsoleWindow window, int windowWidth, int
 	{
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Dupty[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Samson", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_samson, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "You've done well Dinspy(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_done_well_dinspy, WHITE);
 		if ((SYDEKeyCode::get('A')._CompareState(KEYDOWN)))
 		{
 			NagasakiScene++;
@@ -1102,12 +1102,12 @@ ConsoleWindow DinseyPlanes::_Nagasaki(ConsoleWindow window, int windowWidth, int
 	{
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Dupty[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Samson", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_samson, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Just deliver the package to Nagasaki(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_just_deliver, WHITE);
 		if ((SYDEKeyCode::get('A')._CompareState(KEYDOWN)))
 		{
 			NagasakiScene++;
@@ -1117,12 +1117,12 @@ ConsoleWindow DinseyPlanes::_Nagasaki(ConsoleWindow window, int windowWidth, int
 	{
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Dupty[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Samson", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_samson, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "and this will all finally be over(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_all_over, WHITE);
 		if ((SYDEKeyCode::get('A')._CompareState(KEYDOWN)))
 		{
 			NagasakiScene++;
@@ -1132,12 +1132,12 @@ ConsoleWindow DinseyPlanes::_Nagasaki(ConsoleWindow window, int windowWidth, int
 	{
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Dinsey[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Dinspy", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_dinspy, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Aye Aye Captain(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_aye_aye, WHITE);
 		if ((SYDEKeyCode::get('A')._CompareState(KEYDOWN)))
 		{
 			NagasakiScene++;

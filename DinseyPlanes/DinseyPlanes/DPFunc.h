@@ -19,14 +19,40 @@ struct DialogueClass {
 	}
 
 	//MISSION 1 Dialogue
+	//DO YOU REMEMBER YOUR MISSION DINSOUS
 	std::string string_mission_dinsous = "Do you remember your mission dinsous?(A)";
+	//I SURE DO MR TONODA
 	std::string string_sure_tonoda = "I sure do Mr Tonoda!(A)";
+	//GOOD...GOOD...WHEN YOU'RE READY
 	std::string string_when_ready_dinsous = "Good..Good..When you're ready dinsous(A)";
 
 	//MISSION 2 Dialogue
+	//YOU REACHED HIROSHIMA YET?
 	std::string string_hiroshima_reached = "Have you reached Hiroshima yet?(A)";
+	//JUST REACHED NOW
 	std::string string_just_reached = "Just arrived now boss!(A)";
+	//DELIVER THE PACKAGE
 	std::string string_deliver_package = "Excellent... Deliver the package(A)";
+
+	//MISSION 3 Dialogue
+	//YOU'VE DONE WELL DINSPY
+	std::string string_done_well_dinspy = "You've done well Dinspy(A)";
+	//JUST DELIVER THE PACKAGE TO NAGASAKI
+	std::string string_just_deliver = "Just deliver the package to Nagasaki(A)";
+	//THIS WILL FINALLY BE OVER
+	std::string string_all_over = "and this will all finally be over(A)";
+	//AYE AYE CAPTAIN
+	std::string string_aye_aye = "Aye Aye Captain(A)";
+
+	//CHARACTERS
+	//SAMSON
+	std::string string_samson = "Samson";
+	//DINSPY
+	std::string string_dinspy = "Dinspy";
+
+	//ETC
+	std::string string_q_to_return = "Level Complete: Press 'Q' To Return";
+	std::string bomb_tutorial = "Tutorial: Press 'B' To Use A Bomb            ";
 
 };
 
