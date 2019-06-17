@@ -170,6 +170,7 @@
     <ClInclude Include="DinseyPlanes.h" />
     <ClInclude Include="DPaint.h" />
     <ClInclude Include="DPFunc.h" />
+    <ClInclude Include="GlobalSettings.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PhysicsObject.h" />
@@ -195,6 +196,7 @@
     <ClCompile Include="DinseyPlanes.cpp" />
     <ClCompile Include="DPaint.cpp" />
     <ClCompile Include="DPFunc.cpp" />
+    <ClCompile Include="GlobalSettings.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

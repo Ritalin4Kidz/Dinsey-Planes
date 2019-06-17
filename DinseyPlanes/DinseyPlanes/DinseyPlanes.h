@@ -20,38 +20,7 @@
 #include <string>
 #include <array>
 #include "DPFunc.h"
-
-class GlobalSettings {
-public:
-	static std::string _SCENE;
-	static std::string _LASTSCENE;
-	static std::string _LEVEL;
-	static std::string FillStr;
-	static std::string _PLANEFLAVOUR;
-
-	static int FrameDelay_MS;
-	static int VolumeLVL;
-	
-	static bool PauseMode;
-	static bool debugMenu;
-	static bool initWindow;
-	static bool rs;
-	static bool GamePlaying;
-	static bool letsplayer;
-	static bool framerate;
-
-	// Unlocks
-	static bool _PEARLHARBOURBEATEN;
-	static bool _HIROSHIMABEATEN;
-	static bool _NAGASAKIBEATEN;
-	//CHARACTER UNLOCKS
-	static bool _SEMICOLON_UNLOCK;
-	static bool _TSUBUMMER_UNLOCK;
-	static bool _RIPPERONI_UNLOCK;
-
-	static SYDELabel m_fps;
-	static CustomAnimationAsset m_LP;
-};
+#include "GlobalSettings.h"
 
 class ConsoleSYDE : public SYDEWindowGame {
 public:
@@ -251,4 +220,5 @@ private:
 	//OTHER ETC
 	MainMenuPopUp unlockPopUp =  MainMenuPopUp(2.5f);
 	bool init = true;
+	DialogueClass m_DialogueClass = DialogueClass(GlobalSettings::_GAME_LNG);
 };

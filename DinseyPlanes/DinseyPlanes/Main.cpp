@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include "DPFunc.h"
 #include "DPaint.h"
+#include "GlobalSettings.h"
 
 using namespace std;
 using namespace Gdiplus;
@@ -59,6 +60,10 @@ int main(int argc, char* argv[])
 		if (arg == "--sunset")
 		{
 			DPFunc::_AQUA.set(255, 166, 106);
+		}
+		else if (arg == "--lng_plane")
+		{
+			GlobalSettings::_GAME_LNG = PLANE;
 		}
 		else if (arg == "--debug")
 		{

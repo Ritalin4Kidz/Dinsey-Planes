@@ -1,31 +1,6 @@
 #include "pch.h"
 #include "DinseyPlanes.h"
 
-std::string GlobalSettings::_SCENE = "DinseyPlanes";
-std::string GlobalSettings::_LASTSCENE = "";
-std::string GlobalSettings::_LEVEL = "_Intro";
-std::string GlobalSettings::_PLANEFLAVOUR = "Dinsey";
-
-int GlobalSettings::FrameDelay_MS = 30;
-bool GlobalSettings::PauseMode = false;
-bool GlobalSettings::debugMenu = false;
-bool GlobalSettings::initWindow = true;
-bool GlobalSettings::rs = false;
-bool GlobalSettings::GamePlaying = true;
-bool GlobalSettings::letsplayer = false;
-bool GlobalSettings::framerate = false;
-int GlobalSettings::VolumeLVL = 2;
-
-bool GlobalSettings::_PEARLHARBOURBEATEN = false;
-bool GlobalSettings::_HIROSHIMABEATEN = false;
-bool GlobalSettings::_NAGASAKIBEATEN = false;
-bool GlobalSettings::_SEMICOLON_UNLOCK = false;
-bool GlobalSettings::_TSUBUMMER_UNLOCK = false;
-bool GlobalSettings::_RIPPERONI_UNLOCK = false;
-
-SYDELabel GlobalSettings::m_fps = SYDELabel("", Vector2(35, 1), Vector2(5, 1), BRIGHTGREEN, true);;
-CustomAnimationAsset GlobalSettings::m_LP;
-
 DebugWindow::DebugWindow(AssetsClass astVars)
 {
 	_Options = SYDEMenu(vector<SYDEButton> {	SYDEButton("", Vector2(0, 1), Vector2(20, 1), WHITE, true),
@@ -832,7 +807,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Do you remember your mission dinsous?(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_mission_dinsous, WHITE);
 		//Sleep(100);
 	}
 	else if (PearlHarbourScene == 2)
@@ -849,7 +824,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "I sure do Mr Tonoda!(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_sure_tonoda, WHITE);
 		//Sleep(100);
 	}
 	else if (PearlHarbourScene == 3)
@@ -866,7 +841,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Good..Good..When you're ready dinsous(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_when_ready_dinsous, WHITE);
 		//Sleep(100);
 	}
 	else if (PearlHarbourScene == 4)

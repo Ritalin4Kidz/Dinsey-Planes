@@ -5,8 +5,26 @@
 #include <fstream>
 #include <istream>
 #include <sstream>
-#include "DinseyPlanes.h"
-//COLOUR
+#include "SYDEstdafx.h"
+#include "GlobalSettings.h"
+struct DialogueClass {
+	DialogueClass(LANGUAGE a_Lng)
+	{
+		if (a_Lng == PLANE)
+		{
+			string_mission_dinsous = "*ENGINE NOISES* (A)";
+			string_sure_tonoda = "*ENGINE NOISES* (A)";
+			string_when_ready_dinsous = "*ENGINE NOISES* (A)";
+		}
+	}
+
+	//MISSION 1 Dialogue
+	std::string string_mission_dinsous = "Do you remember your mission dinsous?(A)";
+	std::string string_sure_tonoda = "I sure do Mr Tonoda!(A)";
+	std::string string_when_ready_dinsous = "Good..Good..When you're ready dinsous(A)";
+
+};
+
 struct ColourValues {
 	ColourValues(int _r, int _g, int _b) { r = _r; dftr = _r; g = _g; dftg = _g; b = _b; dftb = _b; }
 	int r;
