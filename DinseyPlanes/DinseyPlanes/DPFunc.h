@@ -46,14 +46,31 @@ struct DialogueClass {
 
 	//DIALOGUE 1
 	std::string string_the_americans = ": Sir... The Americans....";
+	std::string string_war_threat = ": They've threatened war with us";
+	std::string string_hmmmm = ": Hmmmm...";
+	std::string string_i_see = ": I see...";
+	std::string string_most_troubling = ": This is most troubling";
+	std::string string_what_shall_we_do = ": What ever should we do sir?";
+	std::string string_i_have_plan = ": Do not worry, I have a plan";
+	std::string string_dinsous_shout = ": DINSOUS!";
+	std::string string_im_here_sir = ": I'm here sir, what is it?";
+	std::string string_job_for_you = ": I have a job for you";
+
+	//DIALOGUE 2
+	std::string string_nearly_years = ": It's been nearly 4 years";
+	std::string string_but_today = ": But today....";
 
 	//CHARACTERS
 	//Purplous
 	std::string string_purplous = "Purplous";
+	//TONODA
+	std::string string_tonoda = "Tonoda";
 	//SAMSON
 	std::string string_samson = "Samson";
 	//DINSPY
 	std::string string_dinspy = "Dinspy";
+	//DINSOUS
+	std::string string_dinsous = "Dinsous";
 
 	//ETC
 	std::string string_q_to_return = "Level Complete: Press 'Q' To Return";

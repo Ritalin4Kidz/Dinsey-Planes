@@ -1240,7 +1240,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbourPrologue(ConsoleWindow window, int wind
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Purplous: They've threatened war with us", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_purplous + m_DialogueClass.string_war_threat, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 2:
 		window = m_PHS002.draw_asset(window, Vector2(0, 0));
@@ -1248,7 +1248,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbourPrologue(ConsoleWindow window, int wind
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Tonoda: Hmmmm...", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_tonoda + m_DialogueClass.string_hmmmm, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 3:
 		window = m_PHS002.draw_asset(window, Vector2(0, 0));
@@ -1256,7 +1256,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbourPrologue(ConsoleWindow window, int wind
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Tonoda: I see...", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_tonoda + m_DialogueClass.string_i_see, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 4:
 		window = m_PHS002.draw_asset(window, Vector2(0, 0));
@@ -1264,7 +1264,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbourPrologue(ConsoleWindow window, int wind
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Tonoda: This is most troubling", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_tonoda + m_DialogueClass.string_most_troubling, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 5:
 		window = m_PHS001.draw_asset(window, Vector2(0, 0));
@@ -1272,7 +1272,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbourPrologue(ConsoleWindow window, int wind
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Purplous: What ever should we do sir?", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_purplous + m_DialogueClass.string_what_shall_we_do, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 6:
 		window = m_PHS002.draw_asset(window, Vector2(0, 0));
@@ -1280,7 +1280,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbourPrologue(ConsoleWindow window, int wind
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Tonoda: Do not worry, I have a plan", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_tonoda + m_DialogueClass.string_i_have_plan, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 7:
 		window = m_PHS002.draw_asset(window, Vector2(0, 0));
@@ -1288,7 +1288,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbourPrologue(ConsoleWindow window, int wind
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Tonoda: DINSOUS!", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_tonoda + m_DialogueClass.string_dinsous_shout, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 8:
 		window = m_PHS003.draw_asset(window, Vector2(0, 0));
@@ -1296,7 +1296,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbourPrologue(ConsoleWindow window, int wind
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Dinsous: I'm here sir, what is it?", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_dinsous + m_DialogueClass.string_im_here_sir, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 9:
 		window = m_PHS002.draw_asset(window, Vector2(0, 0));
@@ -1304,7 +1304,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbourPrologue(ConsoleWindow window, int wind
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Tonoda: I have a job for you", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_tonoda + m_DialogueClass.string_job_for_you, BLACK_BRIGHTWHITE_BG);
 		break;
 	default:
 		GlobalSettings::_LEVEL = "_MainMenu";
@@ -1329,7 +1329,7 @@ ConsoleWindow DinseyPlanes::_HiroshimaPrologue(ConsoleWindow window, int windowW
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Samson: It's been nearly 4 years", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_samson + m_DialogueClass.string_nearly_years, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 1:
 		window = m_HSS001.draw_asset(window, Vector2(0, 0));
@@ -1337,7 +1337,7 @@ ConsoleWindow DinseyPlanes::_HiroshimaPrologue(ConsoleWindow window, int windowW
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Samson: But today....", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_samson + m_DialogueClass.string_but_today, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 2:
 		window = m_HSS001.draw_asset(window, Vector2(0, 0));
