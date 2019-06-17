@@ -456,6 +456,30 @@ DinseyPlanes::DinseyPlanes(AssetsClass astVars)
 	m_Clouds.push_back(CustomAsset(10, 5, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_026.bmp", 5, 5)));
 	m_Clouds.push_back(CustomAsset(10, 5, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_027.bmp", 5, 5)));
 
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_028.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_029.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_030.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_031.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_032.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_033.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_034.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_035.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_036.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_037.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_038.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_039.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_040.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_041.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_042.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_043.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_044.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_045.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_046.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_047.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_048.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_049.bmp", 7, 6)));
+	m_Clouds.push_back(CustomAsset(14, 6, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Clouds\\Cloud_050.bmp", 7, 6)));
+
 	m_Plane = CustomAsset(10, 5, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Plane.bmp", 5, 5));
 	m_Bomb  = CustomAsset(10, 5, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\DinseyPlanes\\Planes_ETC\\Bomb.bmp", 5, 5));
 	m_BoxUI = CustomAsset(44, 20, astVars.get_bmp_as_direct_colour_class_array(L"EngineFiles\\Bitmaps\\UI\\box_ui.bmp", 22, 20));
