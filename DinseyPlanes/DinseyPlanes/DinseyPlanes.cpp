@@ -108,7 +108,8 @@ ConsoleWindow DebugWindow::window_draw_game(ConsoleWindow window, int windowWidt
 	_Options[12].setText("Night Time");
 	_Options[13].setText("Syde Paint");
 	_Options[14].setText("Lvl:" + GlobalSettings::_LEVEL);
-	_Options[15].setText("???");
+	//LANGUAGE OPTION
+	_Options[15].setText("Language: " + GlobalSettings::_GAME_LNG);
 	_Options[16].setText("???");
 	_Options[17].setText("???");
 	_Options[18].setText("???");
@@ -802,7 +803,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 		window = m_Tutorial.draw_asset(window, Vector2(0, 0));
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Ripperoni[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Tonoda", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_tonoda, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
@@ -819,7 +820,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 		window = m_Tutorial.draw_asset(window, Vector2(0, 0));
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Dinsey[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Dinsous", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_dinsous, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
@@ -836,7 +837,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 		window = m_Tutorial.draw_asset(window, Vector2(0, 0));
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Ripperoni[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Tonoda", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_tonoda, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
@@ -1345,7 +1346,7 @@ ConsoleWindow DinseyPlanes::_HiroshimaPrologue(ConsoleWindow window, int windowW
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Samson: TODAY WE FIGHT BACK!", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_samson + m_DialogueClass.string_fight_back, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 3:
 		window = m_HSS001.draw_asset(window, Vector2(0, 0));
@@ -1353,7 +1354,7 @@ ConsoleWindow DinseyPlanes::_HiroshimaPrologue(ConsoleWindow window, int windowW
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Samson: WE LIVE IN FEAR NO MORE!", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_samson + m_DialogueClass.string_no_more_fear, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 4:
 		window = m_HSS001.draw_asset(window, Vector2(0, 0));
@@ -1361,7 +1362,7 @@ ConsoleWindow DinseyPlanes::_HiroshimaPrologue(ConsoleWindow window, int windowW
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Samson: DINSPY!", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_samson + m_DialogueClass.string_dinspy_shout, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 5:
 		window = m_HSS002.draw_asset(window, Vector2(0, 0));
@@ -1369,7 +1370,7 @@ ConsoleWindow DinseyPlanes::_HiroshimaPrologue(ConsoleWindow window, int windowW
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Dinspy: YES SIR!", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_dinspy + m_DialogueClass.string_yes_sir, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 6:
 		window = m_HSS001.draw_asset(window, Vector2(0, 0));
@@ -1377,7 +1378,7 @@ ConsoleWindow DinseyPlanes::_HiroshimaPrologue(ConsoleWindow window, int windowW
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Samson: Prepare your luggage", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_samson + m_DialogueClass.string_prepare_luggage, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 7:
 		window = m_HSS001.draw_asset(window, Vector2(0, 0));
@@ -1385,7 +1386,7 @@ ConsoleWindow DinseyPlanes::_HiroshimaPrologue(ConsoleWindow window, int windowW
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Samson: You're going to Japan", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_samson + m_DialogueClass.string_going_japan, BLACK_BRIGHTWHITE_BG);
 		break;
 	default:
 		GlobalSettings::_LEVEL = "_MainMenu";
@@ -1410,7 +1411,7 @@ ConsoleWindow DinseyPlanes::_NagasakiPrologue(ConsoleWindow window, int windowWi
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Purplous: Sir, our country is wounded", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_purplous + m_DialogueClass.string_sir_country_wound, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 1:
 		window = m_PHS001.draw_asset(window, Vector2(0, 0));
@@ -1418,7 +1419,7 @@ ConsoleWindow DinseyPlanes::_NagasakiPrologue(ConsoleWindow window, int windowWi
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Purplous: we must surrender to the US", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_purplous + m_DialogueClass.string_surrender_neccesary, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 2:
 		window = m_PHS002.draw_asset(window, Vector2(0, 0));
@@ -1426,7 +1427,7 @@ ConsoleWindow DinseyPlanes::_NagasakiPrologue(ConsoleWindow window, int windowWi
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Tonoda: NEVER!!!", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_tonoda + m_DialogueClass.string_never, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 3:
 		window = m_PHS002.draw_asset(window, Vector2(0, 0));
@@ -1434,7 +1435,7 @@ ConsoleWindow DinseyPlanes::_NagasakiPrologue(ConsoleWindow window, int windowWi
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Tonoda: I'D RATHER WE ALL DIE!!", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_tonoda + m_DialogueClass.string_rather_die, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 4:
 		window = m_PHS002.draw_asset(window, Vector2(0, 0));
@@ -1445,7 +1446,7 @@ ConsoleWindow DinseyPlanes::_NagasakiPrologue(ConsoleWindow window, int windowWi
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Tonoda: Do you hear something?", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_tonoda + m_DialogueClass.string_hear_something, BLACK_BRIGHTWHITE_BG);
 		break;
 	default:
 		GlobalSettings::_LEVEL = "_MainMenu";
@@ -1500,12 +1501,12 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 	{
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Dupty[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Dupty", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_dupty, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Hey Dinsey, what you up to bud?(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_what_up_to, WHITE);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1515,12 +1516,12 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 	{
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Dinsey[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Dinsey", WHITE);
+		window.setTextAtPoint(Vector2(32, 6),  m_DialogueClass.string_dinsey, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Not much Dupty, just chilling(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_just_chill, WHITE);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1530,12 +1531,12 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 	{
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Dinsey[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Dinsey", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_dinsey, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Cruising in the sky, no worries(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_cruising_in_sky, WHITE);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1545,12 +1546,12 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 	{
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Dinsey[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Dinsey", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_dinsey, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Why? what's up mr Dups?(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_what_up_dups, WHITE);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1560,12 +1561,12 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 	{
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Dupty[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Dupty", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_dupty, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Minimme's doing a signing!!(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_minimme_signing, WHITE);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1575,12 +1576,12 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 	{
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Dupty[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Dupty", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_dupty, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Meet me at westfield(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_meet_westfield, WHITE);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1590,12 +1591,12 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 	{
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Dinsey[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Dinsey", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_dinsey, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Oh heck yeah, i'll meet you there(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_ill_meet_you_there, WHITE);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1637,12 +1638,12 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		window = m_Dinsey[2].draw_asset(window, Dinsey_Pos);
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Ripperoni[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(30, 6), "Ripperoni", WHITE);
+		window.setTextAtPoint(Vector2(30, 6), m_DialogueClass.string_ripperoni, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "well...well...well...(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_well_x3, WHITE);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1655,12 +1656,12 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		window = m_Dinsey[2].draw_asset(window, Dinsey_Pos);
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Ripperoni[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(30, 6), "Ripperoni", WHITE);
+		window.setTextAtPoint(Vector2(30, 6), m_DialogueClass.string_ripperoni, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "if isn't dins..stupid(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_if_it_isnt, WHITE);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1673,12 +1674,12 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		window = m_Dinsey[2].draw_asset(window, Dinsey_Pos);
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Tsubummer[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(30, 6), "Tsubummer", WHITE);
+		window.setTextAtPoint(Vector2(30, 6), m_DialogueClass.string_tsubummer, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "hehe. that's a good one boss(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_hehe_good_one, WHITE);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1691,12 +1692,12 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		window = m_Dinsey[2].draw_asset(window, Dinsey_Pos);
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Dinsey[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Dinsey", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_dinsey, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "It's dinsey ripper...(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_its_dinsey, WHITE);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1709,12 +1710,12 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		window = m_Dinsey[2].draw_asset(window, Dinsey_Pos);
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Ripperoni[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(30, 6), "Ripperoni", WHITE);
+		window.setTextAtPoint(Vector2(30, 6), m_DialogueClass.string_ripperoni, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "WHAT DID YOU JUST CALL ME?(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_what_just_call, WHITE);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1727,12 +1728,12 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		window = m_Dinsey[2].draw_asset(window, Dinsey_Pos);
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Ripperoni[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(30, 6), "Ripperoni", WHITE);
+		window.setTextAtPoint(Vector2(30, 6), m_DialogueClass.string_ripperoni, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Tsu, you're excused, i've got this(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_excused_tsu, WHITE);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1745,12 +1746,12 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		window = m_Dinsey[2].draw_asset(window, Dinsey_Pos);
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Tsubummer[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(30, 6), "Tsubummer", WHITE);
+		window.setTextAtPoint(Vector2(30, 6), m_DialogueClass.string_tsubummer, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "no worries boss(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_no_worries, WHITE);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1809,12 +1810,12 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		window = m_Credits.draw_asset(window, Vector2(0, 0));
 		window = m_BoxUI.draw_asset(window, Vector2(0, 0));
 		window = m_Dinsey[3].draw_asset(window, Vector2(32, 1));
-		window.setTextAtPoint(Vector2(32, 6), "Dinsey", WHITE);
+		window.setTextAtPoint(Vector2(32, 6), m_DialogueClass.string_dinsey, WHITE);
 		for (int i = 0; i < windowWidth; i++)
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "ow.......(A)", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_ow, WHITE);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1834,7 +1835,7 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Dupty: DINSEY!, YOU'RE OK! (A)", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_dupty + m_DialogueClass.string_dinsey_ok, BLACK_BRIGHTWHITE_BG);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1854,7 +1855,7 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Dupty: You were in a coma for 2 weeks!(A)", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_dupty + m_DialogueClass.string_2_week, BLACK_BRIGHTWHITE_BG);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1875,7 +1876,7 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Dinsey: 2 Weeks? Oh no! that means... (A)", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_dinsey + m_DialogueClass.string_missed_mini, BLACK_BRIGHTWHITE_BG);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1895,7 +1896,7 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Dinsey: I MISSED MINIMME! NOOOOO! (A)", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_dinsey + m_DialogueClass.string_noooooo, BLACK_BRIGHTWHITE_BG);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1916,7 +1917,7 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Minimme: Don't be so sure (A)", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_minimme + m_DialogueClass.string_dont_be_sure, BLACK_BRIGHTWHITE_BG);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1937,7 +1938,7 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Dinsey: Minimme? Is it really you?(A)", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_dinsey + m_DialogueClass.string_is_it_really, BLACK_BRIGHTWHITE_BG);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1958,7 +1959,7 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Minimme: Yes, take a look at my foot(A)", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_minimme + m_DialogueClass.string_confirmation, BLACK_BRIGHTWHITE_BG);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1979,7 +1980,7 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Dinsey: Hooray!!!!! wait.... (A)", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_dinsey + m_DialogueClass.string_hooray, BLACK_BRIGHTWHITE_BG);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -1999,7 +2000,7 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", WHITE_BRIGHTWHITE_BG);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Dinsey: Why the hospital visit?(A)", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_dinsey + m_DialogueClass.string_realisation, BLACK_BRIGHTWHITE_BG);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -2014,7 +2015,7 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 				window.setTextAtPoint(Vector2(i, j), " ", BLACK);
 			}
 		}
-		window.setTextAtPoint(Vector2(17, 10), "The End", WHITE);
+		window.setTextAtPoint(Vector2(17, 10), m_DialogueClass.the_end, WHITE);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
 			DinseyScene++;
@@ -2081,7 +2082,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		{
 			window = m_Dinsey[0].draw_asset(window, Vector2(-6, 0));
 		}
-		window.setTextAtPoint(Vector2(0, 18), "Dinsey", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 18), m_DialogueClass.string_dinsey, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 1:
 		if (player1stats)
@@ -2095,7 +2096,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		{
 			window = m_Dupty[0].draw_asset(window, Vector2(-6, 0));
 		}
-		window.setTextAtPoint(Vector2(0, 18), "Dupty", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 18), m_DialogueClass.string_dupty, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 2:
 		if (player1stats)
@@ -2109,7 +2110,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		{
 			window = m_Skibber[0].draw_asset(window, Vector2(-6, 0));
 		}
-		window.setTextAtPoint(Vector2(0, 18), "Skibber", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 18), m_DialogueClass.string_skibber, BLACK_BRIGHTWHITE_BG);
 		break;
 	case 3:
 		if (GlobalSettings::_SEMICOLON_UNLOCK)
@@ -2125,7 +2126,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 			{
 				window = m_SemiColon[0].draw_asset(window, Vector2(-6, 0));
 			}
-			window.setTextAtPoint(Vector2(0, 18), "Semi-Colon", BLACK_BRIGHTWHITE_BG);
+			window.setTextAtPoint(Vector2(0, 18), m_DialogueClass.string_semicolon, BLACK_BRIGHTWHITE_BG);
 			break;
 		}
 		char1_choice++;
@@ -2143,7 +2144,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 			{
 				window = m_Ripperoni[0].draw_asset(window, Vector2(-6, 0));
 			}
-			window.setTextAtPoint(Vector2(0, 18), "Ripperoni", BLACK_BRIGHTWHITE_BG);
+			window.setTextAtPoint(Vector2(0, 18), m_DialogueClass.string_ripperoni, BLACK_BRIGHTWHITE_BG);
 			break;
 		}
 		char1_choice++;
@@ -2161,7 +2162,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 			{
 				window = m_Tsubummer[0].draw_asset(window, Vector2(-6, 0));
 			}
-			window.setTextAtPoint(Vector2(0, 18), "Tsubummer", BLACK_BRIGHTWHITE_BG);
+			window.setTextAtPoint(Vector2(0, 18), m_DialogueClass.string_tsubummer, BLACK_BRIGHTWHITE_BG);
 			break;
 		}
 		char1_choice++;
@@ -2177,7 +2178,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		{
 			window = m_Dinsey[0].draw_asset(window, Vector2(-6, 0));
 		}
-		window.setTextAtPoint(Vector2(0, 18), "Dinsey", BLACK_BRIGHTWHITE_BG);
+		window.setTextAtPoint(Vector2(0, 18), m_DialogueClass.string_dinsey, BLACK_BRIGHTWHITE_BG);
 		char1_choice = 0;
 		break;
 	}
@@ -2195,7 +2196,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		{
 			window = m_Dinsey[1].draw_asset(window, Vector2(0, 0));
 		}
-		window.setTextAtPoint(Vector2(34, 18), "Dinsey", WHITE);
+		window.setTextAtPoint(Vector2(34, 18), m_DialogueClass.string_dinsey, WHITE);
 		break;
 	case 1:
 		if (player2stats)
@@ -2209,7 +2210,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		{
 			window = m_Dupty[1].draw_asset(window, Vector2(0, 0));
 		}
-		window.setTextAtPoint(Vector2(35, 18), "Dupty", WHITE);
+		window.setTextAtPoint(Vector2(35, 18), m_DialogueClass.string_dupty, WHITE);
 		break;
 	case 2:
 		if (player2stats)
@@ -2223,7 +2224,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		{
 			window = m_Skibber[1].draw_asset(window, Vector2(0, 0));
 		}
-		window.setTextAtPoint(Vector2(33, 18), "Skibber", WHITE);
+		window.setTextAtPoint(Vector2(33, 18), m_DialogueClass.string_skibber, WHITE);
 		break;
 	case 3:
 		if (GlobalSettings::_SEMICOLON_UNLOCK)
@@ -2239,7 +2240,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 			{
 				window = m_SemiColon[1].draw_asset(window, Vector2(0, 0));
 			}
-			window.setTextAtPoint(Vector2(30, 18), "Semi-Colon", WHITE);
+			window.setTextAtPoint(Vector2(30, 18), m_DialogueClass.string_semicolon, WHITE);
 			break;
 		}
 		char2_choice++;
@@ -2257,7 +2258,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 			{
 				window = m_Ripperoni[1].draw_asset(window, Vector2(0, 0));
 			}
-			window.setTextAtPoint(Vector2(31, 18), "Ripperoni", WHITE);
+			window.setTextAtPoint(Vector2(31, 18), m_DialogueClass.string_ripperoni, WHITE);
 			break;
 		}
 		char2_choice++;
@@ -2275,7 +2276,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 			{
 				window = m_Tsubummer[1].draw_asset(window, Vector2(0, 0));
 			}
-			window.setTextAtPoint(Vector2(31, 18), "Tsubummer", WHITE);
+			window.setTextAtPoint(Vector2(31, 18), m_DialogueClass.string_tsubummer, WHITE);
 			break;
 		}
 		char2_choice++;
@@ -2291,7 +2292,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 		{
 			window = m_Dinsey[1].draw_asset(window, Vector2(0, 0));
 		}
-		window.setTextAtPoint(Vector2(34, 18), "Dinsey", WHITE);
+		window.setTextAtPoint(Vector2(34, 18), m_DialogueClass.string_dinsey, WHITE);
 		char2_choice = 0;
 		break;
 	}
@@ -2492,7 +2493,7 @@ ConsoleWindow DinseyPlanes::_Battle(ConsoleWindow window, int windowWidth, int w
 		{
 			window.setTextAtPoint(Vector2(i, 19), " ", BLACK);
 		}
-		window.setTextAtPoint(Vector2(0, 19), "Draw: Press 'Q' To Return", WHITE);
+		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_draw, WHITE);
 	}
 	if (BattleScene == 2)
 	{
