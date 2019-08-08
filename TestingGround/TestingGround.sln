@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestingGround", "TestingGro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TicTacToe", "TicTacToe\TicTacToe.vcxproj", "{1F53E5CA-9DA7-4DCC-B15C-C786F39EF8D4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DPBattleGame", "DPBattleGame\DPBattleGame.vcxproj", "{D69F123D-14D2-4E52-A554-AC9C27D91CDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{1F53E5CA-9DA7-4DCC-B15C-C786F39EF8D4}.Release|x64.Build.0 = Release|x64
 		{1F53E5CA-9DA7-4DCC-B15C-C786F39EF8D4}.Release|x86.ActiveCfg = Release|Win32
 		{1F53E5CA-9DA7-4DCC-B15C-C786F39EF8D4}.Release|x86.Build.0 = Release|Win32
+		{D69F123D-14D2-4E52-A554-AC9C27D91CDB}.Debug|x64.ActiveCfg = Debug|x64
+		{D69F123D-14D2-4E52-A554-AC9C27D91CDB}.Debug|x64.Build.0 = Debug|x64
+		{D69F123D-14D2-4E52-A554-AC9C27D91CDB}.Debug|x86.ActiveCfg = Debug|Win32
+		{D69F123D-14D2-4E52-A554-AC9C27D91CDB}.Debug|x86.Build.0 = Debug|Win32
+		{D69F123D-14D2-4E52-A554-AC9C27D91CDB}.Release|x64.ActiveCfg = Release|x64
+		{D69F123D-14D2-4E52-A554-AC9C27D91CDB}.Release|x64.Build.0 = Release|x64
+		{D69F123D-14D2-4E52-A554-AC9C27D91CDB}.Release|x86.ActiveCfg = Release|Win32
+		{D69F123D-14D2-4E52-A554-AC9C27D91CDB}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
