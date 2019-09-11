@@ -4,24 +4,125 @@ g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\consolewindow.h(299): wa
 g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\consolewindow.h(300): warning C4018: '<': signed/unsigned mismatch
 g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\settings.h(12): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\defaults.h(15): warning C4091: 'static ': ignored on left of 'SYDEDefaults' when no variable is declared
-g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(160): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(188): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(136): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(217): warning C4018: '>=': signed/unsigned mismatch
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(503): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(573): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(576): warning C4018: '<': signed/unsigned mismatch
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(768): warning C4018: '<': signed/unsigned mismatch
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(779): warning C4018: '<': signed/unsigned mismatch
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(823): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(840): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(857): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(871): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(904): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(935): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(938): warning C4018: '<': signed/unsigned mismatch
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(963): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(978): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(993): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1053): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1092): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1095): warning C4018: '<': signed/unsigned mismatch
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1120): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1135): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1150): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1165): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1225): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1261): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1269): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1277): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1285): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1293): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1301): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1309): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1317): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1325): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1333): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1358): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1366): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1374): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1382): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1390): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1398): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1406): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1414): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1439): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1447): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1455): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1463): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1474): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1514): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1517): warning C4018: '<': signed/unsigned mismatch
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1539): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1554): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1569): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1584): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1599): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1614): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1629): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1676): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1694): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1712): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1730): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1748): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1766): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1784): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1848): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1862): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1868): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1882): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1888): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1903): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1909): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1923): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1929): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1944): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1950): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1965): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1971): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1986): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(1992): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2007): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2013): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2027): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2033): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2053): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2083): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2088): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2112): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2503): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2506): warning C4018: '<': signed/unsigned mismatch
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2544): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2573): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2574): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2575): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2576): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2577): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2595): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2598): warning C4018: '<': signed/unsigned mismatch
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\dinseyplanes.cpp(2650): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Main.cpp
 g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\consolewindow.h(297): warning C4018: '<': signed/unsigned mismatch
 g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\consolewindow.h(299): warning C4018: '<': signed/unsigned mismatch
 g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\consolewindow.h(300): warning C4018: '<': signed/unsigned mismatch
 g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\settings.h(12): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\defaults.h(15): warning C4091: 'static ': ignored on left of 'SYDEDefaults' when no variable is declared
+g:\github repos\dinsey-planes\dinseyplanes\dinseyplanes\main.cpp(198): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+LINK : warning C4727: PCH named g:\github repos\custom-console\drawableconsole\release\sydeengine.pch with same timestamp found in g:\github repos\custom-console\drawableconsole\release\defaults.obj and g:\github repos\custom-console\drawableconsole\release\customasset.obj.  Using first PCH.
 LINK : warning C4727: PCH named g:\github repos\custom-console\drawableconsole\release\sydeengine.pch with same timestamp found in g:\github repos\custom-console\drawableconsole\release\consolewindow.obj and g:\github repos\custom-console\drawableconsole\release\customanimationasset.obj.  Using first PCH.
 LINK : warning C4727: PCH named g:\github repos\custom-console\drawableconsole\release\sydeengine.pch with same timestamp found in g:\github repos\custom-console\drawableconsole\release\sydekeycode.obj and g:\github repos\custom-console\drawableconsole\release\sydekey.obj.  Using first PCH.
-LINK : warning C4727: PCH named g:\github repos\custom-console\drawableconsole\release\sydeengine.pch with same timestamp found in g:\github repos\custom-console\drawableconsole\release\defaults.obj and g:\github repos\custom-console\drawableconsole\release\customasset.obj.  Using first PCH.
-LINK : warning C4727: PCH named g:\github repos\custom-console\drawableconsole\release\sydeengine.pch with same timestamp found in g:\github repos\custom-console\drawableconsole\release\sydegameplay.obj and g:\github repos\custom-console\drawableconsole\release\sydecredits.obj.  Using first PCH.
-LINK : warning C4727: PCH named g:\github repos\custom-console\drawableconsole\release\sydeengine.pch with same timestamp found in g:\github repos\custom-console\drawableconsole\release\textitem.obj and g:\github repos\custom-console\drawableconsole\release\sydetime.obj.  Using first PCH.
+LINK : warning C4727: PCH named g:\github repos\custom-console\drawableconsole\release\sydeengine.pch with same timestamp found in g:\github repos\custom-console\drawableconsole\release\sydetextbox.obj and g:\github repos\custom-console\drawableconsole\release\sydemenu.obj.  Using first PCH.
+LINK : warning C4727: PCH named g:\github repos\custom-console\drawableconsole\release\sydeengine.pch with same timestamp found in g:\github repos\custom-console\drawableconsole\release\settings.obj and g:\github repos\custom-console\drawableconsole\release\sydebutton.obj.  Using first PCH.
+LINK : warning C4727: PCH named g:\github repos\custom-console\drawableconsole\release\sydeengine.pch with same timestamp found in g:\github repos\custom-console\drawableconsole\release\sydecredits.obj and g:\github repos\custom-console\drawableconsole\release\sydegameplay.obj.  Using first PCH.
+LINK : warning C4727: PCH named g:\github repos\custom-console\drawableconsole\release\sydeengine.pch with same timestamp found in g:\github repos\custom-console\drawableconsole\release\sydetime.obj and g:\github repos\custom-console\drawableconsole\release\sydemenu.obj.  Using first PCH.
+LINK : warning C4727: PCH named g:\github repos\custom-console\drawableconsole\release\sydeengine.pch with same timestamp found in g:\github repos\custom-console\drawableconsole\release\textitem.obj and g:\github repos\custom-console\drawableconsole\release\sydemenu.obj.  Using first PCH.
+LINK : warning C4727: PCH named g:\github repos\custom-console\drawableconsole\release\sydeengine.pch with same timestamp found in g:\github repos\custom-console\drawableconsole\release\rigidbody.obj and g:\github repos\custom-console\drawableconsole\release\reiventthewheel.obj.  Using first PCH.
 LINK : warning C4727: PCH named g:\github repos\custom-console\drawableconsole\release\sydeengine.pch with same timestamp found in g:\github repos\custom-console\drawableconsole\release\artwork.obj and g:\github repos\custom-console\drawableconsole\release\assetsclass.obj.  Using first PCH.
   Generating code
-  114 of 1200 functions ( 9.5%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+  1 of 1688 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    4 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   DinseyPlanes.vcxproj -> G:\Github Repos\Dinsey-Planes\DinseyPlanes\Release\DinseyPlanes.exe

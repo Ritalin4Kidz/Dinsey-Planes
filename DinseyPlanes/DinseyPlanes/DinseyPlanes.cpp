@@ -558,6 +558,11 @@ ConsoleWindow DinseyPlanes::window_draw_game(ConsoleWindow window, int windowWid
 
 ConsoleWindow DinseyPlanes::_MainMenu(ConsoleWindow window, int windowWidth, int windowHeight)
 {
+	if (init)
+	{
+		PlaySound(L"EngineFiles\\Sounds\\Music\\03 A Full Grown Adult Playing Kids Games.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+		init = false;
+	}
 	_MainMenuInputVoids();
 	window = m_Sky.draw_asset(window, Vector2(0, 0));
 	cloudSpawnTime += SYDEDefaults::getDeltaTime();
@@ -664,6 +669,7 @@ void DinseyPlanes::_MainMenuInputVoids()
 			{
 				GlobalSettings::_LEVEL = "_PearlHarbour";
 				PearlHarbourScene = 0;
+				init = true;
 				_LEVELS.setActive(false);
 			}
 			else if (_LEVELS.getSelected().m_Text == "6th Aug 1945")
@@ -672,6 +678,7 @@ void DinseyPlanes::_MainMenuInputVoids()
 				HiroshimaScene = 0;
 				CloudsDrawn.clear();
 				CloudsDrawnPos.clear();
+				init = true;
 				_LEVELS.setActive(false);
 			}
 			else if (_LEVELS.getSelected().m_Text == "9th Aug 1945")
@@ -680,6 +687,7 @@ void DinseyPlanes::_MainMenuInputVoids()
 				NagasakiScene = 0;
 				CloudsDrawn.clear();
 				CloudsDrawnPos.clear();
+				init = true;
 				_LEVELS.setActive(false);
 			}
 			else if (_LEVELS.getSelected().m_Text == "6/8/1945 Prologue")
@@ -710,6 +718,7 @@ void DinseyPlanes::_MainMenuInputVoids()
 				Dinsey_Pos = Vector2(1, 5);
 				Ripper_Pos = Vector2(50, 5);
 				Tsubummer_Pos = Vector2(50, 13);
+				init = true;
 				_LEVELS.setActive(false);
 			}
 			// ELSE IF FOR OTHER LEVELS
@@ -784,6 +793,11 @@ vector<string> DinseyPlanes::_Split(string a_String, char splitter)
 
 ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth, int windowHeight)
 {
+	if (init)
+	{
+		PlaySound(L"EngineFiles\\Sounds\\Music\\02 Still Sad That I Exist For Some Reason.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+		init = false;
+	}
 	if (PearlHarbourScene == 0)
 	{
 		window = m_PearlHarbour.draw_asset(window, Vector2(0, 0));
@@ -897,6 +911,7 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 	else {
 		GlobalSettings::_LEVEL = "_MainMenu";
 		CloudsDrawn.clear();
+		init = true;
 		CloudsDrawnPos.clear();
 	}
 	return window;
@@ -904,6 +919,11 @@ ConsoleWindow DinseyPlanes::_PearlHarbour(ConsoleWindow window, int windowWidth,
 
 ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, int windowHeight)
 {
+	if (init)
+	{
+		PlaySound(L"EngineFiles\\Sounds\\Music\\02 Still Sad That I Exist For Some Reason.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+		init = false;
+	}
 	window = m_Sky.draw_asset(window, Vector2(0, 0));
 	cloudSpawnTime += SYDEDefaults::getDeltaTime();
 	if (HiroshimaScene < 6)
@@ -1048,6 +1068,7 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 		m_BombPos = Vector2(1, 5);
 		HiroshimaScene = 0;
 		GlobalSettings::_HIROSHIMABEATEN = true;
+		init = true;
 	}
 	//ONCE BOMB IS OFF SCREEN, PLAY AN ANIMATION.
 	return window;
@@ -1055,6 +1076,11 @@ ConsoleWindow DinseyPlanes::_Hiroshima(ConsoleWindow window, int windowWidth, in
 
 ConsoleWindow DinseyPlanes::_Nagasaki(ConsoleWindow window, int windowWidth, int windowHeight)
 {
+	if (init)
+	{
+		PlaySound(L"EngineFiles\\Sounds\\Music\\02 Still Sad That I Exist For Some Reason.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+		init = false;
+	}
 	window = m_Sky.draw_asset(window, Vector2(0, 0));
 	cloudSpawnTime += SYDEDefaults::getDeltaTime();
 	if (NagasakiScene < 7)
@@ -1214,6 +1240,7 @@ ConsoleWindow DinseyPlanes::_Nagasaki(ConsoleWindow window, int windowWidth, int
 		m_BombPos = Vector2(1, 5);
 		NagasakiScene = 0;
 		GlobalSettings::_NAGASAKIBEATEN = true;
+		init = true;
 	}
 	//ONCE BOMB IS OFF SCREEN, PLAY AN ANIMATION.
 	return window;
@@ -1459,6 +1486,11 @@ ConsoleWindow DinseyPlanes::_NagasakiPrologue(ConsoleWindow window, int windowWi
 
 ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth, int windowHeight)
 {
+	if (init)
+	{
+		PlaySound(L"EngineFiles\\Sounds\\Music\\02 Still Sad That I Exist For Some Reason.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+		init = false;
+	}
 	window = m_Sky.draw_asset(window, Vector2(0, 0));
 	cloudSpawnTime += SYDEDefaults::getDeltaTime();
 	if (DinseyScene < 9)
@@ -2003,11 +2035,17 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		window.setTextAtPoint(Vector2(0, 19), m_DialogueClass.string_dinsey + m_DialogueClass.string_realisation, BLACK_BRIGHTWHITE_BG);
 		if (SYDEKeyCode::get('A')._CompareState(KEYDOWN))
 		{
+			inithack = true;
 			DinseyScene++;
 		}
 	}
 	else if (DinseyScene == 30)
 	{
+		if (inithack)
+		{
+			PlaySound(L"EngineFiles\\Sounds\\Music\\01 I Think Therefore I Suck.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+			inithack = false;
+		}
 		for (int i = 0; i < windowWidth; i++)
 		{
 			for (int j = 0; j < windowHeight; j++)
@@ -2027,6 +2065,7 @@ ConsoleWindow DinseyPlanes::_DinseyBadDay(ConsoleWindow window, int windowWidth,
 		CloudsDrawnPos.clear();
 		Dinsey_Pos = Vector2(1, 5);
 		DinseyScene = 0;
+		init = true;
 	}
 	return window;
 }
@@ -2051,7 +2090,7 @@ ConsoleWindow DinseyPlanes::_Credits(ConsoleWindow window, int windowWidth, int 
 	window.setTextAtPoint(Vector2(0, 1), "SYDE Engine Created By Callum Hands", BRIGHTWHITE);
 	window.setTextAtPoint(Vector2(0, 2), "Dinsey Planes Created By Callum Hands", BRIGHTWHITE);
 	window.setTextAtPoint(Vector2(0, 3), "ritalin4kidz.github.io", BRIGHTWHITE);
-	window.setTextAtPoint(Vector2(0, 4), "Music: ", BRIGHTWHITE);
+	window.setTextAtPoint(Vector2(0, 4), "Music: Lindsay 'HandsPrime' Hands", BRIGHTWHITE);
 	window.setTextAtPoint(Vector2(0, 5), "Additional Art: Tricksmusic, Labcat", BRIGHTWHITE);
 	window.setTextAtPoint(Vector2(0, 6), " ", BRIGHTWHITE);
 	window = Disclaimer.draw_ui(window);
@@ -2061,6 +2100,11 @@ ConsoleWindow DinseyPlanes::_Credits(ConsoleWindow window, int windowWidth, int 
 
 ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth, int windowHeight)
 {
+	if (init)
+	{
+		PlaySound(L"EngineFiles\\Sounds\\Music\\03 A Full Grown Adult Playing Kids Games.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+		init = false;
+	}
 	for (int l = 0; l < windowWidth; l++)
 	{
 		for (int m = 0; m < windowHeight; m++)
@@ -2379,6 +2423,7 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 	if ((SYDEKeyCode::get(VK_SPACE)._CompareState(KEYDOWN)))
 	{
 		GlobalSettings::_LEVEL = "_Battle";
+		init = true;
 		switch (char1_choice)
 		{
 		case 0:
@@ -2442,6 +2487,11 @@ ConsoleWindow DinseyPlanes::_BattleSelect(ConsoleWindow window, int windowWidth,
 
 ConsoleWindow DinseyPlanes::_Battle(ConsoleWindow window, int windowWidth, int windowHeight)
 {
+	if (init)
+	{
+		PlaySound(L"EngineFiles\\Sounds\\Music\\02 Still Sad That I Exist For Some Reason.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+		init = false;
+	}
 	if (BattleScene == 0)
 	{
 		window = m_Sky.draw_asset(window, Vector2(0, 0));
@@ -2500,6 +2550,7 @@ ConsoleWindow DinseyPlanes::_Battle(ConsoleWindow window, int windowWidth, int w
 		GlobalSettings::_LEVEL = "_Battle_Select";
 		CloudsDrawn.clear();
 		CloudsDrawnPos.clear();
+		init = true;
 	}
 	return window;
 }
@@ -2509,7 +2560,7 @@ ConsoleWindow DinseyPlanes::_IntroScreen(ConsoleWindow window, int windowWidth, 
 	if (init)
 	{
 		//MASSIVE TO DO: GET ACTUAL MUSIC FOR THIS
-		PlaySound(L"EngineFiles\\Sounds\\Music\\placeholder.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+		PlaySound(L"EngineFiles\\Sounds\\Music\\03 A Full Grown Adult Playing Kids Games.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
 		init = false;
 	}
 	window = m_Sky.draw_asset(window, Vector2(0, 0));
@@ -2559,7 +2610,7 @@ ConsoleWindow DinseyPlanes::_IntroScreen(ConsoleWindow window, int windowWidth, 
 	{
 		introFlash = true;
 		InverseMax = 0.1f;
-		PlaySound(NULL, NULL, SND_FILENAME);
+		//PlaySound(NULL, NULL, SND_FILENAME);
 	}
 	return window;
 }
